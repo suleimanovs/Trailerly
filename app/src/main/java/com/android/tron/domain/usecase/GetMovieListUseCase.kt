@@ -1,7 +1,6 @@
 package com.android.tron.domain.usecase
 
-import android.graphics.Movie
-import androidx.lifecycle.LiveData
+import com.android.tron.domain.pojo.Movie
 import com.android.tron.domain.MovieRepository
 
 /**
@@ -9,7 +8,7 @@ import com.android.tron.domain.MovieRepository
  */
 class GetMovieListUseCase(private val movieRepository: MovieRepository) {
 
-    operator fun invoke(): LiveData<List<Movie>> {
-        return movieRepository.getMovieList()
+    suspend operator fun invoke(page: Int): List<Movie> {
+        return movieRepository.getMovieList(page)
     }
 }

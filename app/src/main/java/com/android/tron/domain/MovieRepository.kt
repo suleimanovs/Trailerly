@@ -1,7 +1,8 @@
 package com.android.tron.domain
 
-import Movie
-import androidx.lifecycle.LiveData
+import com.android.tron.domain.pojo.Movie
+import com.android.tron.domain.pojo.Review
+import com.android.tron.domain.pojo.Trailer
 
 /**
  * Created by osmanboy on 2/17/2022.
@@ -9,10 +10,18 @@ import androidx.lifecycle.LiveData
 
 interface MovieRepository {
 
-    fun getMovieList(): LiveData<List<Movie>>
+    suspend fun getMovieList(page: Int): List<Movie>
 
-    fun getMovieById(id:Int):LiveData<Movie>
+    suspend fun getMovieById(id: Int): Movie
 
-    fun searchMovie(name:String):LiveData<Movie>
+    suspend fun searchMovie(query: String): List<Movie>
+
+    suspend fun getPopularMovies(page: Int): List<Movie>
+
+    suspend fun getTopRatedMovies(page: Int): List<Movie>
+
+    suspend fun getMovieReview(id: Int): List<Review>
+
+    suspend fun getMovieTrailer(id: Int): List<Trailer>
 
 }
