@@ -2,9 +2,7 @@ package kz.android.tron.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
+import androidx.lifecycle.viewModelScope
 import kz.android.tron.domain.pojo.Movie
 import kz.android.tron.domain.pojo.Trailer
 import kz.android.tron.domain.usecase.*
@@ -30,36 +28,32 @@ class MovieViewModel @Inject constructor(
         return trailers[trailerCurrentIndex].key
     }
 
-    private val scope = CoroutineScope(Dispatchers.IO)
 
-    fun incrementPageCount() {
-        ++page
-    }
+    fun incrementPageCount() = ++page
 
-    fun getAllMovies(sortBy: String, page: Int) = liveData<List<Movie>>(scope.coroutineContext) {
-        emit(getMovieListUseCase(sortBy, page))
-    }
 
-    fun getMovieTrailers(id: Int) = liveData<List<Trailer>>(scope.coroutineContext) {
+    fun getAllMovies(sortBy: String, page: Int) =
+        liveData<List<Movie>>(viewModelScope.coroutineContext) {
+            emit(getMovieListUseCase(sortBy, page))
+        }
+
+    fun getMovieTrailers(id: Int) = liveData<List<Trailer>>(viewModelScope.coroutineContext) {
         emit(getMovieTrailersUseCase(id))
     }
 
-    fun getPopularMovies(page: Int) = liveData<List<Movie>>(scope.coroutineContext) {
+    fun getPopularMovies(page: Int) = liveData<List<Movie>>(viewModelScope.coroutineContext) {
         emit(getPopularMoviesUseCase(page))
     }
 
 
-    fun getTopRated(page: Int) = liveData<List<Movie>>(scope.coroutineContext) {
+    fun getTopRated(page: Int) = liveData<List<Movie>>(viewModelScope.coroutineContext) {
         emit(getTopRatedMoviesUseCase(page))
     }
 
-    fun getMoviesByGenre(genreId: Int, page: Int) = liveData<List<Movie>>(scope.coroutineContext) {
-        emit(getMoviesByGenreUseCase(page, genreId))
+    fun getMoviesByGenre(genreId: Int, page: Int) =
+        liveData<List<Movie>>(viewModelScope.coroutineContext) {
+            emit(getMoviesByGenreUseCase(page, genreId))
+        }
 
-    }
 
-    override fun onCleared() {
-        scope.cancel()
-        super.onCleared()
-    }
 }
