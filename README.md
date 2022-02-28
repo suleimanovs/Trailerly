@@ -12,16 +12,21 @@
 * **_ViewPager_**
 
 _Скриншот N=1_
+
 [](screenshot/screenshot_1.png)
 
 _Скриншот N=2_
+
 [](screenshot/screenshot_2.png)
 
 _Скриншот N=3_
+
 [](screenshot/screenshot_3.png)
 
 _Скриншот N=4_
+
 [](screenshot/screenshot_4.png)
 
 _Скриншот N=5_
+
 [](screenshot/screenshot_6.png)
