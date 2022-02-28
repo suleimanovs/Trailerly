@@ -13,10 +13,10 @@
 
 _Скриншот N=1_
 
-<img src="https://drive.google.com/file/d/1leAhhfQnTVv8h3py8z4zDNxUVjLZrkLk/view?usp=sharing"
+<img src="screenshot/screenshot_1.png"
 width="200"/>
 
-![](https://drive.google.com/file/d/1leAhhfQnTVv8h3py8z4zDNxUVjLZrkLk/view?usp=sharing)
+[comment]: <> (![]&#40;&#41;)
 
 _Скриншот N=2_
 
