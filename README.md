@@ -16,7 +16,7 @@ _Скриншот N=1_
 <img src="https://drive.google.com/file/d/1leAhhfQnTVv8h3py8z4zDNxUVjLZrkLk/view?usp=sharing"
 width="200"/>
 
-![](screenshot/screenshot_1.png)
+![](https://drive.google.com/file/d/1leAhhfQnTVv8h3py8z4zDNxUVjLZrkLk/view?usp=sharing)
 
 _Скриншот N=2_
 
