@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="4dp"
+        app:cardBackgroundColor="@color/widget_color"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/genre_Title"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/top_dimens"
+        android:background="@drawable/round_menu_color"
+        android:backgroundTint="@color/widget_color"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout" />
+
+    <LinearLayout
+        android:id="@+id/genre_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimension"
+        android:layout_marginTop="@dimen/bottom_dimens"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/genre_Title">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/allMoviesTitle"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/top_dimens"
+        android:background="@drawable/round_menu_color"
+        android:backgroundTint="@color/widget_color"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/genre_recycler" />
+
+    <LinearLayout
+        android:id="@+id/popularMoviesRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimension"
+        android:layout_marginTop="@dimen/bottom_dimens"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/allMoviesTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/latestAddedTitle"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/top_dimens"
+        android:background="@drawable/round_menu_color"
+        android:backgroundTint="@color/widget_color"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/popularMoviesRV" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/start_dimension"
+        android:layout_marginTop="@dimen/bottom_dimens"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/latestAddedTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

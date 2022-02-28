@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools2="http://schemas.android.com/tools"
+    android:color="@color/main_color"
+    tools2:ignore="NamespaceTypo"
+    android:shape="rectangle">
+
+
+    <corners android:radius="15dp"/>
+    <solid
+        android:color="@color/bottom_menu_background"/>
+    <stroke
+        android:color="@color/bottom_menu_background"
+        android:width="1dp"/>
+</shape>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/tab_layout">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:fontFamily="@font/graphiklcg_semibold"
+                    android:gravity="center"
+                    android:text="@string/movie_phrase"
+                    android:textAlignment="center"
+                    android:textColor="@color/tertiary_text" />
+            </androidx.appcompat.widget.Toolbar>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/indicator_not_selected" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            android:fillViewport="true"
+            app:layout_wrapBehaviorInParent="vertical_only">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/banner_viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="8dp"
+                    android:fillViewport="true"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/genre_Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/top_dimens"
+                    android:layout_marginEnd="@dimen/margin_end"
+                    android:text="@string/genre"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/banner_viewPager" />
+
+                <com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView
+                    android:id="@+id/genre_recycler"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/start_dimension"
+                    android:layout_marginTop="@dimen/bottom_dimens"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/genre_Title"
+                    app:msrv_gravity="start"
+                    app:msrv_interval="1"
+                    app:msrv_speed_ms_per_inch="300"
+                    app:reverseLayout="false"
+                    tools:listitem="@layout/genre_item" />
+
+
+                <TextView
+                    android:id="@+id/allMoviesTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/top_dimens"
+                    android:layout_marginEnd="@dimen/margin_end"
+                    android:text="@string/popular_movies"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_arrow_forward_ios"
+                    app:layout_constraintTop_toBottomOf="@id/genre_recycler" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popularMoviesRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/start_dimension"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/allMoviesTitle"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:reverseLayout="false"
+                    tools:listitem="@layout/movie_item_row" />
+
+
+                <TextView
+                    android:id="@+id/latestAddedTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="@dimen/top_dimens"
+                    android:layout_marginEnd="@dimen/margin_end"
+                    android:text="@string/rating_top_movies"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_arrow_forward_ios"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/popularMoviesRV" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/latestAdded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/start_dimension"
+                    android:layout_marginTop="@dimen/bottom_dimens"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/latestAddedTitle"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:reverseLayout="false"
+                    tools:listitem="@layout/movie_item_row" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/latestAdded"
+                    />
+
+
+                <LinearLayout
+                    android:id="@+id/shimmerContainer"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/ShimmerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:shimmer_auto_start="false"
+                        app:shimmer_base_alpha="0.6"
+                        app:shimmer_base_color="@color/widget_color"
+                        app:shimmer_dropoff="0.7"
+                        app:shimmer_duration="1800"
+                        app:shimmer_intensity="0.1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <include layout="@layout/movie_shimmer_layout" />
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
