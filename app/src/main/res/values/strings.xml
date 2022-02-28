@@ -1,3 +1,61 @@
 <resources>
     <string name="app_name">Tron</string>
+    <string name="movie_phrase">Кино - это жизнь, где вырезано всё скучное</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="genre_title_label">Фильмы по жанру - %s</string>
+    <string name="popular_movies">Популярные фильмы</string>
+    <string name="rating_top_movies">Фильмы с высоким рейтингом</string>
+    <string name="genre">Жанры</string>
+    <string name="movie">Фильмы</string>
+    <string name="next_trailer">Следующий трейлер</string>
+    <string name="play_trailer">Воспроизвести трейлер</string>
+    <string name="users_vote">Пользовательские оценки</string>
+    <string name="genre_label">Жанр:</string>
+
+    <!-- Strings related to login -->
+    <string name="password_error">Пароль должен быть не меньше 6 символов</string>
+    <string name="email_error">Пожалуйста введите ваш email</string>
+    <string name="onCanceled">У вас нет доступа к хранилище, пожалуйста пройдите регистрацию!</string>
+    <string name="disconnected">ОТСОЕДИНЕН</string>
+    <string name="connect_internet">Подключитесь к интернету что бы получить доступ к этой части приложения.</string>
+    <string name="successful_sign_up">Регистрация прошла успешно</string>
+    <string name="failed_sign_in">Ошибка при входе</string>
+    <string name="user_is_null">Пользователь не найден..</string>
+    <string name="no_connection">Нет подключения к интернету!</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <!--    <string name="welcome">"Добро пожаловать в Tron!"</string>-->
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="email">Эмайл</string>
+    <string name="password">Пароль</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="forget_password">Забыли Пароль? </string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="please_enter_your_name">Пожалуйста, введите ваше имя</string>
+    <string name="name">Имя</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="btn_submit">Потвердить</string>
+    <string name="girl">Женщина</string>
+    <string name="continue_sign">Продолжить</string>
+    <string name="have_account_question">Уже есть аккаунт?</string>
+    <string name="havent_account_question">Ещё нет аккаунта?</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="sign_up_rules">Пожалуйста, введите ваше имя,email, и придумайте себе пaроль</string>
+    <string name="sign_up_title">Регистрация</string>
+    <string name="sign_in_with_google">Войти с помощью Google</string>
+
+    <string name="sign_in_title">Вход</string>
+
+    <string name="sign_in_rules">Пожалуйста, введите ваш email и пароль для входа в аккаунт</string>
+
+    <string name="sign_forget_title">Cброс пароля</string>
+
+    <string name="sign_forget_rules">Потвердите ваш email, и проверьте вашу почту</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="sigin_as_guest">Войти как гость</string>
+    <string name="movie_name_label">Название:</string>
+    <string name="release_dat_label">Дата релиза:</string>
+    <!--    <string name="default_web_client_id">648773632200-jllp11mhkk0t0eip2l05jsqf7qg2m4ds.apps.googleusercontent.com</string>-->
+
 </resources>

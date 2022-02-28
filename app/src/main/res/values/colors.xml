@@ -7,4 +7,75 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="light_blue">#8685FF</color>
+    <color name="purple_600">#4CAF50</color>
+    <color name="purple_900">#F44336</color>
+    <color name="main_black">#212121</color>
+    <color name="btn_dont_sel">#212121</color>
+    <color name="bottom_menu_background">#1d1d1d</color>
+    <color name="icon_color">#C0BEC4</color>
+    <color name="layout_background">#121212</color>
+    <color name="shimmer_bacground">#1F1B2E</color>
+    <color name="shimmer_color">#27243C</color>
+    <color name="dont_clickable">#151220</color>
+    <color name="triadic">#201932</color>
+    <color name="news">#212B38</color>
+    <color name="tab_ripple">#0DFFFFFF</color>
+
+    <color name="text_c">#e0e0e0</color>
+    <color name="tab_layout">#242424</color>
+    <color name="bottom_tab_not_sel">#9e9e9e</color>
+    <color name="indicator_not_selected">#C0BEC4</color>
+    <color name="indicator_text_not_selected">#BFBDC3</color>
+    <color name="widget_color">#212121</color>
+    <color name="widget_color2">#1a1a1a</color>
+
+
+    <color name="black_50">#A9000000</color>
+    <color name="black_transparent">#80000000</color>
+    <color name="main_color">#1338BE</color>
+
+    <color name="main_grey">#313131</color>
+    <color name="grey">#757575</color>
+    <color name="grey2">#3E3D3D</color>
+    <color name="roz">#B068EF</color>
+    <color name="option_background">#1F1B2E</color>
+    <color name="main_text_color">#FFFFFFFF</color>
+
+
+    <color name="colorPrimary">@color/main_color</color>
+    <color name="colorPrimaryDark">#9013FE</color>
+    <color name="colorAccent">#7C4DFF</color>
+    <color name="lightPrimaryColor">#bebebe</color>
+    <color name="stroke_color">#1F1B2E</color>
+    <color name="blue">#2196F3</color>
+    <color name="red">#FF0157</color>
+
+    <color name="info_text">#a5a1b2</color>
+    <color name="description">#d9d7e0</color>
+    <!--    <color name="splash_background">#222222</color>-->
+    <color name="splash_background">#1D1D1D</color>
+    <color name="primary_text">#ffffffff</color>
+    <color name="secondary_text">#bebebe</color>
+    <color name="tertiary_text">#808080</color>
+    <color name="tab_indicator_text">#808080</color>
+
+    <color name="golden">#f5cd07</color>
+    <color name="silver">#AFA1A1</color>
+    <color name="bronze">#CD7F32</color>
+
+
+
+    <color name="ripple_transparent">#11FFFFFF</color>
+    <color name="main_color50">#AEFA400A</color>
+    <color name="main_colortransparent">#52FF3A00</color>
+
+    <color name="voteLowTrackColor">#571435</color>
+    <color name="voteLowBarColor">#db2360</color>
+    <color name="voteMiddleTrackColor">#423d0f</color>
+    <color name="voteMiddleBarColor">#d2d531</color>
+    <color name="voteHighTrackColor">#204529</color>
+    <color name="voteHighBarColor">#21d07a</color>
+
 </resources>

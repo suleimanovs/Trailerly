@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools2="http://schemas.android.com/tools"
+    android:color="@color/ripple_transparent"
+    tools2:ignore="NamespaceTypo">
+
+<item>
+
+    <shape android:shape="rectangle">
+        <stroke
+            android:color="@color/main_color50"
+            android:width="0.8dp"/>
+
+        <corners android:radius="15dp"/>
+        <solid
+            android:color="@color/widget_color"/>
+    </shape>
+
+</item>
+
+
+</ripple>
