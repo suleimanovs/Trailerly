@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/movieListFragment">
+
+    <fragment
+        android:id="@+id/movieListFragment"
+        android:name="kz.android.tron.presentation.ui.MovieListFragment"
+        android:label="MovieListFragment">
+        <action
+            android:id="@+id/action_movieListFragment_to_moviesContentFragment"
+            app:destination="@id/moviesContentFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_genreContentFragment"
+            app:destination="@id/genreContentFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="kz.android.tron.presentation.ui.MovieDetailFragment"
+        android:label="MovieDetailFragment">
+        <argument
+            android:name="movie"
+            app:argType="kz.android.tron.domain.pojo.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/genreContentFragment"
+        android:name="kz.android.tron.presentation.ui.GenreContentFragment"
+        android:label="GenreContentFragment">
+        <action
+            android:id="@+id/action_genreContentFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesContentFragment"
+        android:name="kz.android.tron.presentation.ui.MoviesContentFragment"
+        android:label="MoviesContentFragment">
+        <action
+            android:id="@+id/action_moviesContentFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <argument
+            android:name="sortBy"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+</navigation>

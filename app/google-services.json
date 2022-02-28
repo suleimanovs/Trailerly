@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "682157519081",
+    "project_id": "android-tron-kz",
+    "storage_bucket": "android-tron-kz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682157519081:android:a9d46dba4fbf477ab50078",
+        "android_client_info": {
+          "package_name": "kz.android.tron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682157519081-c3qkmkgmssrbr0dt0240r38rnqhc46r7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.android.tron",
+            "certificate_hash": "658ae0e92ca9edf3aa3d63331e8f3e6f063df484"
+          }
+        },
+        {
+          "client_id": "682157519081-cpqerikhjqq383io9u95q6ipdhr7bicl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.android.tron",
+            "certificate_hash": "3aa00fdb70449276b5f07bc2d3beb160d98927d1"
+          }
+        },
+        {
+          "client_id": "682157519081-givs2iibjr865upi05mlsbu8qar8qhdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.android.tron",
+            "certificate_hash": "3adb34bdf420bdbcb6d23393a6f6f9885adb502c"
+          }
+        },
+        {
+          "client_id": "682157519081-gssee3h4ci2i02c1vr649tgrqe99167t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyBpuvPY1P6YukLGHIFR-1Iqz3hxVu328"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682157519081-gssee3h4ci2i02c1vr649tgrqe99167t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
