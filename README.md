@@ -11,10 +11,13 @@
 * **_Firebase_**
 * **_ViewPager_**
 
-_Скриншоты:_
+<div id="banner">
+    <div class="inline-block">
+ <img src="screenshot/screenshot_1.png" width="300"/>
+<img src="screenshot/screenshot_2.png" width="300"/>
+<img src="screenshot/screenshot_3.png" width="300"/>
+<img src="screenshot/screenshot_4.png" width="300"/>
+<img src="screenshot/screenshot_6.png" width="300"/>
+    </div>
 
-<img src="screenshot/screenshot_1.png" width="200"/>
-<img src="screenshot/screenshot_2.png" width="200"/>
-<img src="screenshot/screenshot_3.png" width="200"/>
-<img src="screenshot/screenshot_4.png" width="200"/>
-<img src="screenshot/screenshot_6.png" width="200"/>
+</div>
