@@ -11,25 +11,13 @@
 * **_Firebase_**
 * **_ViewPager_**
 
-_Скриншот N=1_
+<div id="banner">
+    <div class="inline-block">
+ <img src="screenshot/screenshot_1.png" width="300"/>
+<img src="screenshot/screenshot_2.png" width="300"/>
+<img src="screenshot/screenshot_3.png" width="300"/>
+<img src="screenshot/screenshot_4.png" width="300"/>
+<img src="screenshot/screenshot_6.png" width="300"/>
+    </div>
 
-<img src="screenshot/screenshot_1.png"
-width="200"/>
-
-[comment]: <> (![]&#40;&#41;)
-
-_Скриншот N=2_
-
-![](screenshot/screenshot_2.png)
-
-_Скриншот N=3_
-
-![](screenshot/screenshot_3.png)
-
-_Скриншот N=4_
-
-![](screenshot/screenshot_4.png)
-
-_Скриншот N=5_
-
-![](screenshot/screenshot_6.png)
+</div>
