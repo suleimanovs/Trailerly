@@ -9,5 +9,5 @@ import com.google.gson.annotations.SerializedName
 data class TrailerContainerDto(
     @SerializedName("results")
     @Expose
-    val results: List<TrailerDto>
+    val results: List<TrailerDto>?
 )

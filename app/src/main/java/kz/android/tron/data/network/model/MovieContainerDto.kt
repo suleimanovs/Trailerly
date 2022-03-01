@@ -9,17 +9,17 @@ data class MovieContainerDto(
 
     @SerializedName("page")
     @Expose
-    val page: Int,
+    val page: Int?,
 
     @SerializedName("results")
     @Expose
-    val results: List<MovieDto>,
+    val results: List<MovieDto>?,
 
     @SerializedName("total_pages")
     @Expose
-    val total_pages: Int,
+    val total_pages: Int?,
 
     @SerializedName("total_results")
     @Expose
-    val total_results: Int
+    val total_results: Int?
 )

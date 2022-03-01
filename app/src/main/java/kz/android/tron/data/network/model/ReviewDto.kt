@@ -9,9 +9,9 @@ import com.google.gson.annotations.SerializedName
 data class ReviewDto(
     @SerializedName("author")
     @Expose
-    val author: String,
+    val author: String?,
     @SerializedName("content")
     @Expose
-    val content: String,
+    val content: String?,
 
 )
