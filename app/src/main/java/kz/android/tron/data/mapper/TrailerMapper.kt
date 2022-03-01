@@ -9,6 +9,9 @@ import kz.android.tron.domain.pojo.Trailer
 
 fun List<TrailerDto>.trailerDtoToTrailer(): List<Trailer> {
     return this.map {
-        Trailer(key = it.key, name = it.name)
+        Trailer(
+            key = it.key ?: DEFAULT_EMPTY_STRING,
+            name = it.name ?: DEFAULT_EMPTY_STRING
+        )
     }
 }
