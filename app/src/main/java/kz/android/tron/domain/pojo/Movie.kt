@@ -12,9 +12,9 @@ data class Movie(
 
     val id: Int,
 
-    val backdrop_path: String?,
+    val backdrop_path: String,
 
-    val genre_ids: List<Int>?,
+    val genre_ids: List<Int>,
 
     val original_title: String,
 
@@ -22,11 +22,11 @@ data class Movie(
 
     val poster_path: String,
 
-    val release_date: String?,
+    val release_date: String,
 
     val title: String,
 
-    val vote_average: Double,
+    val vote_average: Int,
 
     val vote_count: Int,
 
