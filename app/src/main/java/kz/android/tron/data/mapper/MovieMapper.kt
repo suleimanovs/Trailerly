@@ -14,10 +14,10 @@ const val DEFAULT_EMPTY_STRING = ""
 const val DEFAULT_ZERO_INT = 0
 const val DEFAULT_ZERO_DOUBLE = 0.0
 
-fun List<MovieDto>.movieDtoListToMovieList(): List<Movie> {
-    return this.map {
+fun List<MovieDto>?.movieDtoListToMovieList(): List<Movie> {
+    return this?.map {
         it.movieDtoToMovie()
-    }
+    } ?: emptyList()
 }
 
 private fun Double.doubleToInt() = this.toString().replace(".", "").toInt()

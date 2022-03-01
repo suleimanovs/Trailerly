@@ -14,7 +14,6 @@ import kz.android.tron.R
  */
 
 // Movie List Adapter
-
 @BindingAdapter("setPosterImage")
 fun setPosterImage(imageView: ShapeableImageView, posterUrl: String) {
     imageView.toRound()
@@ -24,8 +23,8 @@ fun setPosterImage(imageView: ShapeableImageView, posterUrl: String) {
 }
 
 @BindingAdapter("setVoteProgress")
-fun setVoteProgress(circularProgress: CircularProgressView, percent: Double) {
-    val (@ColorRes track, @ColorRes bar) = when (percent.doubleToInt()) {
+fun setVoteProgress(circularProgress: CircularProgressView, percent: Int) {
+    val (@ColorRes track, @ColorRes bar) = when (percent) {
         in VoteColor.LOW.range -> R.color.voteLowTrackColor to R.color.voteLowBarColor
         in VoteColor.MIDDLE.range -> R.color.voteMiddleTrackColor to R.color.voteMiddleBarColor
         in VoteColor.HIGH.range -> R.color.voteHighTrackColor to R.color.voteHighBarColor
@@ -36,11 +35,10 @@ fun setVoteProgress(circularProgress: CircularProgressView, percent: Double) {
 }
 
 @BindingAdapter("setVoteProgressValue")
-fun setVoteProgressValue(circularProgress: CircularProgressView, percent: Double) {
-    circularProgress.setProgress(percent.doubleToInt())
+fun setVoteProgressValue(circularProgress: CircularProgressView, percent: Int) {
+    circularProgress.setProgress(percent)
 }
 
-private fun Double.doubleToInt() = this.toString().replace(".", "").toInt()
 
 enum class VoteColor(val range: IntRange) {
     LOW(0..39),
