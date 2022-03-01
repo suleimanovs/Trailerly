@@ -1,5 +1,9 @@
 package kz.android.tron.data.repository
 
+import kz.android.tron.data.mapper.movieDtoListToMovieList
+import kz.android.tron.data.mapper.movieDtoToMovie
+import kz.android.tron.data.mapper.reviewDtoToReview
+import kz.android.tron.data.mapper.trailerDtoToTrailer
 import kz.android.tron.data.network.*
 import kz.android.tron.domain.MovieRepository
 import kz.android.tron.domain.pojo.Movie
@@ -17,40 +21,40 @@ class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService
         return apiService.getAllMovies(
             sortBy = sortBy,
             page = page
-        ).results.remoteMovieListToMovieList()
+        ).results.movieDtoListToMovieList()
     }
 
     override suspend fun getMovieById(id: Int): Movie {
-        return apiService.getMovieById(id).remoteMovieToMovie()
+        return apiService.getMovieById(id).movieDtoToMovie()
     }
 
     override suspend fun searchMovie(query: String): List<Movie> {
-        return apiService.searchMovie(query = query).results.remoteMovieListToMovieList()
+        return apiService.searchMovie(query = query).results.movieDtoListToMovieList()
 
     }
 
     override suspend fun getPopularMovies(page: Int): List<Movie> {
-        return apiService.getPopularMovies(page = page).results.remoteMovieListToMovieList()
+        return apiService.getPopularMovies(page = page).results.movieDtoListToMovieList()
 
     }
 
     override suspend fun getTopRatedMovies(page: Int): List<Movie> {
-        return apiService.getTopRatedMovies(page = page).results.remoteMovieListToMovieList()
+        return apiService.getTopRatedMovies(page = page).results.movieDtoListToMovieList()
     }
 
     override suspend fun getMovieReview(id: Int): List<Review> {
-        return apiService.getMovieReviewsById(id).results.remoteReviewToReview()
+        return apiService.getMovieReviewsById(id).results.reviewDtoToReview()
 
     }
 
     override suspend fun getMovieTrailer(id: Int): List<Trailer> {
-        return apiService.getMovieTrailersById(id).results.remoteTrailerToTrailer()
+        return apiService.getMovieTrailersById(id).results.trailerDtoToTrailer()
     }
 
     override suspend fun getMoviesByGenre(page: Int, genreId: Int): List<Movie> {
         return apiService.getMoviesByGenre(
             page = page,
             genreId = genreId,
-        ).results.remoteMovieListToMovieList()
+        ).results.movieDtoListToMovieList()
     }
 }

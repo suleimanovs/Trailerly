@@ -1,6 +1,8 @@
-package kz.android.tron.data.network
+package kz.android.tron.data.mapper
 
-import android.util.Log
+import kz.android.tron.data.network.BASE_POSTER_URL
+import kz.android.tron.data.network.BIG_POSTER_SIZE
+import kz.android.tron.data.network.SMALL_POSTER_SIZE
 import kz.android.tron.data.network.model.MovieDto
 import kz.android.tron.data.network.model.ReviewDto
 import kz.android.tron.data.network.model.TrailerDto
@@ -13,7 +15,7 @@ import kz.android.tron.domain.pojo.Trailer
  * Created by osmanboy on 2/22/2022.
  */
 
-fun List<MovieDto>.remoteMovieListToMovieList(): List<Movie> {
+fun List<MovieDto>.movieDtoListToMovieList(): List<Movie> {
     return this.map {
         Movie(
             id = it.id,
@@ -31,7 +33,7 @@ fun List<MovieDto>.remoteMovieListToMovieList(): List<Movie> {
     }
 }
 
-fun MovieDto.remoteMovieToMovie(): Movie {
+fun MovieDto.movieDtoToMovie(): Movie {
     return this.let{
         Movie(
             id = it.id,
@@ -49,15 +51,6 @@ fun MovieDto.remoteMovieToMovie(): Movie {
     }
 }
 
-fun List<TrailerDto>.remoteTrailerToTrailer(): List<Trailer> {
-    return this.map {
-        Trailer(key = it.key, name = it.name)
-    }
-}
 
-fun List<ReviewDto>.remoteReviewToReview(): List<Review> {
-    return this.map {
-        Review(author = it.author, content = it.content)
-    }
-}
+
 
