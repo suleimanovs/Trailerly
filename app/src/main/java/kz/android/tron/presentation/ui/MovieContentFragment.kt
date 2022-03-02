@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieContentBinding
 import kz.android.tron.domain.pojo.Movie
@@ -70,12 +73,12 @@ class MoviesContentFragment : Fragment() {
     }
 
     private fun launchLoadData(page: Int) {
-        this.movieModel.getAllMovies(args.sortBy, page).observe(viewLifecycleOwner) {
+        this.movieModel.getAllMovies(args.sortBy, page).onEach {
             moviesAdapter.submitList(mutableListOf<Movie>().apply {
                 addAll(moviesAdapter.currentList)
                 addAll(it)
             })
-        }
+        }.launchIn(lifecycleScope)
     }
 
 

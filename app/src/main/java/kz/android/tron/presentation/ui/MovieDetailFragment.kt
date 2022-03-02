@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieDetailBinding
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
@@ -21,7 +24,7 @@ import javax.inject.Inject
 class MovieDetailFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailBinding? = null
-    private val binding get() = _binding ?: throw RuntimeException("$_binding is null")
+    private val binding get() = _binding !!
 
     private val args by navArgs<MovieDetailFragmentArgs>()
     @Inject lateinit var viewModelFactory: MovieModelFactory
@@ -47,12 +50,12 @@ class MovieDetailFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        viewModel.getMovieTrailers(args.movie.id).observe(viewLifecycleOwner) {
+        viewModel.getMovieTrailers(args.movie.id).onEach {
             if (it.isNotEmpty()) {
                 viewModel.trailers.addAll(it)
                 initYouTubePlayerView()
             }
-        }
+        }.launchIn(lifecycleScope)
 
     }
 

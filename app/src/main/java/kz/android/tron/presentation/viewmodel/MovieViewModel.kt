@@ -1,12 +1,9 @@
 package kz.android.tron.presentation.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
 import kz.android.tron.domain.pojo.Movie
 import kz.android.tron.domain.pojo.Trailer
 import kz.android.tron.domain.usecase.*
@@ -36,27 +33,25 @@ class MovieViewModel @Inject constructor(
     fun incrementPageCount() = ++page
 
 
-    fun getAllMovies(sortBy: String, page: Int) =
-        liveData<List<Movie>>(viewModelScope.coroutineContext) {
+    fun getAllMovies(sortBy: String, page: Int) = flow<List<Movie>> {
             emit(getMovieListUseCase(sortBy, page))
         }
 
-    fun getMovieTrailers(id: Int) = liveData<List<Trailer>>(viewModelScope.coroutineContext) {
+    fun getMovieTrailers(id: Int) = flow<List<Trailer>> {
         emit(getMovieTrailersUseCase(id))
     }
 
-    fun getPopularMovies(page: Int)= liveData<List<Movie>>(viewModelScope.coroutineContext) {
-            emit(getPopularMoviesUseCase(page))
+    fun getPopularMovies(page: Int) = flow<List<Movie>> {
+        emit(getPopularMoviesUseCase(page))
     }
 
-        fun getTopRated(page: Int) = liveData<List<Movie>>(viewModelScope.coroutineContext) {
-            emit(getTopRatedMoviesUseCase(page))
-        }
+    fun getTopRated(page: Int) = flow<List<Movie>> {
+        emit(getTopRatedMoviesUseCase(page))
+    }
 
-        fun getMoviesByGenre(genreId: Int, page: Int) =
-            liveData<List<Movie>>(viewModelScope.coroutineContext) {
-                emit(getMoviesByGenreUseCase(page, genreId))
-            }
+    fun getMoviesByGenre(genreId: Int, page: Int) = flow<List<Movie>> {
+            emit(getMoviesByGenreUseCase(page, genreId))
+        }
 
 
 }

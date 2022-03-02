@@ -2,13 +2,15 @@ package kz.android.tron.presentation.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieListBinding
@@ -95,9 +97,9 @@ class MovieListFragment : Fragment() {
             launchMovieDetail(it)
         }
         binding.latestAdded.adapter = topRatedMoviesAdapter
-        viewModel.getTopRated(1).observe(viewLifecycleOwner) {
+        viewModel.getTopRated(1).onEach {
             topRatedMoviesAdapter.submitList(it)
-        }
+        }.launchIn(lifecycleScope)
     }
 
 
@@ -109,11 +111,12 @@ class MovieListFragment : Fragment() {
         binding.bannerViewPager.adapter = viewPagerAdapter
         binding.popularMoviesRV.adapter = popularMoviesAdapter
 
-        viewModel.getPopularMovies(1).observe(viewLifecycleOwner) {
+        viewModel.getPopularMovies(1).onEach {
             stopShimmer()
             popularMoviesAdapter.submitList(it)
             viewPagerAdapter.submitList(it)
-        }
+        }.launchIn(lifecycleScope)
+
     }
 
 
