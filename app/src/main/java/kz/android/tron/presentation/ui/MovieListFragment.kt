@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieListBinding
-import kz.android.tron.domain.pojo.Movie
+import kz.android.tron.domain.model.Movie
 import kz.android.tron.presentation.adapter.MovieAdapter
 import kz.android.tron.presentation.adapter.MoviesGenreAdapter
 import kz.android.tron.presentation.adapter.PopularMovieBannerAdapter

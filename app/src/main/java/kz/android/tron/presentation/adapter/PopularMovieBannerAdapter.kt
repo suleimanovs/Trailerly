@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import kz.android.tron.databinding.BannersMovieLayoutBinding
-import kz.android.tron.domain.pojo.Movie
+import kz.android.tron.domain.model.Movie
 import javax.inject.Inject
 
 class PopularMovieBannerAdapter @Inject constructor() :

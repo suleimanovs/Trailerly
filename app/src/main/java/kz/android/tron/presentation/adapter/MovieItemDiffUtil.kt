@@ -1,7 +1,7 @@
 package kz.android.tron.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import kz.android.tron.domain.pojo.Movie
+import kz.android.tron.domain.model.Movie
 
 /**
  * Created by osmanboy on 2/22/2022.

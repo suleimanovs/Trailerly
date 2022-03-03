@@ -1,10 +1,7 @@
 package kz.android.tron.data.mapper
 
-import kz.android.tron.data.network.BASE_POSTER_URL
-import kz.android.tron.data.network.BIG_POSTER_SIZE
-import kz.android.tron.data.network.SMALL_POSTER_SIZE
 import kz.android.tron.data.network.model.MovieDto
-import kz.android.tron.domain.pojo.Movie
+import kz.android.tron.domain.model.Movie
 
 
 /**
@@ -14,6 +11,10 @@ const val DEFAULT_EMPTY_STRING = ""
 const val DEFAULT_ZERO_INT = 0
 const val DEFAULT_ZERO_DOUBLE = 0.0
 
+const val BASE_POSTER_URL = "https://image.tmdb.org/t/p/"
+const val SMALL_POSTER_SIZE = "w185"
+const val BIG_POSTER_SIZE = "w780"
+
 fun List<MovieDto>?.movieDtoListToMovieList(): List<Movie> {
     return this?.map {
         it.movieDtoToMovie()
@@ -22,14 +23,13 @@ fun List<MovieDto>?.movieDtoListToMovieList(): List<Movie> {
 
 private fun Double.doubleToInt() = this.toString().replace(".", "").toInt()
 
-
 fun MovieDto.movieDtoToMovie() =
     Movie(
         id = this.id ?: DEFAULT_ZERO_INT,
 
         backdrop_path = BASE_POSTER_URL + BIG_POSTER_SIZE + this.backdrop_path,
 
-        genre_ids = this.genre_ids ?: emptyList(),
+        genre_id = this.genre_ids ?: emptyList(),
 
         original_title = this.original_title ?: DEFAULT_EMPTY_STRING,
 

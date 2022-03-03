@@ -13,10 +13,8 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
-import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieContentBinding
-import kz.android.tron.domain.pojo.Movie
-import kz.android.tron.presentation.adapter.Genres
+import kz.android.tron.domain.model.Movie
 import kz.android.tron.presentation.adapter.MovieAdapter
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieViewModel
@@ -30,15 +28,17 @@ class GenreContentFragment : Fragment() {
 
     @Inject lateinit var viewModelFactory: MovieModelFactory
     @Inject lateinit var moviesAdapter: MovieAdapter
+
     private val component by lazy { (requireActivity().application as App).component }
     private val movieModel: MovieViewModel by viewModels { viewModelFactory }
+    private val args by navArgs<GenreContentFragmentArgs>()
 
 
     override fun onAttach(context: Context) {
         component.inject(this)
         super.onAttach(context)
     }
-    private val args by navArgs<GenreContentFragmentArgs>()
+
 
     override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View {
         _binding = FragmentMovieContentBinding.inflate(inflater, group, false)
@@ -48,14 +48,19 @@ class GenreContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.movieLabelId = args.genreId
         binding.allMovies.adapter = moviesAdapter
         launchLoadData(page = movieModel.page, id = args.genreId)
+
+        setupBackClickListener()
+        setupAdapterOnReachListener()
+        setupOnPosterClickListener()
+    }
+
+    private fun setupBackClickListener() {
         binding.back.setOnClickListener {
             findNavController().popBackStack()
         }
-        setRecyclerViewTitle()
-        setupAdapterOnReachListener()
-        setupOnPosterClickListener()
     }
 
     private fun setupOnPosterClickListener() {
@@ -81,11 +86,6 @@ class GenreContentFragment : Fragment() {
         }.launchIn(lifecycleScope)
     }
 
-
-    private fun setRecyclerViewTitle() {
-        binding.title.text =
-            getString(R.string.genre_title_label, Genres.getGenreNameById(args.genreId))
-    }
 
     override fun onDestroyView() {
         _binding=null

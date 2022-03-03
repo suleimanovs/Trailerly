@@ -24,7 +24,7 @@
         android:label="MovieDetailFragment">
         <argument
             android:name="movie"
-            app:argType="kz.android.tron.domain.pojo.Movie" />
+            app:argType="kz.android.tron.domain.model.Movie" />
     </fragment>
     <fragment
         android:id="@+id/genreContentFragment"

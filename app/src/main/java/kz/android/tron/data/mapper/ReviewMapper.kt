@@ -1,7 +1,7 @@
 package kz.android.tron.data.mapper
 
 import kz.android.tron.data.network.model.ReviewDto
-import kz.android.tron.domain.pojo.Review
+import kz.android.tron.domain.model.Review
 
 /**
  * Created by osmanboy on 3/1/2022.

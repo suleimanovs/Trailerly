@@ -7,7 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by osmanboy on 2/22/2022.
  */
 object ApiFactory {
-
     private const val BASE_URL = "https://api.themoviedb.org/3/"
 
     private val retrofit = Retrofit.Builder()

@@ -1,11 +1,9 @@
 package kz.android.tron.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.flow
-import kz.android.tron.domain.pojo.Movie
-import kz.android.tron.domain.pojo.Trailer
+import kz.android.tron.domain.model.Movie
+import kz.android.tron.domain.model.Trailer
 import kz.android.tron.domain.usecase.*
 import javax.inject.Inject
 

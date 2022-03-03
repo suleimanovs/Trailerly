@@ -5,7 +5,7 @@
 
         <variable
             name="movie"
-            type="kz.android.tron.domain.pojo.Movie" />
+            type="kz.android.tron.domain.model.Movie" />
     </data>
 
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -285,7 +285,7 @@
                         android:maxLines="1"
                         android:textColor="@color/primary_text"
                         android:textSize="14sp"
-                        app:setGenresValue="@{movie.genre_ids}"
+                        app:setGenresValue="@{movie.genre_id}"
                         tools:text="боевик, комедия, фэнтези" />
 
                 </LinearLayout>

@@ -58,3 +58,11 @@ fun setGenreIcon(imageView: ImageView, icon: Int) {
 fun setGenresValue(textView: TextView, genresId: List<Int>) {
     textView.text = Genres.getGenresName(genresId).toString()
 }
+
+
+//MovieGenreContent
+@BindingAdapter("setGenreTitle")
+fun setGenreTitle(textView: TextView, genreId: Int) {
+    textView.text =
+        textView.context.getString(R.string.genre_title_label, Genres.getGenreNameById(genreId))
+}

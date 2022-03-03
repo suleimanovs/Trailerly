@@ -3,7 +3,7 @@
     <data>
         <variable
             name="movie"
-            type="kz.android.tron.domain.pojo.Movie" />
+            type="kz.android.tron.domain.model.Movie" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

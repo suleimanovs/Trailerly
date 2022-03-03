@@ -4,18 +4,17 @@ import kz.android.tron.data.mapper.movieDtoListToMovieList
 import kz.android.tron.data.mapper.movieDtoToMovie
 import kz.android.tron.data.mapper.reviewDtoToReview
 import kz.android.tron.data.mapper.trailerDtoToTrailer
-import kz.android.tron.data.network.*
+import kz.android.tron.data.network.ApiService
 import kz.android.tron.domain.MovieRepository
-import kz.android.tron.domain.pojo.Movie
-import kz.android.tron.domain.pojo.Review
-import kz.android.tron.domain.pojo.Trailer
+import kz.android.tron.domain.model.Movie
+import kz.android.tron.domain.model.Review
+import kz.android.tron.domain.model.Trailer
 import javax.inject.Inject
 
 /**
  * Created by osmanboy on 2/22/2022.
  */
-class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService) :
-    MovieRepository {
+class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService): MovieRepository {
 
     override suspend fun getMovieList(sortBy: String, page: Int): List<Movie> {
         return apiService.getAllMovies(

@@ -1,7 +1,7 @@
 package kz.android.tron.domain.usecase
 
 import kz.android.tron.domain.MovieRepository
-import kz.android.tron.domain.pojo.Review
+import kz.android.tron.domain.model.Review
 import javax.inject.Inject
 
 /**

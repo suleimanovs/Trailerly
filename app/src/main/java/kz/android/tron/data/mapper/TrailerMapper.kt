@@ -1,7 +1,7 @@
 package kz.android.tron.data.mapper
 
 import kz.android.tron.data.network.model.TrailerDto
-import kz.android.tron.domain.pojo.Trailer
+import kz.android.tron.domain.model.Trailer
 
 /**
  * Created by osmanboy on 3/1/2022.

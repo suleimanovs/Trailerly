@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kz.android.tron.databinding.MovieItemRowBinding
-import kz.android.tron.domain.pojo.Movie
+import kz.android.tron.domain.model.Movie
 import javax.inject.Inject
 
 typealias OnReachEndListener = () -> Unit

@@ -1,4 +1,4 @@
-package kz.android.tron.domain.pojo
+package kz.android.tron.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -14,7 +14,7 @@ data class Movie(
 
     val backdrop_path: String,
 
-    val genre_ids: List<Int>,
+    val genre_id: List<Int>,
 
     val original_title: String,
 

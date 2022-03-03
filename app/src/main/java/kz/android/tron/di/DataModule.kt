@@ -21,7 +21,6 @@ interface DataModule {
         @ApplicationScope
         @Provides
         fun provideApiService()= ApiFactory.apiService
-
     }
 
 }
