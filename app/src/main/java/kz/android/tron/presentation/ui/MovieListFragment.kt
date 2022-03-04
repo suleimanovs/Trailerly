@@ -55,12 +55,12 @@ class MovieListFragment : Fragment() {
         }
 
 
-        binding.latestAddedTitle.setOnClickListener {
+        binding.topRatedTitle.setOnClickListener {
             launchMovieContent(SORT_BY_TOP_RATED, getString(R.string.rating_top_movies))
         }
 
 
-        binding.allMoviesTitle.setOnClickListener {
+        binding.popularMoviesTitle.setOnClickListener {
             launchMovieContent(SORT_BY_POPULARITY, getString(R.string.popular_movies))
         }
 

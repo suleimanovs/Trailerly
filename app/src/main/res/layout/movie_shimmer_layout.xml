@@ -83,7 +83,7 @@
 
 
     <TextView
-        android:id="@+id/allMoviesTitle"
+        android:id="@+id/popularMoviesTitle"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -107,7 +107,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/allMoviesTitle"
+        app:layout_constraintTop_toBottomOf="@id/popularMoviesTitle"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.cardview.widget.CardView
@@ -137,7 +137,7 @@
 
 
     <TextView
-        android:id="@+id/latestAddedTitle"
+        android:id="@+id/topRatedTitle"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -160,7 +160,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/latestAddedTitle"
+        app:layout_constraintTop_toBottomOf="@id/topRatedTitle"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.cardview.widget.CardView

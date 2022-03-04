@@ -5,36 +5,20 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.google.android.material.appbar.AppBarLayout
+
+        <TextView
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/tab_layout">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:gravity="center"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:fontFamily="@font/graphiklcg_semibold"
-                    android:gravity="center"
-                    android:text="@string/movie_phrase"
-                    android:textAlignment="center"
-                    android:textColor="@color/tertiary_text" />
-            </androidx.appcompat.widget.Toolbar>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/indicator_not_selected" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="?actionBarSize"
+            android:background="@color/tab_layout"
+            android:fontFamily="@font/graphiklcg_semibold"
+            android:gravity="center"
+            android:text="@string/movie_phrase"
+            android:textAlignment="center"
+            android:textColor="@color/tertiary_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll"
@@ -91,7 +75,7 @@
 
 
                 <TextView
-                    android:id="@+id/allMoviesTitle"
+                    android:id="@+id/popularMoviesTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start"
@@ -113,14 +97,14 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/allMoviesTitle"
+                    app:layout_constraintTop_toBottomOf="@id/popularMoviesTitle"
                     app:layout_constraintVertical_bias="0.0"
                     app:reverseLayout="false"
                     tools:listitem="@layout/movie_item_row" />
 
 
                 <TextView
-                    android:id="@+id/latestAddedTitle"
+                    android:id="@+id/topRatedTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start"
@@ -142,16 +126,16 @@
                     android:layout_marginTop="@dimen/bottom_dimens"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/latestAddedTitle"
+                    app:layout_constraintTop_toBottomOf="@id/topRatedTitle"
                     app:layout_constraintVertical_bias="0.0"
                     app:reverseLayout="false"
                     tools:listitem="@layout/movie_item_row" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/latestAdded"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/latestAdded" />
 
 
                 <LinearLayout

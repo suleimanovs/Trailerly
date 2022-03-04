@@ -1,4 +1,4 @@
-package kz.android.tron.presentation.adapter
+package kz.android.tron.presentation.util
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -12,12 +12,10 @@ import kz.android.tron.R
 /**
  * Created by osmanboy on 2/24/2022.
  */
-class DpToPx {
-    companion object {
+object DpToPx {
         operator fun invoke(context: Context, dp: Int): Int {
             return (dp * context.resources.displayMetrics.density).toInt()
         }
-    }
 }
 
 fun ShapeableImageView.toRound() {
@@ -26,8 +24,7 @@ fun ShapeableImageView.toRound() {
 }
 
 
-class ShimmerDrawablePlaceHolder {
-    companion object {
+object ShimmerDrawablePlaceHolder {
         operator fun invoke(context: Context): ShimmerDrawable {
             val shimmer = Shimmer.ColorHighlightBuilder()
                 .setBaseColor(ContextCompat.getColor(context, R.color.teal_200)).setBaseAlpha(0.0f)
@@ -35,23 +32,7 @@ class ShimmerDrawablePlaceHolder {
                 .setHighlightColor(ContextCompat.getColor(context, R.color.grey))
                 .setDuration(1800).setDirection(Shimmer.Direction.LEFT_TO_RIGHT).setAutoStart(true)
                 .build()
-
             return ShimmerDrawable().apply { setShimmer(shimmer) }
         }
-
-    }
 }
 
-object Storage {
-    private lateinit var shareds: SharedPreferences
-    fun initial(context: Context) {
-        shareds = context.getSharedPreferences("user", 0)
-    }
-
-    fun putUser(user: String) {
-        shareds.edit().putString(USER, user).apply()
-    }
-
-    fun getUser() = shareds.getString(USER, null)
-    private const val USER = "user_param"
-}

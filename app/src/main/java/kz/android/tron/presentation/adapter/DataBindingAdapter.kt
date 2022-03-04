@@ -8,6 +8,9 @@ import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.vaibhavlakhera.circularprogressview.CircularProgressView
 import kz.android.tron.R
+import kz.android.tron.presentation.adapter.repository.Genres
+import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
+import kz.android.tron.presentation.util.toRound
 
 /**
  * Created by osmanboy on 2/25/2022.

@@ -27,10 +27,7 @@ class MovieAdapter @Inject constructor() : ListAdapter<Movie, MovieAdapter.ItemV
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.binding.movie = getItem(position)
         if (position >= (currentList.size - 6)) onReachEndListener?.invoke()
-        holder.binding.root.setOnClickListener {
-            onPosterClickListener?.invoke(getItem(position))
-        }
-
+        holder.binding.root.setOnClickListener { onPosterClickListener?.invoke(getItem(position)) }
     }
 
 }

@@ -14,7 +14,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentSignupBinding
-import kz.android.tron.presentation.adapter.Storage
 
 
 class SignupFragment : Fragment() {

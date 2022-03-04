@@ -1,4 +1,4 @@
-package kz.android.tron.presentation.adapter
+package kz.android.tron.presentation.adapter.repository
 
 import kz.android.tron.R
 

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.android.tron.databinding.GenreItemBinding
+import kz.android.tron.presentation.adapter.repository.Genres
 import javax.inject.Inject
 
 /**

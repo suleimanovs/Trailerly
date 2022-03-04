@@ -35,7 +35,6 @@ class GenreContentFragment : Fragment() {
         super.onAttach(context)
     }
 
-
     override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View {
         _binding = FragmentMovieContentBinding.inflate(inflater, group, false)
         return binding.root
@@ -44,26 +43,23 @@ class GenreContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.movieLabelId = args.genreId
-        binding.allMovies.adapter = moviesAdapter
-        launchLoadData()
-        movieModel.movieGenreList.observe(viewLifecycleOwner) {
-            moviesAdapter.submitList(it)
-        }
-        setupBackClickListener()
-        setupAdapterOnReachListener()
-        setupOnPosterClickListener()
 
+        movieModel.movieGenreList.observe(viewLifecycleOwner) { moviesAdapter.submitList(it) }
+        setupAdapter()
     }
 
-    private fun setupBackClickListener() {
-        binding.back.setOnClickListener { findNavController().popBackStack() }
+
+    private fun setupAdapter() {
+        binding.allMovies.adapter = moviesAdapter
+        launchLoadData()
+        setupOnPosterClickListener()
+        setupAdapterOnReachListener()
     }
 
     private fun setupOnPosterClickListener() {
         moviesAdapter.onPosterClickListener = {
             findNavController().navigate(
-                GenreContentFragmentDirections
-                    .actionGenreContentFragmentToMovieDetailFragment(it)
+                GenreContentFragmentDirections.actionGenreContentFragmentToMovieDetailFragment(it)
             )
         }
     }
@@ -74,9 +70,7 @@ class GenreContentFragment : Fragment() {
         }
     }
 
-    private fun launchLoadData() {
-        movieModel.getMoviesByGenre(genreId = args.genreId)
-    }
+    private fun launchLoadData() = movieModel.getMoviesByGenre(genreId = args.genreId)
 
 
     override fun onDestroyView() {
