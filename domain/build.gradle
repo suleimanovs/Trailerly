@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+
+
+}
+android {
+    compileSdk 32
+}
+dependencies {
+    // Dagger 2
+    kapt "com.google.dagger:dagger-compiler:2.38.1"
+    implementation "com.google.dagger:dagger:2.40.5"
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

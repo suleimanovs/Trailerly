@@ -1,6 +1,6 @@
-package kz.android.tron.data.mapper
+package kz.android.data.mapper
 
-import kz.android.tron.data.network.model.ReviewDto
+import kz.android.data.network.model.ReviewDto
 import kz.android.tron.domain.model.Review
 
 /**

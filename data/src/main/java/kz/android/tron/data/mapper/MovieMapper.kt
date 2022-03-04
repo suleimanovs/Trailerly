@@ -1,6 +1,6 @@
-package kz.android.tron.data.mapper
+package kz.android.data.mapper
 
-import kz.android.tron.data.network.model.MovieDto
+import kz.android.data.network.model.MovieDto
 import kz.android.tron.domain.model.Movie
 
 

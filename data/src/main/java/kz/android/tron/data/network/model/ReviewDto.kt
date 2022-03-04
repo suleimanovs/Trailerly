@@ -1,4 +1,4 @@
-package kz.android.tron.data.network.model
+package kz.android.data.network.model
 
 
 import com.google.gson.annotations.Expose

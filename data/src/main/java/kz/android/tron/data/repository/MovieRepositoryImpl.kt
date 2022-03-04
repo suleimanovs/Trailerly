@@ -1,10 +1,10 @@
-package kz.android.tron.data.repository
+package kz.android.data.repository
 
-import kz.android.tron.data.mapper.movieDtoListToMovieList
-import kz.android.tron.data.mapper.movieDtoToMovie
-import kz.android.tron.data.mapper.reviewDtoToReview
-import kz.android.tron.data.mapper.trailerDtoToTrailer
-import kz.android.tron.data.network.ApiService
+import kz.android.data.mapper.movieDtoListToMovieList
+import kz.android.data.mapper.movieDtoToMovie
+import kz.android.data.mapper.reviewDtoToReview
+import kz.android.data.mapper.trailerDtoToTrailer
+import kz.android.data.network.ApiService
 import kz.android.tron.domain.MovieRepository
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.domain.model.Review

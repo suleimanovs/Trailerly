@@ -1,4 +1,4 @@
-package kz.android.tron.data.network
+package kz.android.data.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

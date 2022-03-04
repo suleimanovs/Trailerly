@@ -18,3 +18,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Tron"
 include ':app'
+include ':data'
+include ':domain'
