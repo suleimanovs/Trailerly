@@ -3,6 +3,7 @@ package kz.android.tron.presentation.ui.login
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -22,16 +23,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentLoginBinding
-import kz.android.tron.presentation.adapter.TronSharedPreferences
+import kz.android.tron.presentation.adapter.Storage
 
 
 class LoginFragment : Fragment() {
 
     private val auth: FirebaseAuth = Firebase.auth
-    private lateinit var googleSignInClient: GoogleSignInClient
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var onStartActivity: IOStartActivity
+    private lateinit var googleSignInClient: GoogleSignInClient
 
 
     private val resultLauncher =
@@ -90,12 +91,12 @@ class LoginFragment : Fragment() {
         binding.btnSignIn.setOnClickListener {
             showProgress()
             when {
-                TextUtils.isEmpty(binding.email.text.toString().trim { it <= ' ' }) -> {
+                binding.email.text.isEmpty() -> {
                     showToast(R.string.email_error)
                     hideProgress()
 
                 }
-                TextUtils.isEmpty(binding.password.text.toString().trim { it <= ' ' }) -> {
+                binding.password.text.isEmpty() -> {
                     showToast(R.string.password_error)
                     hideProgress()
 
@@ -116,8 +117,8 @@ class LoginFragment : Fragment() {
                         .addOnCompleteListener(requireActivity()) { task ->
 
                             if (task.isSuccessful) {
-                                TronSharedPreferences.initial(requireContext())
-                                TronSharedPreferences.putUser(auth.currentUser?.uid.toString())
+                                Storage.initial(requireContext())
+                                Storage.putUser(auth.currentUser?.uid.toString())
                                 launchToMainActivity()
                             } else {
                                 hideProgress()
@@ -136,8 +137,8 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
 
                     val user = auth.currentUser
-                    TronSharedPreferences.initial(requireContext())
-                    TronSharedPreferences.putUser(user?.providerId ?: ANONYMOUS)
+                    Storage.initial(requireContext())
+                    Storage.putUser(user?.providerId ?: ANONYMOUS)
                     launchToMainActivity()
                 } else {
                     showToast(R.string.failed_sign_in)
@@ -152,8 +153,8 @@ class LoginFragment : Fragment() {
             val credential = GoogleAuthProvider.getCredential(it, null)
             auth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    TronSharedPreferences.initial(requireContext())
-                    TronSharedPreferences.putUser(auth.currentUser?.uid.toString())
+                    Storage.initial(requireContext())
+                    Storage.putUser(auth.currentUser?.uid.toString())
                     launchToMainActivity()
                 } else hideProgress()
             }
@@ -170,11 +171,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun showProgress() {
-        binding.progress.visibility = View.VISIBLE
+        this.binding.progress.visibility = View.VISIBLE
     }
 
     private fun hideProgress() {
-        binding.progress.visibility = View.GONE
+        this.binding.progress.visibility = View.GONE
     }
 
     private fun launchToMainActivity() {
@@ -187,6 +188,10 @@ class LoginFragment : Fragment() {
 
     interface IOStartActivity {
         fun onStartActivity()
+    }
+
+    fun Editable?.isEmpty(): Boolean {
+        return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
     }
 }
 

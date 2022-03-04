@@ -8,8 +8,8 @@
     <string name="genre">Жанры</string>
     <string name="movie">Фильмы</string>
     <string name="next_trailer">Следующий трейлер</string>
-    <string name="play_trailer">Воспроизвести трейлер</string>
-    <string name="users_vote">Пользовательские оценки</string>
+    <string name="play_trailer">Воспроизвести\nтрейлер</string>
+    <string name="users_vote">Пользовательские\nоценки</string>
     <string name="genre_label">Жанр:</string>
 
     <!-- Strings related to login -->

@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieDetailBinding
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
-import kz.android.tron.presentation.viewmodel.MovieViewModel
+import kz.android.tron.presentation.viewmodel.MovieListViewModel
 import javax.inject.Inject
 
 class MovieDetailFragment : Fragment() {
@@ -29,7 +29,7 @@ class MovieDetailFragment : Fragment() {
     private val args by navArgs<MovieDetailFragmentArgs>()
     @Inject lateinit var viewModelFactory: MovieModelFactory
     private val component by lazy { (requireActivity().application as App).component }
-    private val viewModel: MovieViewModel by viewModels { viewModelFactory }
+    private val listViewModel: MovieListViewModel by viewModels { viewModelFactory }
 
 
     override fun onAttach(context: Context) {
@@ -46,13 +46,10 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.movie = args.movie
 
-        binding.back.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
-        viewModel.getMovieTrailers(args.movie.id).onEach {
+        listViewModel.getMovieTrailers(args.movie.id).onEach {
             if (it.isNotEmpty()) {
-                viewModel.trailers.addAll(it)
+                listViewModel.trailers.addAll(it)
                 initYouTubePlayerView()
             }
         }.launchIn(lifecycleScope)
@@ -64,7 +61,7 @@ class MovieDetailFragment : Fragment() {
         binding.YouTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
 
-                youTubePlayer.loadOrCueVideo(lifecycle, viewModel.getNextTrailerId(), 0f)
+                youTubePlayer.loadOrCueVideo(lifecycle, listViewModel.getNextTrailerId(), 0f)
                 // youTubePlayer.pause() TODO: оно не правильно рабоатает, замени!
                 binding.playVideo.setOnClickListener { youTubePlayer.play() }
                 setPlayNextVideoButtonClickListener(youTubePlayer)
@@ -74,7 +71,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun setPlayNextVideoButtonClickListener(youTubePlayer: YouTubePlayer) {
         binding.nextTrailer.setOnClickListener {
-            youTubePlayer.loadOrCueVideo(lifecycle, viewModel.getNextTrailerId(), 0f)
+            youTubePlayer.loadOrCueVideo(lifecycle, listViewModel.getNextTrailerId(), 0f)
         }
     }
 

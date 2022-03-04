@@ -42,7 +42,7 @@ class ShimmerDrawablePlaceHolder {
     }
 }
 
-object TronSharedPreferences {
+object Storage {
     private lateinit var shareds: SharedPreferences
     fun initial(context: Context) {
         shareds = context.getSharedPreferences("user", 0)
@@ -52,6 +52,6 @@ object TronSharedPreferences {
         shareds.edit().putString(USER, user).apply()
     }
 
-    fun getUser() = shareds.getString(USER, "")
+    fun getUser() = shareds.getString(USER, null)
     private const val USER = "user_param"
 }

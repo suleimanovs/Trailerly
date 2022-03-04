@@ -2,18 +2,19 @@ package kz.android.tron.presentation.ui.login
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kz.android.tron.presentation.adapter.TronSharedPreferences
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentSignupBinding
+import kz.android.tron.presentation.adapter.Storage
 
 
 class SignupFragment : Fragment() {
@@ -40,12 +41,12 @@ class SignupFragment : Fragment() {
             showProgress()
 
             when {
-                TextUtils.isEmpty(binding.email.text.toString().trim { it <= ' ' }) -> {
+                binding.email.text.isEmpty() -> {
                     showToast(R.string.email_error)
                     hideProgress()
 
                 }
-                TextUtils.isEmpty(binding.password.text.toString().trim { it <= ' ' }) -> {
+                binding.password.text.isEmpty() -> {
                     showToast(R.string.password_error)
                     hideProgress()
 
@@ -56,7 +57,7 @@ class SignupFragment : Fragment() {
                     hideProgress()
                 }
 
-                TextUtils.isEmpty(binding.username.text.toString().trim { it <= ' ' }) -> {
+                binding.username.text.isEmpty() -> {
                     showToast(R.string.please_enter_your_name)
                     hideProgress()
 
@@ -71,10 +72,10 @@ class SignupFragment : Fragment() {
                         .addOnCompleteListener(requireActivity()) { task ->
                             //если регистрация прошла успешна
                             if (task.isSuccessful) {
-                               // val userId = auth.currentUser?.uid.toString()
+                                // val userId = auth.currentUser?.uid.toString()
                                 showToast(R.string.successful_sign_up)
-                                TronSharedPreferences.initial(requireContext())
-                                TronSharedPreferences.putUser(auth.currentUser?.uid.toString())
+                                Storage.initial(requireContext())
+                                Storage.putUser(auth.currentUser?.uid.toString())
                                 launchToMainActivity()
 
                             } else {
@@ -107,6 +108,10 @@ class SignupFragment : Fragment() {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    fun Editable?.isEmpty(): Boolean {
+        return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
     }
 
 }

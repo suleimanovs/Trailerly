@@ -19,7 +19,7 @@ import kz.android.tron.presentation.adapter.MovieAdapter
 import kz.android.tron.presentation.adapter.MoviesGenreAdapter
 import kz.android.tron.presentation.adapter.PopularMovieBannerAdapter
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
-import kz.android.tron.presentation.viewmodel.MovieViewModel
+import kz.android.tron.presentation.viewmodel.MovieListViewModel
 import javax.inject.Inject
 
 
@@ -34,7 +34,7 @@ class MovieListFragment : Fragment() {
     @Inject lateinit var genreAdapter : MoviesGenreAdapter
 
     private val component by lazy { (requireActivity().application as App).component }
-    private val viewModel: MovieViewModel by viewModels { viewModelFactory }
+    private val listViewModel: MovieListViewModel by viewModels { viewModelFactory }
 
 
 
@@ -97,7 +97,7 @@ class MovieListFragment : Fragment() {
             launchMovieDetail(it)
         }
         binding.latestAdded.adapter = topRatedMoviesAdapter
-        viewModel.getTopRated(1).onEach {
+        listViewModel.getAllMovies(sortBy = SORT_BY_TOP_RATED, page = 1).onEach {
             topRatedMoviesAdapter.submitList(it)
         }.launchIn(lifecycleScope)
     }
@@ -111,7 +111,7 @@ class MovieListFragment : Fragment() {
         binding.bannerViewPager.adapter = viewPagerAdapter
         binding.popularMoviesRV.adapter = popularMoviesAdapter
 
-        viewModel.getPopularMovies(1).onEach {
+        listViewModel.getAllMovies(sortBy = SORT_BY_POPULARITY, page = 1).onEach {
             stopShimmer()
             popularMoviesAdapter.submitList(it)
             viewPagerAdapter.submitList(it)

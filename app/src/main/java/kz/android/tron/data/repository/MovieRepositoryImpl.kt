@@ -32,15 +32,6 @@ class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService
 
     }
 
-    override suspend fun getPopularMovies(page: Int): List<Movie> {
-        return apiService.getPopularMovies(page = page).results.movieDtoListToMovieList()
-
-    }
-
-    override suspend fun getTopRatedMovies(page: Int): List<Movie> {
-        return apiService.getTopRatedMovies(page = page).results.movieDtoListToMovieList()
-    }
-
     override suspend fun getMovieReview(id: Int): List<Review> {
         return apiService.getMovieReviewsById(id).results.reviewDtoToReview()
 
