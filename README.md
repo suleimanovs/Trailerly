@@ -14,10 +14,10 @@
 **ScreenShots**
 <div id="banner">
     <div class="inline-block">
- <img src="screenshot/screenshot_1.png" width="300"/>
-<img src="screenshot/screenshot_2.png" width="300"/>
-<img src="screenshot/screenshot_3.png" width="300"/>
-<img src="screenshot/screenshot_4.png" width="300"/>
-<img src="screenshot/screenshot_6.png" width="300"/>
+ <img src="screenshot/screenshot1.png" width="300"/>
+<img src="screenshot/screenshot2.png" width="300"/>
+<img src="screenshot/screenshot3.png" width="300"/>
+<img src="screenshot/screenshot4.png" width="300"/>
+<img src="screenshot/screenshot5.png" width="300"/>
     </div>
 </div>
