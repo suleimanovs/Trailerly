@@ -7,7 +7,7 @@
 * **_Retrofit_**
 * **_Coroutine_**
 * **_LiveData_**
-* **_Room_**
+* **_Shared Preferences_**
 * **_Firebase_**
 * **_ViewPager_**
 
