@@ -1,8 +1,11 @@
 package kz.android.tron.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.flow
-import kz.android.tron.domain.model.Movie
+import kotlinx.coroutines.launch
 import kz.android.tron.domain.model.Trailer
 import kz.android.tron.domain.usecase.GetMovieListUseCase
 import kz.android.tron.domain.usecase.GetMovieTrailersUseCase
@@ -16,23 +19,34 @@ class MovieListViewModel @Inject constructor(
     private val getMovieTrailersUseCase: GetMovieTrailersUseCase,
 ) : ViewModel() {
 
-    var page: Int = 1
-    fun incrementPageCount() = ++page
-
-    val trailers = mutableListOf<Trailer>()
     private var trailerCurrentIndex = 0
+    private var pageCount: Int = DEFAULT_PAGE
+
+    private val _trailerList = MutableLiveData<List<Trailer>>()
+    val trailerList: LiveData<List<Trailer>> get() = _trailerList
+
     fun getNextTrailerId(): String {
-        trailerCurrentIndex = (trailerCurrentIndex + 1) % trailers.size
-        return trailers[trailerCurrentIndex].key
+        trailerCurrentIndex = (trailerCurrentIndex + 1) % (_trailerList.value?.size ?: 0)
+        return _trailerList.value?.get(trailerCurrentIndex)?.key ?: ""
     }
 
 
-    fun getAllMovies(sortBy: String, page: Int) = flow<List<Movie>> {
-        emit(getMovieListUseCase(sortBy, page))
+    fun getMovieList(sortBy: String) = flow {
+        emit(getMovieListUseCase(sortBy, pageCount))
     }
 
-    fun getMovieTrailers(id: Int) = flow<List<Trailer>> {
-        emit(getMovieTrailersUseCase(id))
+    fun incrementPage() = pageCount++
+
+    fun getMovieTrailers(id: Int) {
+        viewModelScope.launch {
+            getMovieTrailersUseCase(id).apply {
+                _trailerList.postValue(this)
+            }
+        }
+    }
+
+    companion object {
+        private const val DEFAULT_PAGE = 1
     }
 
 }

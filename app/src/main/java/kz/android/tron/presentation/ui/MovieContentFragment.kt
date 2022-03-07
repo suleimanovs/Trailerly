@@ -16,8 +16,8 @@ import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieContentBinding
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.presentation.adapter.MovieAdapter
-import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieListViewModel
+import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import javax.inject.Inject
 
 
@@ -30,7 +30,7 @@ class MoviesContentFragment : Fragment() {
     @Inject lateinit var moviesAdapter: MovieAdapter
 
     private val component by lazy { (requireActivity().application as App).component }
-    private val movieListModel: MovieListViewModel by viewModels { viewModelFactory }
+    private val viewModel: MovieListViewModel by viewModels { viewModelFactory }
 
 
     override fun onAttach(context: Context) {
@@ -47,21 +47,23 @@ class MoviesContentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.back.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        binding.title.text = args.title
+        onBackClick()
+        setupAdapter()
+
+    }
+
+    private fun  setupAdapter(){
         setupPosterClickListener()
         setupAdapterOnReachListener()
-        binding.title.text = args.title
-        binding.allMovies.adapter = moviesAdapter
-        launchLoadData(this.movieListModel.page)
-
+        binding.movieRV.adapter = moviesAdapter
+        launchLoadData()
     }
 
     private fun setupAdapterOnReachListener() {
         moviesAdapter.onReachEndListener = {
-            this.movieListModel.incrementPageCount()
-            launchLoadData(this.movieListModel.page)
+            viewModel.incrementPage()
+            launchLoadData()
         }
     }
 
@@ -73,8 +75,8 @@ class MoviesContentFragment : Fragment() {
         }
     }
 
-    private fun launchLoadData(page: Int) {
-        this.movieListModel.getAllMovies(args.sortBy, page).onEach {
+    private fun launchLoadData() {
+        this.viewModel.getMovieList(args.sortBy).onEach {
             moviesAdapter.submitList(mutableListOf<Movie>().apply {
                 addAll(moviesAdapter.currentList)
                 addAll(it)
@@ -82,5 +84,13 @@ class MoviesContentFragment : Fragment() {
         }.launchIn(lifecycleScope)
     }
 
+    private fun onBackClick() {
+        binding.back.setOnClickListener { findNavController().popBackStack() }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 
 }

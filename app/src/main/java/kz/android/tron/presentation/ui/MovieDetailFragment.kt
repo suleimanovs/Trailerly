@@ -7,18 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieDetailBinding
-import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieListViewModel
+import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import javax.inject.Inject
 
 class MovieDetailFragment : Fragment() {
@@ -46,22 +42,17 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.movie = args.movie
 
-
-        listViewModel.getMovieTrailers(args.movie.id).onEach {
-            if (it.isNotEmpty()) {
-                listViewModel.trailers.addAll(it)
-                initYouTubePlayerView()
-            }
-        }.launchIn(lifecycleScope)
-
+        listViewModel.getMovieTrailers(args.movie.id)
+        initYouTubePlayerView()
     }
 
     private fun initYouTubePlayerView() {
         viewLifecycleOwner.lifecycle.addObserver(binding.YouTubePlayer)
         binding.YouTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-
-                youTubePlayer.loadOrCueVideo(lifecycle, listViewModel.getNextTrailerId(), 0f)
+                listViewModel.trailerList.observe(viewLifecycleOwner) {
+                    youTubePlayer.loadOrCueVideo(lifecycle, listViewModel.getNextTrailerId(), 0f)
+                }
                 // youTubePlayer.pause() TODO: оно не правильно рабоатает, замени!
                 binding.playVideo.setOnClickListener { youTubePlayer.play() }
                 setPlayNextVideoButtonClickListener(youTubePlayer)

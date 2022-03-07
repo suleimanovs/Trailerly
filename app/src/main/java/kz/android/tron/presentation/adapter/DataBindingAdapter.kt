@@ -3,7 +3,9 @@ package kz.android.tron.presentation.adapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.databinding.BindingAdapter
+import androidx.navigation.NavController
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.vaibhavlakhera.circularprogressview.CircularProgressView
@@ -63,9 +65,4 @@ fun setGenresValue(textView: TextView, genresId: List<Int>) {
 }
 
 
-//MovieGenreContent
-@BindingAdapter("setGenreTitle")
-fun setGenreTitle(textView: TextView, genreId: Int) {
-    textView.text =
-        textView.context.getString(R.string.genre_title_label, Genres.getGenreNameById(genreId))
-}
+

@@ -10,8 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kz.android.tron.App
+import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieContentBinding
 import kz.android.tron.presentation.adapter.MovieAdapter
+import kz.android.tron.presentation.adapter.repository.Genres
 import kz.android.tron.presentation.viewmodel.GenreContentViewModel
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import javax.inject.Inject
@@ -42,15 +44,14 @@ class GenreContentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.movieLabelId = args.genreId
-
+        setTitle()
         movieModel.movieGenreList.observe(viewLifecycleOwner) { moviesAdapter.submitList(it) }
         setupAdapter()
     }
 
 
     private fun setupAdapter() {
-        binding.allMovies.adapter = moviesAdapter
+        binding.movieRV.adapter = moviesAdapter
         launchLoadData()
         setupOnPosterClickListener()
         setupAdapterOnReachListener()
@@ -76,6 +77,11 @@ class GenreContentFragment : Fragment() {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    private fun setTitle() {
+        binding.title.text =
+            getString(R.string.genre_title_label, Genres.getGenreNameById(args.genreId))
     }
 
 }

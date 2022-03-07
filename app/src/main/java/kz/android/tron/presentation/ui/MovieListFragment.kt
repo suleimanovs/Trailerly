@@ -96,8 +96,8 @@ class MovieListFragment : Fragment() {
         topRatedMoviesAdapter.onPosterClickListener = {
             launchMovieDetail(it)
         }
-        binding.latestAdded.adapter = topRatedMoviesAdapter
-        listViewModel.getAllMovies(sortBy = SORT_BY_TOP_RATED, page = 1).onEach {
+        binding.topRatedRV.adapter = topRatedMoviesAdapter
+        listViewModel.getMovieList(sortBy = SORT_BY_TOP_RATED).onEach {
             topRatedMoviesAdapter.submitList(it)
         }.launchIn(lifecycleScope)
     }
@@ -111,7 +111,7 @@ class MovieListFragment : Fragment() {
         binding.bannerViewPager.adapter = viewPagerAdapter
         binding.popularMoviesRV.adapter = popularMoviesAdapter
 
-        listViewModel.getAllMovies(sortBy = SORT_BY_POPULARITY, page = 1).onEach {
+        listViewModel.getMovieList(sortBy = SORT_BY_POPULARITY).onEach {
             stopShimmer()
             popularMoviesAdapter.submitList(it)
             viewPagerAdapter.submitList(it)

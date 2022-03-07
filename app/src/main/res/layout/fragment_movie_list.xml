@@ -119,7 +119,7 @@
                     app:layout_constraintTop_toBottomOf="@id/popularMoviesRV" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/latestAdded"
+                    android:id="@+id/topRatedRV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/start_dimension"
@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/latestAdded" />
+                    app:layout_constraintTop_toBottomOf="@id/topRatedRV" />
 
 
                 <LinearLayout
