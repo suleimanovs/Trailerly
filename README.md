@@ -15,9 +15,9 @@
 <div id="banner">
     <div class="inline-block">
  <img src="screenshot/screenshot1.png" width="300"/>
+<img src="screenshot/screenshot5.png" width="300"/>
 <img src="screenshot/screenshot2.png" width="300"/>
 <img src="screenshot/screenshot3.png" width="300"/>
 <img src="screenshot/screenshot4.png" width="300"/>
-<img src="screenshot/screenshot5.png" width="300"/>
     </div>
 </div>
