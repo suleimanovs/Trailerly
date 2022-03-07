@@ -21,10 +21,10 @@ class SignupFragment : Fragment() {
     private val auth: FirebaseAuth = Firebase.auth
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
-    private lateinit var onStartActivity: LoginFragment.IOStartActivity
+    private lateinit var onStartActivity: LoginFragment.OnStartActivity
 
     override fun onAttach(context: Context) {
-        onStartActivity = context as LoginFragment.IOStartActivity
+        onStartActivity = context as LoginFragment.OnStartActivity
         super.onAttach(context)
     }
 
@@ -40,27 +40,18 @@ class SignupFragment : Fragment() {
             showProgress()
 
             when {
-                binding.email.text.isEmpty() -> {
-                    showToast(R.string.email_error)
-                    hideProgress()
+                binding.email.text.isEmpty() -> showToast(R.string.email_error)
 
-                }
-                binding.password.text.isEmpty() -> {
-                    showToast(R.string.password_error)
-                    hideProgress()
 
-                }
+                binding.password.text.isEmpty() -> showToast(R.string.password_error)
 
-                binding.password.length() < 6 -> {
-                    binding.password.error = getString(R.string.password_error)
-                    hideProgress()
-                }
 
-                binding.username.text.isEmpty() -> {
-                    showToast(R.string.please_enter_your_name)
-                    hideProgress()
+                binding.password.length() < 6 -> binding.password.error =
+                    getString(R.string.password_error)
 
-                }
+
+                binding.username.text.isEmpty() -> showToast(R.string.please_enter_your_name)
+
 
                 else -> {
                     showProgress()
@@ -77,13 +68,13 @@ class SignupFragment : Fragment() {
                                 Storage.putUser(auth.currentUser?.uid.toString())
                                 launchToMainActivity()
 
-                            } else {
-                                showToast(R.string.failed_sign_in)
-                                hideProgress()
-                            }
+                            } else showToast(R.string.failed_sign_in)
                         }
+
                 }
             }
+            hideProgress()
+
         }
     }
 
@@ -109,7 +100,7 @@ class SignupFragment : Fragment() {
         super.onDestroyView()
     }
 
-    fun Editable?.isEmpty(): Boolean {
+    private fun Editable?.isEmpty(): Boolean {
         return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
     }
 

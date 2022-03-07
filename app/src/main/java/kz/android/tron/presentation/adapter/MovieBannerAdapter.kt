@@ -11,27 +11,25 @@ import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
 import kz.android.tron.presentation.util.toRound
 import javax.inject.Inject
 
-class PopularMovieBannerAdapter @Inject constructor() :
-    ListAdapter<Movie, PopularMovieBannerAdapter.ItemViewHolder>(
-        MovieItemDiffUtil()
-    ) {
+class ItemVH(val binding: BannersMovieLayoutBinding) : ViewHolder(binding.root)
+
+class MovieBannerAdapter @Inject constructor() : ListAdapter<Movie,ItemVH>(MovieItemDiffUtil()) {
     var onPosterClickListener: OnPosterClickListener? = null
 
-    class ItemViewHolder(val binding: BannersMovieLayoutBinding) : ViewHolder(binding.root)
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemVH {
         val inflater = LayoutInflater.from(parent.context)
-        return ItemViewHolder(BannersMovieLayoutBinding.inflate(inflater, parent, false))
+        return ItemVH(BannersMovieLayoutBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemVH, position: Int) {
         val context = holder.binding.root.context
 
         holder.binding.bannerImage.apply {
             setOnClickListener { onPosterClickListener?.invoke(getItem(position)) }
 
-            toRound()
+            this.toRound()
             Glide.with(context).load(getItem(position).backdrop_path).centerCrop()
                 .placeholder(ShimmerDrawablePlaceHolder(context))
                 .into(this)

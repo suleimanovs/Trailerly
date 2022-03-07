@@ -17,7 +17,7 @@ import kz.android.tron.databinding.FragmentMovieListBinding
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.presentation.adapter.MovieAdapter
 import kz.android.tron.presentation.adapter.MoviesGenreAdapter
-import kz.android.tron.presentation.adapter.PopularMovieBannerAdapter
+import kz.android.tron.presentation.adapter.MovieBannerAdapter
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieListViewModel
 import javax.inject.Inject
@@ -30,7 +30,7 @@ class MovieListFragment : Fragment() {
     @Inject lateinit var viewModelFactory: MovieModelFactory
     @Inject lateinit var popularMoviesAdapter : MovieAdapter
     @Inject lateinit var topRatedMoviesAdapter : MovieAdapter
-    @Inject lateinit var viewPagerAdapter : PopularMovieBannerAdapter
+    @Inject lateinit var viewPagerAdapter : MovieBannerAdapter
     @Inject lateinit var genreAdapter : MoviesGenreAdapter
 
     private val component by lazy { (requireActivity().application as App).component }

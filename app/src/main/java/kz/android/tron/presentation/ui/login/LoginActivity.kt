@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kz.android.tron.R
 import kz.android.tron.presentation.ui.MainActivity
 
-class LoginActivity : AppCompatActivity(), LoginFragment.IOStartActivity {
+class LoginActivity : AppCompatActivity(), LoginFragment.OnStartActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

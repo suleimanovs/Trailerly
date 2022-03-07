@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
     private val auth: FirebaseAuth = Firebase.auth
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var onStartActivity: IOStartActivity
+    private lateinit var onStartActivity: OnStartActivity
     private lateinit var googleSignInClient: GoogleSignInClient
 
 
@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
         }
 
     override fun onAttach(context: Context) {
-        onStartActivity = context as IOStartActivity
+        onStartActivity = context as OnStartActivity
         super.onAttach(context)
     }
 
@@ -75,15 +75,17 @@ class LoginFragment : Fragment() {
 
 
 
+        signInWithGoogleBtnListener()
+        signInAsAnonymousListener()
+        signInWithEmailListener()
+
+    }
+
+    private fun signInWithGoogleBtnListener(){
         binding.btnGoogle.setOnClickListener {
             showProgress()
             resultLauncher.launch(googleSignInClient.signInIntent)
         }
-
-        signInAsAnonymousListener()
-
-        signInWithEmailListener()
-
     }
 
     private fun signInWithEmailListener() {
@@ -92,18 +94,15 @@ class LoginFragment : Fragment() {
             when {
                 binding.email.text.isEmpty() -> {
                     showToast(R.string.email_error)
-                    hideProgress()
 
                 }
                 binding.password.text.isEmpty() -> {
                     showToast(R.string.password_error)
-                    hideProgress()
 
                 }
 
                 binding.password.length() < 6 -> {
                     binding.password.error = getString(R.string.password_error)
-                    hideProgress()
                 }
 
 
@@ -126,6 +125,7 @@ class LoginFragment : Fragment() {
                         }
                 }
             }
+            hideProgress()
         }
     }
 
@@ -185,11 +185,11 @@ class LoginFragment : Fragment() {
         findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
     }
 
-    interface IOStartActivity {
+    interface OnStartActivity {
         fun onStartActivity()
     }
 
-    fun Editable?.isEmpty(): Boolean {
+    private fun Editable?.isEmpty(): Boolean {
         return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
     }
 }
