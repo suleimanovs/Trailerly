@@ -6,14 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import kz.android.tron.R
 import kz.android.tron.presentation.ui.MainActivity
 
-class LoginActivity : AppCompatActivity(), LoginFragment.OnStartActivity {
+class AuthorizationActivity : AppCompatActivity(), OnStartActivity {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_authorization)
     }
 
     override fun onStartActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
+
+}
+
+interface OnStartActivity {
+    fun onStartActivity()
 }

@@ -12,7 +12,7 @@
         android:color="#2C2C2C"/>
     <stroke
         android:color="@color/main_color"
-        android:width="4dp"/>
+        android:width="2dp"/>
     </shape>
     </item>
 

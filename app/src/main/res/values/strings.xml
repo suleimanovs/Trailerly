@@ -2,7 +2,7 @@
     <string name="app_name">Tron</string>
     <string name="movie_phrase">Кино - это жизнь, где вырезано всё скучное</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="genre_title_label">Фильмы по жанру - %s</string>
+    <string name="genre_title_label">Фильмы по жанру: %s</string>
     <string name="popular_movies">Популярные фильмы</string>
     <string name="rating_top_movies">Фильмы с высоким рейтингом</string>
     <string name="genre">Жанры</string>

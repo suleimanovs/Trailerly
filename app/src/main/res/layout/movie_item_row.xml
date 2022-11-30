@@ -30,7 +30,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/item_image"
                 android:layout_width="113.3dp"
-                app:setPosterImage="@{movie.poster_path}"
+                app:setPosterImage="@{movie.posterPath}"
                 android:layout_height="170dp"
                 android:scaleType="centerCrop"
                 android:transitionName="movie_image" />
@@ -115,12 +115,12 @@
             app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
             app:progressRoundCap="true"
             app:progressTextColor="#FFF"
-            setVoteProgress="@{movie.vote_average}"
+            setVoteProgress="@{movie.voteAverage}"
             app:progressTextEnabled="true"
             app:progressTextSize="15sp"
             app:progressTextType="percent"
             app:progressWidth="2dp"
-            setVoteProgressValue="@{movie.vote_average}"
+            setVoteProgressValue="@{movie.voteAverage}"
             app:startAngle="270"
             app:totalValue="100"
             app:totalWidth="1dp"

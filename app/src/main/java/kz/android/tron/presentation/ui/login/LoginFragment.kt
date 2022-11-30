@@ -8,8 +8,8 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -17,12 +17,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentLoginBinding
+import kz.android.tron.presentation.ui.login.Storage.ANONYMOUS
+import kz.android.tron.presentation.util.getValue
+import kz.android.tron.presentation.util.isEmpty
 
 
 class LoginFragment : Fragment() {
@@ -32,7 +36,6 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var onStartActivity: OnStartActivity
     private lateinit var googleSignInClient: GoogleSignInClient
-
 
     private val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -46,7 +49,7 @@ class LoginFragment : Fragment() {
                     }
                 } else hideProgress()
 
-            }
+            } else hideProgress()
         }
 
     override fun onAttach(context: Context) {
@@ -62,9 +65,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.linkSignUp.setOnClickListener {
-            launchToSignupFragment()
-        }
 
         val googleSignOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -75,57 +75,48 @@ class LoginFragment : Fragment() {
 
 
 
-        signInWithGoogleBtnListener()
+        binding.linkSignUp.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
+        }
+
+        binding.btnGoogle.setOnClickListener {
+            showProgress()
+            resultLauncher.launch(googleSignInClient.signInIntent)
+        }
+
         signInAsAnonymousListener()
         signInWithEmailListener()
 
     }
 
-    private fun signInWithGoogleBtnListener(){
-        binding.btnGoogle.setOnClickListener {
-            showProgress()
-            resultLauncher.launch(googleSignInClient.signInIntent)
-        }
-    }
 
     private fun signInWithEmailListener() {
         binding.btnSignIn.setOnClickListener {
-            showProgress()
             when {
-                binding.email.text.isEmpty() -> {
-                    showToast(R.string.email_error)
+                binding.email.text.isEmpty() -> showSnackbar(R.string.email_error)
 
-                }
-                binding.password.text.isEmpty() -> {
-                    showToast(R.string.password_error)
+                binding.password.text.isEmpty() -> showSnackbar(R.string.password_error)
 
-                }
-
-                binding.password.length() < 6 -> {
-                    binding.password.error = getString(R.string.password_error)
-                }
-
+                binding.password.length() < 6 -> showSnackbar(R.string.password_error)
 
                 else -> {
-                    binding.progress.visibility = View.VISIBLE
-                    val email: String = binding.email.text.toString().trim { it <= ' ' }
-                    val password: String = binding.password.text.toString().trim { it <= ' ' }
+                    showProgress()
+                    val email: String = binding.email.getValue()
+                    val password: String = binding.password.getValue()
 
                     auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(requireActivity()) { task ->
 
                             if (task.isSuccessful) {
-                                Storage.initial(requireContext())
                                 Storage.putUser(auth.currentUser?.uid.toString())
                                 launchToMainActivity()
                             } else {
                                 hideProgress()
-                                showToast(R.string.failed_sign_in)
+                                showSnackbar(R.string.failed_sign_in)
                             }
                         }
                 }
             }
-            hideProgress()
         }
     }
 
@@ -136,11 +127,10 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
 
                     val user = auth.currentUser
-                    Storage.initial(requireContext())
                     Storage.putUser(user?.providerId ?: ANONYMOUS)
                     launchToMainActivity()
                 } else {
-                    showToast(R.string.failed_sign_in)
+                    showSnackbar(R.string.failed_sign_in)
                     hideProgress()
                 }
             }
@@ -148,50 +138,43 @@ class LoginFragment : Fragment() {
     }
 
     private fun firebaseAuthWithGoogle(googleAccount: GoogleSignInAccount) {
+
         googleAccount.idToken?.let {
             val credential = GoogleAuthProvider.getCredential(it, null)
             auth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Storage.initial(requireContext())
                     Storage.putUser(auth.currentUser?.uid.toString())
                     launchToMainActivity()
-                } else hideProgress()
+                } else {
+                    hideProgress()
+                }
             }
         }
 
     }
 
-    companion object {
-        const val ANONYMOUS = "anonymous"
-    }
 
-    private fun showToast(message: Int) {
-        Toast.makeText(requireContext(), getString(message), Toast.LENGTH_LONG).show()
-    }
+    private fun showSnackbar(@StringRes stringRes: Int) = Snackbar
+        .make(
+            requireContext(),
+            binding.root,
+            getString(stringRes),
+            Snackbar.LENGTH_SHORT
+        ).show()
 
     private fun showProgress() {
-        this.binding.progress.visibility = View.VISIBLE
+        binding.progress.visibility = View.VISIBLE
     }
 
     private fun hideProgress() {
-        this.binding.progress.visibility = View.GONE
+        binding.progress.visibility = View.GONE
     }
 
     private fun launchToMainActivity() {
         onStartActivity.onStartActivity()
     }
 
-    private fun launchToSignupFragment() {
-        findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
-    }
 
-    interface OnStartActivity {
-        fun onStartActivity()
-    }
-
-    private fun Editable?.isEmpty(): Boolean {
-        return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
-    }
 }
 
 

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="genre"
-            type="kz.android.tron.presentation.adapter.repository.Genre" />
+            type="kz.android.tron.presentation.util.Genre" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

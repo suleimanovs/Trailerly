@@ -2,20 +2,25 @@ package kz.android.tron.presentation.ui.login
 
 import android.content.Context
 import android.content.SharedPreferences
+import kotlin.properties.Delegates
 
-/**
- * Created by osmanboy on 3/4/2022.
- */
+
 object Storage {
 
-    private const val USER = "user_param"
-    private lateinit var shareds: SharedPreferences
+    private var sharedPreferences: SharedPreferences by Delegates.notNull()
 
+    /**
+     * [initial] Необходимо вызвать в классе приложения и только
+     */
     fun initial(context: Context) {
-        shareds = context.getSharedPreferences("user", 0)
+        sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE)
     }
 
-    fun putUser(user: String) = shareds.edit().putString(USER, user).apply()
+    fun putUser(user: String) = sharedPreferences.edit().putString(USER, user).apply()
 
-    fun getUser() = shareds.getString(USER, null)
+    fun user() = sharedPreferences.getString(USER, null)
+
+    private const val USER = "user_param"
+    const val ANONYMOUS = "anonymous"
+
 }

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
         android:background="@color/layout_background">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_robot"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginTop="10dp"
             app:layout_constraintBottom_toTopOf="@id/app_name"
             app:layout_constraintDimensionRatio="W,1"
@@ -17,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1"
-            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintWidth_percent="0.3"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
@@ -33,6 +35,7 @@
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/welcome"
+            android:layout_marginTop="16dp"
             android:textColor="@color/icon_color"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/linearLayout"
@@ -45,9 +48,9 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/sign_activity_backround"
             android:orientation="vertical"
             android:padding="16dp"
@@ -101,15 +104,14 @@
                 android:hint="@string/email"
                 android:textColorHint="@color/secondary_text"
                 app:boxBackgroundColor="@color/grey2"
-
                 app:boxCornerRadiusBottomEnd="20dp"
                 app:boxCornerRadiusBottomStart="20dp"
                 app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusTopStart="20dp"
-                app:boxStrokeColor="@color/colorPrimary"
+                app:boxStrokeColor="@color/voteHighBarColor"
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
-                app:hintTextColor="@color/colorPrimary">
+                app:hintTextColor="@color/voteHighBarColor">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/email"
@@ -117,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_email"
                     android:drawablePadding="7dp"
-
+                    android:drawableTint="@color/voteHighBarColor"
                     android:imeOptions="actionDone"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/secondary_text" />
@@ -138,12 +140,12 @@
                 app:boxCornerRadiusBottomStart="20dp"
                 app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusTopStart="20dp"
-                app:boxStrokeColor="@color/colorPrimary"
+                app:boxStrokeColor="@color/voteHighBarColor"
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
-                app:hintTextColor="@color/colorPrimary"
+                app:hintTextColor="@color/voteHighBarColor"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorPrimary">
+                app:passwordToggleTint="@color/voteHighBarColor">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/password"
@@ -151,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_password"
                     android:drawablePadding="7dp"
+                    android:drawableTint="@color/voteHighBarColor"
                     android:inputType="textPassword"
                     android:textColor="@color/secondary_text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -168,10 +171,10 @@
                 android:id="@+id/anonymous"
                 android:fontFamily="@font/graphiklcg_medium"
                 android:textColor="@color/secondary_text"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:layout_margin="8dp"
                 android:layout_gravity="center"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="@drawable/round_menu_color"
                 android:text="@string/sigin_as_guest"/>
 
@@ -180,37 +183,25 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signIn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/sign_activity_backround"
             android:fontFamily="@font/graphiklcg_medium"
-            android:orientation="vertical"
-            android:padding="8dp"
             android:text="@string/action_sign_in"
             android:textColor="@color/white"
-            android:textSize="16sp"
-            app:autoSizeTextType="none"
-            app:layout_constraintBottom_toTopOf="@id/tv_sign_have_que"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintWidth_percent="0.6" />
+            android:layout_marginTop="16dp" />
 
 
         <LinearLayout
             android:id="@+id/tv_sign_have_que"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
             android:orientation="horizontal"
-            android:padding="5dp"
             android:weightSum="100"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_signIn">
+            android:layout_marginBottom="16dp">
 
 
             <TextView
@@ -238,5 +229,5 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

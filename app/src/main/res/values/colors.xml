@@ -44,7 +44,7 @@
     <color name="main_text_color">#FFFFFFFF</color>
 
 
-    <color name="colorPrimary">@color/main_color</color>
+    <color name="colorPrimary">#21d07a</color>
     <color name="colorPrimaryDark">#9013FE</color>
     <color name="colorAccent">#7C4DFF</color>
     <color name="lightPrimaryColor">#bebebe</color>

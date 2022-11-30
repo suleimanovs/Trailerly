@@ -2,18 +2,20 @@ package kz.android.tron.presentation.ui.login
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentSignupBinding
+import kz.android.tron.presentation.util.getValue
+import kz.android.tron.presentation.util.isEmpty
 
 
 class SignupFragment : Fragment() {
@@ -21,10 +23,10 @@ class SignupFragment : Fragment() {
     private val auth: FirebaseAuth = Firebase.auth
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
-    private lateinit var onStartActivity: LoginFragment.OnStartActivity
+    private lateinit var onStartActivity: OnStartActivity
 
     override fun onAttach(context: Context) {
-        onStartActivity = context as LoginFragment.OnStartActivity
+        onStartActivity = context as OnStartActivity
         super.onAttach(context)
     }
 
@@ -37,50 +39,48 @@ class SignupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSignUp.setOnClickListener {
-            showProgress()
 
             when {
-                binding.email.text.isEmpty() -> showToast(R.string.email_error)
+                binding.email.text.isEmpty() -> showSnackbar(R.string.email_error)
 
+                binding.password.text.isEmpty() -> showSnackbar(R.string.password_error)
 
-                binding.password.text.isEmpty() -> showToast(R.string.password_error)
+                binding.password.length() < 6 -> showSnackbar(R.string.password_error)
 
-
-                binding.password.length() < 6 -> binding.password.error =
-                    getString(R.string.password_error)
-
-
-                binding.username.text.isEmpty() -> showToast(R.string.please_enter_your_name)
+                binding.username.text.isEmpty() -> showSnackbar(R.string.please_enter_your_name)
 
 
                 else -> {
                     showProgress()
-                    val email: String = binding.email.text.toString().trim { it <= ' ' }
-                    val password: String = binding.password.text.toString().trim { it <= ' ' }
+                    val email: String = binding.email.getValue()
+                    val password: String = binding.password.getValue()
 
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(requireActivity()) { task ->
                             //если регистрация прошла успешна
                             if (task.isSuccessful) {
-                                // val userId = auth.currentUser?.uid.toString()
-                                showToast(R.string.successful_sign_up)
-                                Storage.initial(requireContext())
-                                Storage.putUser(auth.currentUser?.uid.toString())
+                                val userId = auth.currentUser?.uid.toString()
+                                showSnackbar(R.string.successful_sign_up)
+                                Storage.putUser(userId)
                                 launchToMainActivity()
 
-                            } else showToast(R.string.failed_sign_in)
+                            } else {
+                                hideProgress()
+                                showSnackbar(R.string.failed_sign_in)
+                            }
                         }
-
                 }
             }
-            hideProgress()
-
         }
     }
 
-    private fun showToast(message: Int) {
-        Toast.makeText(requireContext(), getString(message), Toast.LENGTH_LONG).show()
-    }
+    private fun showSnackbar(@StringRes stringRes: Int) = Snackbar
+        .make(
+            requireContext(),
+            binding.root,
+            getString(stringRes),
+            Snackbar.LENGTH_SHORT
+        ).show()
 
     private fun showProgress() {
         binding.progress.visibility = View.VISIBLE
@@ -100,8 +100,5 @@ class SignupFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun Editable?.isEmpty(): Boolean {
-        return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
-    }
 
 }

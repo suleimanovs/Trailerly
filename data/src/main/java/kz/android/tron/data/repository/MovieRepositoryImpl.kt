@@ -1,50 +1,51 @@
-package kz.android.data.repository
+package kz.android.tron.data.repository
 
-import kz.android.data.mapper.movieDtoListToMovieList
-import kz.android.data.mapper.movieDtoToMovie
-import kz.android.data.mapper.reviewDtoToReview
-import kz.android.data.mapper.trailerDtoToTrailer
-import kz.android.data.network.ApiService
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import kz.android.tron.data.mapper.movieDtoListToMovieList
+import kz.android.tron.data.mapper.movieDtoToMovie
+import kz.android.tron.data.mapper.reviewDtoToReview
+import kz.android.tron.data.mapper.trailerDtoToTrailer
+import kz.android.tron.data.network.paging.*
+import kz.android.tron.data.network.retrofit.ApiService
 import kz.android.tron.domain.MovieRepository
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.domain.model.Review
 import kz.android.tron.domain.model.Trailer
 import javax.inject.Inject
 
-/**
- * Created by osmanboy on 2/22/2022.
- */
-class MovieRepositoryImpl @Inject constructor(private val apiService: ApiService): MovieRepository {
 
-    override suspend fun getMovieList(sortBy: String, page: Int): List<Movie> {
-        return apiService.getAllMovies(
-            sortBy = sortBy,
-            page = page
-        ).results.movieDtoListToMovieList()
+class MovieRepositoryImpl @Inject constructor(private val service: ApiService) : MovieRepository {
+
+    override fun getMovieList(sortBy: String): Flow<PagingData<Movie>> {
+        val config = PagingConfig(pageSize = 10)
+        return Pager(config) { MovieListDataSource(service, sortBy) }.flow
     }
 
     override suspend fun getMovieById(id: Int): Movie {
-        return apiService.getMovieById(id).movieDtoToMovie()
+        return service.getMovieById(id).movieDtoToMovie()
     }
 
-    override suspend fun searchMovie(query: String): List<Movie> {
-        return apiService.searchMovie(query = query).results.movieDtoListToMovieList()
-
-    }
-
-    override suspend fun getMovieReview(id: Int): List<Review> {
-        return apiService.getMovieReviewsById(id).results.reviewDtoToReview()
+    override fun searchMovie(query: String): Flow<PagingData<Movie>> {
+        val config = PagingConfig(pageSize = 10)
+        return Pager(config) { SearchMovieListDataSource(service, query) }.flow
 
     }
 
-    override suspend fun getMovieTrailer(id: Int): List<Trailer> {
-        return apiService.getMovieTrailersById(id).results.trailerDtoToTrailer()
+    override fun getMovieReview(id: Int): Flow<PagingData<Review>> {
+        val config = PagingConfig(pageSize = 10)
+        return Pager(config) { ReviewListDataSource(service, id) }.flow
     }
 
-    override suspend fun getMoviesByGenre(page: Int, genreId: Int): List<Movie> {
-        return apiService.getMoviesByGenre(
-            page = page,
-            genreId = genreId,
-        ).results.movieDtoListToMovieList()
+    override fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>> {
+        val config = PagingConfig(pageSize = 1)
+        return Pager(config) { TrailerListDataSource(service, id) }.flow
+    }
+
+    override fun getMoviesByGenre(genreId: Int): Flow<PagingData<Movie>> {
+        val config = PagingConfig(pageSize = 10)
+        return Pager(config) { MovieListByGenreDataSource(service, genreId) }.flow
     }
 }

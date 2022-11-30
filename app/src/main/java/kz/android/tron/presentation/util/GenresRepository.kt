@@ -1,10 +1,7 @@
-package kz.android.tron.presentation.adapter.repository
+package kz.android.tron.presentation.util
 
 import kz.android.tron.R
 
-/**
- * Created by osmanboy on 2/19/2022.
- */
 data class Genre(val name: String, val icon: Int)
 
 object Genres {

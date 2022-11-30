@@ -6,9 +6,6 @@ import kz.android.tron.di.ApplicationScope
 import javax.inject.Inject
 import javax.inject.Provider
 
-/**
- * Created by osmanboy on 2/26/2022.
- */
 @Suppress("UNCHECKED_CAST")
 @ApplicationScope
 class MovieModelFactory @Inject constructor(

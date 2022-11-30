@@ -1,15 +1,15 @@
 package kz.android.tron.domain.usecase
 
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
 import kz.android.tron.domain.MovieRepository
 import kz.android.tron.domain.model.Trailer
 import javax.inject.Inject
 
-/**
- * Created by osmanboy on 2/22/2022.
- */
-class GetMovieTrailersUseCase  @Inject constructor(private val movieRepository: MovieRepository) {
 
-    suspend operator fun invoke(id:Int): List<Trailer> {
+class GetMovieTrailersUseCase @Inject constructor(private val movieRepository: MovieRepository) {
+
+    operator fun invoke(id: Int): Flow<PagingData<Trailer>> {
         return movieRepository.getMovieTrailer(id)
     }
 }

@@ -6,43 +6,43 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="kz.android.tron.presentation.ui.MovieListFragment"
-        android:label="MovieListFragment">
+        android:name="kz.android.tron.presentation.ui.main.MovieListFragment"
+        android:label="Фильмы">
         <action
-            android:id="@+id/action_movieListFragment_to_moviesContentFragment"
-            app:destination="@id/moviesContentFragment" />
+            android:id="@+id/byFilterScreen"
+            app:destination="@id/movieListByFilterFragment" />
         <action
-            android:id="@+id/action_movieListFragment_to_genreContentFragment"
-            app:destination="@id/genreContentFragment" />
+            android:id="@+id/byGenreScreen"
+            app:destination="@id/movieListByGenreFragment" />
         <action
-            android:id="@+id/action_movieListFragment_to_movieDetailFragment"
+            android:id="@+id/byDetailScreen"
             app:destination="@id/movieDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="kz.android.tron.presentation.ui.MovieDetailFragment"
+        android:name="kz.android.tron.presentation.ui.main.MovieDetailFragment"
         android:label="MovieDetailFragment">
         <argument
             android:name="movie"
             app:argType="kz.android.tron.domain.model.Movie" />
     </fragment>
     <fragment
-        android:id="@+id/genreContentFragment"
-        android:name="kz.android.tron.presentation.ui.GenreContentFragment"
+        android:id="@+id/movieListByGenreFragment"
+        android:name="kz.android.tron.presentation.ui.main.MovieListByGenreFragment"
         android:label="GenreContentFragment">
         <action
-            android:id="@+id/action_genreContentFragment_to_movieDetailFragment"
+            android:id="@+id/to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
         <argument
             android:name="genreId"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/moviesContentFragment"
-        android:name="kz.android.tron.presentation.ui.MoviesContentFragment"
+        android:id="@+id/movieListByFilterFragment"
+        android:name="kz.android.tron.presentation.ui.main.MovieListByFilterFragment"
         android:label="MoviesContentFragment">
         <action
-            android:id="@+id/action_moviesContentFragment_to_movieDetailFragment"
+            android:id="@+id/to_DetailFragment"
             app:destination="@id/movieDetailFragment" />
         <argument
             android:name="sortBy"

@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import kz.android.tron.presentation.viewmodel.GenreContentViewModel
-import kz.android.tron.presentation.viewmodel.MovieListViewModel
+import kz.android.tron.presentation.viewmodel.MovieViewModel
 
 /**
  * Created by osmanboy on 2/26/2022.
@@ -15,8 +15,8 @@ interface ViewModelModule {
 
     @IntoMap
     @Binds
-    @ViewModelKey(MovieListViewModel::class)
-    fun movieViewModel(impl: MovieListViewModel): ViewModel
+    @ViewModelKey(MovieViewModel::class)
+    fun movieViewModel(impl: MovieViewModel): ViewModel
 
 
     @IntoMap

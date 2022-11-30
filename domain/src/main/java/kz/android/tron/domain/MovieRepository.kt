@@ -1,25 +1,23 @@
 package kz.android.tron.domain
 
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.domain.model.Review
 import kz.android.tron.domain.model.Trailer
-
-/**
- * Created by osmanboy on 2/17/2022.
- */
 
 interface MovieRepository {
 
     suspend fun getMovieById(id: Int): Movie
 
-    suspend fun searchMovie(query: String): List<Movie>     // это фича на будущее
+    fun searchMovie(query: String): Flow<PagingData<Movie>>
 
-    suspend fun getMovieReview(id: Int): List<Review>
+    fun getMovieReview(id: Int): Flow<PagingData<Review>>
 
-    suspend fun getMovieTrailer(id: Int): List<Trailer>
+    fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>>
 
-    suspend fun getMovieList(sortBy: String, page: Int): List<Movie>
+    fun getMovieList(sortBy: String): Flow<PagingData<Movie>>
 
-    suspend fun getMoviesByGenre(page: Int, genreId: Int): List<Movie>
+    fun getMoviesByGenre(genreId: Int): Flow<PagingData<Movie>>
 
 }

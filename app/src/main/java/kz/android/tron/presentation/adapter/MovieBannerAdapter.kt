@@ -2,7 +2,7 @@ package kz.android.tron.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import kz.android.tron.databinding.BannersMovieLayoutBinding
@@ -11,28 +11,30 @@ import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
 import kz.android.tron.presentation.util.toRound
 import javax.inject.Inject
 
-class ItemVH(val binding: BannersMovieLayoutBinding) : ViewHolder(binding.root)
 
-class MovieBannerAdapter @Inject constructor() : ListAdapter<Movie,ItemVH>(MovieItemDiffUtil()) {
-    var onPosterClickListener: OnPosterClickListener? = null
+class MovieBannerAdapter @Inject constructor() : PagingDataAdapter<Movie, MovieBannerAdapter.BannerViewHolder>(MovieAdapter.MovieDiffUtil) {
 
+    var onMovieClickListener: OnMovieClickListener? = null
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ItemVH(BannersMovieLayoutBinding.inflate(inflater, parent, false))
+        return BannerViewHolder(BannersMovieLayoutBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ItemVH, position: Int) {
+    override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
         val context = holder.binding.root.context
+        val banner = holder.binding.bannerImage
+        val item = getItem(position)
 
-        holder.binding.bannerImage.apply {
-            setOnClickListener { onPosterClickListener?.invoke(getItem(position)) }
-
-            this.toRound()
-            Glide.with(context).load(getItem(position).backdrop_path).centerCrop()
+        item?.let { movie ->
+            banner.setOnClickListener { onMovieClickListener?.invoke(movie) }
+            Glide.with(context).load(movie.backdropPath).centerCrop()
                 .placeholder(ShimmerDrawablePlaceHolder(context))
-                .into(this)
+                .into(banner.toRound())
         }
+
     }
+
+    class BannerViewHolder(val binding: BannersMovieLayoutBinding) : ViewHolder(binding.root)
+
 }

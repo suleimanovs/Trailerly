@@ -27,7 +27,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:setPosterImage="@{movie.backdrop_path}"
+                app:setPosterImage="@{movie.backdropPath}"
                 tools:srcCompat="@color/main_color" />
 
 
@@ -41,23 +41,23 @@
                 app:layout_constraintBottom_toBottomOf="@id/movie_banner"
                 app:layout_constraintStart_toStartOf="@id/movie_banner"
                 app:layout_constraintTop_toTopOf="@id/movie_banner"
-                app:setPosterImage="@{movie.poster_path}"
+                app:setPosterImage="@{movie.posterPath}"
                 tools:srcCompat="@tools:sample/avatars" />
 
 
-            <TextView
-                android:id="@+id/movieTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/graphiklcg_medium"
-                android:gravity="center"
-                android:text="@{movie.title}"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_banner"
-                tools:text="John Wick" />
+<!--            <TextView-->
+<!--                android:id="@+id/movieTitle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:fontFamily="@font/graphiklcg_medium"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@{movie.title}"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="20sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/movie_banner"-->
+<!--                tools:text="John Wick" />-->
 
 
             <com.vaibhavlakhera.circularprogressview.CircularProgressView
@@ -65,10 +65,12 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/round"
+                android:layout_marginTop="16dp"
                 app:fillColor="@color/black_50"
+                android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toStartOf="@id/userVoteCountLabel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movieTitle"
+                app:layout_constraintTop_toBottomOf="@id/movie_banner"
                 app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
                 app:progressRoundCap="true"
                 app:progressTextColor="#FFF"
@@ -77,8 +79,8 @@
                 app:progressTextType="percent"
                 app:progressValue="10"
                 app:progressWidth="2dp"
-                app:setVoteProgress="@{movie.vote_average}"
-                app:setVoteProgressValue="@{movie.vote_average}"
+                app:setVoteProgress="@{movie.voteAverage}"
+                app:setVoteProgressValue="@{movie.voteAverage}"
                 app:startAngle="270"
                 app:totalValue="100"
                 app:totalWidth="1dp"
@@ -89,32 +91,15 @@
                 android:id="@+id/userVoteCountLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/graphiklcg_regular"
                 android:text="@string/users_vote"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/voteAverageCount"
-                app:layout_constraintEnd_toStartOf="@id/playVideo"
                 app:layout_constraintStart_toEndOf="@id/voteAverageCount"
                 app:layout_constraintTop_toTopOf="@id/voteAverageCount" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/playVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:drawableStart="@drawable/ic_play"
-                android:focusable="true"
-                android:fontFamily="@font/graphiklcg_regular"
-                android:gravity="start"
-                android:text="@string/play_trailer"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/voteAverageCount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/userVoteCountLabel"
-                app:layout_constraintTop_toTopOf="@id/voteAverageCount" />
 
 
             <TextView
@@ -154,7 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="@{movie.original_title}"
+                android:text="@{movie.originalTitle}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/originalNameLabel"
@@ -180,7 +165,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="@{movie.release_date}"
+                android:text="@{movie.releaseDate}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/dataReleaseLabel"
@@ -216,48 +201,18 @@
                 app:layout_constraintBottom_toBottomOf="@id/genreLabel"
                 app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toTopOf="@id/genreLabel"
-                app:setGenresValue="@{movie.genre_id}"
+                app:setGenresValue="@{movie.genreId}"
                 tools:text="боевик, комедия, фэнтези" />
 
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/youtube_player_box"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trailers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:transitionName="bannerImage"
-                app:cardCornerRadius="8dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/genreLabel">
-
-                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                    android:id="@+id/YouTubePlayer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:autoPlay="false" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/nextTrailer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_weight="3"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:drawableStart="@drawable/ic_play"
-                android:drawablePadding="2dp"
-                android:focusable="true"
-                android:fontFamily="@font/graphiklcg_regular"
-                android:gravity="center"
-                android:text="@string/next_trailer"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/youtube_player_box" />
+                app:layout_constraintTop_toBottomOf="@id/genreLabel"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

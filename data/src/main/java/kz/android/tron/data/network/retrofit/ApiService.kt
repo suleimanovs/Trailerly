@@ -1,15 +1,13 @@
-package kz.android.data.network
+package kz.android.tron.data.network.retrofit
 
-import kz.android.data.network.model.MovieContainerDto
-import kz.android.data.network.model.MovieDto
-import kz.android.data.network.model.ReviewContainerDto
-import kz.android.data.network.model.TrailerContainerDto
+import kz.android.tron.data.network.dto.MovieContainerDto
+import kz.android.tron.data.network.dto.MovieDto
+import kz.android.tron.data.network.dto.ReviewContainerDto
+import kz.android.tron.data.network.dto.TrailerContainerDto
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-/**
- * Created by osmanboy on 2/22/2022.
- */
 
 interface ApiService {
 
@@ -19,29 +17,28 @@ interface ApiService {
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_SORT) sortBy: String,
         @Query(PARAMS_PAGE) page: Int
-    ): MovieContainerDto
+    ): Response<MovieContainerDto>
 
     @GET(BASE_URL_VIDEOS)
     suspend fun getMovieTrailersById(
         @Path("id") id: Int,
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
-    ): TrailerContainerDto
+    ): Response<TrailerContainerDto>
 
     @GET(BASE_URL_REVIEWS)
     suspend fun getMovieReviewsById(
         @Path("id") id: Int,
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
-    ): ReviewContainerDto
+    ): Response<ReviewContainerDto>
 
 
-    // это фича на будущее
     @GET(BASE_URL_SEARCH)
     suspend fun searchMovie(
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_QUERY) query: String
-    ): MovieContainerDto
+    ): Response<MovieContainerDto>
 
 
     @GET(BASE_URL_POPULAR)
@@ -49,7 +46,7 @@ interface ApiService {
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_PAGE) page: Int
-    ): MovieContainerDto
+    ): Response<MovieContainerDto>
 
 
     @GET(BASE_URL_TOP_RATED)
@@ -57,7 +54,7 @@ interface ApiService {
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_PAGE) page: Int
-    ): MovieContainerDto
+    ): Response<MovieContainerDto>
 
 
     @GET(BASE_URL_MOVIE)
@@ -73,7 +70,7 @@ interface ApiService {
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_PAGE) page: Int? = null,
         @Query(PARAMS_GENRE) genreId: Int? = null,
-    ): MovieContainerDto
+    ): Response<MovieContainerDto>
 
 
     companion object {

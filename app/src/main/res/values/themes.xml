@@ -26,10 +26,21 @@
 
 <!--     Customize your theme here. -->
 
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Tron</item>
+    </style>
+
     <style name="SplashScreen" parent="Theme.Tron">
         <item name="android:windowBackground">@drawable/splah_screen</item>
     </style>
 
+    <style name="TitleAppBarStyle" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/graphiklcg_bold</item>
+        <item name="android:textColor">@color/tertiary_text</item>
+    </style>
 
     <style name="Tab" parent="Widget.Design.TabLayout">
         <item name="tabPadding">5dp</item>

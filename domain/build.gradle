@@ -13,6 +13,11 @@ dependencies {
     // Dagger 2
     kapt "com.google.dagger:dagger-compiler:2.38.1"
     implementation "com.google.dagger:dagger:2.40.5"
+
+    implementation "androidx.paging:paging-runtime:3.1.1"
+    // Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt'
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

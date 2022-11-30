@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.android.tron.databinding.GenreItemBinding
-import kz.android.tron.presentation.adapter.repository.Genres
+import kz.android.tron.presentation.util.Genres
 import javax.inject.Inject
 
-/**
- * Created by Osman Boy on 04.07.2021.
- **/
 typealias GenreClickListener = (Int) -> Unit
 
 class MoviesGenreAdapter @Inject constructor() : RecyclerView.Adapter<MoviesGenreAdapter.GenreViewHolder>() {

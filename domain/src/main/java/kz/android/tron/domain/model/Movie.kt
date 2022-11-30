@@ -3,33 +3,29 @@ package kz.android.tron.domain.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-/**
- * Created by osmanboy on 2/17/2022.
- */
-
 @Parcelize
 data class Movie(
 
     val id: Int,
 
-    val backdrop_path: String,
+    val backdropPath: String,
 
-    val genre_id: List<Int>,
+    val genreId: List<Int>,
 
-    val original_title: String,
+    val originalTitle: String,
 
     val overview: String,
 
-    val poster_path: String,
+    val posterPath: String,
 
-    val release_date: String,
+    val releaseDate: String,
 
     val title: String,
 
-    val vote_average: Int,
+    val voteAverage: Int,
 
-    val vote_count: Int,
+    val voteCount: Int,
 
-    var big_poster_path: String
+    var bigPosterPath: String
 
 ):Parcelable
