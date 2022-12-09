@@ -6,11 +6,13 @@
 * **_MVVM_**
 * **_Di (Dagger 2)_**
 * **_Retrofit_**
-* **_Coroutine_**
-* **_LiveData_**
-* **_Shared Preferences_**
+* **_Kotlin Coroutine_**
+* **_Flow_**
 * **_Firebase_**
 * **_ViewPager_**
+* **_Paging3_**
+* **_Splash Api_**
+* **_Youtube Api_**
 
 **ScreenShots**
 <div id="banner">
