@@ -13,6 +13,10 @@
 * **_Paging3_**
 * **_Splash Api_**
 * **_Youtube Api_**
+* **_Lottie_**
+* **_Glide_**
+* **_Data Binding_**
+* **_Jetpack Navigation_**
 
 **ScreenShots**
 <div id="banner">
