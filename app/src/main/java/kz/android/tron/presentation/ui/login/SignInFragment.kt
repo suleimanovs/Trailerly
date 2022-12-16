@@ -18,7 +18,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import kz.android.tron.App
 import kz.android.tron.R
-import kz.android.tron.databinding.FragmentLoginBinding
 import kz.android.tron.databinding.FragmentSigninBinding
 import kz.android.tron.presentation.util.showSnackbar
 import kz.android.tron.presentation.util.value
