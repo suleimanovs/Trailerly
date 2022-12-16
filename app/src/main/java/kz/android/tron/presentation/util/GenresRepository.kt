@@ -33,11 +33,8 @@ object Genres {
         return genres[id]?.name ?: throw RuntimeException("Genre by id: $id not found!")
     }
 
-
-    fun getGenresName(list: List<Int>?): StringBuilder {
-        val result = StringBuilder()
-        list?.map { id -> genres[id]?.let { result.append(it.name + ", ") } }
-        return result
+    fun getGenresName(list: List<Int>)= buildString {
+        list.map { id -> genres[id]?.let { append(it.name + ", ") } }
     }
 
 }

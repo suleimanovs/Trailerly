@@ -16,11 +16,11 @@ import kz.android.tron.App
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieListBinding
 import kz.android.tron.domain.model.Movie
-import kz.android.tron.presentation.adapter.MovieAdapter
-import kz.android.tron.presentation.adapter.MovieBannerAdapter
-import kz.android.tron.presentation.adapter.MoviesGenreAdapter
-import kz.android.tron.presentation.viewmodel.MovieViewModel
+import kz.android.tron.presentation.adapters.banner_adapter.MovieBannerAdapter
+import kz.android.tron.presentation.adapters.genres_adapter.MoviesGenreAdapter
+import kz.android.tron.presentation.adapters.movie_adapter.MovieAdapter
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
+import kz.android.tron.presentation.viewmodel.MovieViewModel
 import javax.inject.Inject
 
 
@@ -55,7 +55,6 @@ class MovieListFragment : Fragment() {
         binding.popularMoviesTitle.setOnClickListener {
             launchMovieContent(SORT_BY_POPULARITY, getString(R.string.popular_movies))
         }
-
         setupRecyclerViews()
 
     }

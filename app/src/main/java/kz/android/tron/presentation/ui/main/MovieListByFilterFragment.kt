@@ -13,10 +13,10 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.launch
 import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieListByFilterBinding
-import kz.android.tron.presentation.adapter.MovieAdapter
+import kz.android.tron.presentation.adapters.movie_adapter.MovieAdapter
 import kz.android.tron.presentation.ui.SetupActionbar
-import kz.android.tron.presentation.viewmodel.MovieViewModel
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
+import kz.android.tron.presentation.viewmodel.MovieViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -51,8 +51,6 @@ class MovieListByFilterFragment : Fragment() {
 
         setupActionbar.setTitle(args.title)
         binding.movieRV.adapter = moviesAdapter
-
-
         moviesAdapter.onMovieClickListener = {
             findNavController().navigate(MovieListByFilterFragmentDirections.toDetailFragment(it))
         }

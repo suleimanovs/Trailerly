@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kz.android.tron.App
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieListByGenreBinding
-import kz.android.tron.presentation.adapter.MovieAdapter
+import kz.android.tron.presentation.adapters.movie_adapter.MovieAdapter
 import kz.android.tron.presentation.ui.SetupActionbar
 import kz.android.tron.presentation.util.Genres
 import kz.android.tron.presentation.viewmodel.GenreContentViewModel

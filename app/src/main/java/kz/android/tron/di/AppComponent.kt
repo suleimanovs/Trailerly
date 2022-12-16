@@ -1,6 +1,8 @@
 package kz.android.tron.di
 
 import dagger.Component
+import kz.android.tron.presentation.ui.login.SignInFragment
+import kz.android.tron.presentation.ui.login.SignUpFragment
 import kz.android.tron.presentation.ui.main.MovieDetailFragment
 import kz.android.tron.presentation.ui.main.MovieListByFilterFragment
 import kz.android.tron.presentation.ui.main.MovieListByGenreFragment
@@ -12,6 +14,10 @@ import kz.android.tron.presentation.ui.main.MovieListFragment
 @ApplicationScope
 @Component(modules = [DataModule::class, ViewModelModule::class])
 interface AppComponent {
+
+    fun inject(fragment: SignInFragment)
+
+    fun inject(fragment: SignUpFragment)
 
     fun inject(fragment: MovieListFragment)
 

@@ -1,4 +1,4 @@
-package kz.android.tron.presentation.adapter
+package kz.android.tron.presentation.databinding
 
 import android.widget.ImageView
 import android.widget.TextView

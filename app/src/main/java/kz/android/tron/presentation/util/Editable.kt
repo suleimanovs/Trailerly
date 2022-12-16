@@ -8,6 +8,13 @@ fun Editable?.isEmpty(): Boolean {
     return TextUtils.isEmpty(this.toString().trim { it <= ' ' })
 }
 
-fun TextView.getValue():String{
-   return text.toString().trim()
+fun TextView?.isEmpty(): Boolean {
+    return TextUtils.isEmpty(this?.text.toString().trim { it <= ' ' })
 }
+
+fun String.isEmpty(): Boolean {
+    return TextUtils.isEmpty(this.trim { it <= ' ' })
+}
+
+val TextView.value
+    get() = text.toString().trim()

@@ -1,4 +1,4 @@
-package kz.android.tron.presentation.adapter
+package kz.android.tron.presentation.adapters.genres_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,11 +7,10 @@ import kz.android.tron.databinding.GenreItemBinding
 import kz.android.tron.presentation.util.Genres
 import javax.inject.Inject
 
-typealias GenreClickListener = (Int) -> Unit
 
-class MoviesGenreAdapter @Inject constructor() : RecyclerView.Adapter<MoviesGenreAdapter.GenreViewHolder>() {
+class MoviesGenreAdapter @Inject constructor() : RecyclerView.Adapter<GenreViewHolder>() {
 
-    var genreClickListener: GenreClickListener? = null
+    var genreClickListener: ((Int) -> Unit)? = null
     private val genreList = Genres.genres.toList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreViewHolder {
@@ -29,8 +28,6 @@ class MoviesGenreAdapter @Inject constructor() : RecyclerView.Adapter<MoviesGenr
     }
 
     override fun getItemCount(): Int = genreList.size
-
-    class GenreViewHolder(val binding: GenreItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 
 }

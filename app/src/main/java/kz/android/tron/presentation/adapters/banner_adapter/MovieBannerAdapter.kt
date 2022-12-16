@@ -1,20 +1,20 @@
-package kz.android.tron.presentation.adapter
+package kz.android.tron.presentation.adapters.banner_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import kz.android.tron.databinding.BannersMovieLayoutBinding
 import kz.android.tron.domain.model.Movie
+import kz.android.tron.presentation.adapters.movie_adapter.MovieDiffUtil
 import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
 import kz.android.tron.presentation.util.toRound
 import javax.inject.Inject
 
 
-class MovieBannerAdapter @Inject constructor() : PagingDataAdapter<Movie, MovieBannerAdapter.BannerViewHolder>(MovieAdapter.MovieDiffUtil) {
+class MovieBannerAdapter @Inject constructor() : PagingDataAdapter<Movie, BannerViewHolder>(MovieDiffUtil) {
 
-    var onMovieClickListener: OnMovieClickListener? = null
+    var onMovieClickListener: ((Movie) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -34,7 +34,5 @@ class MovieBannerAdapter @Inject constructor() : PagingDataAdapter<Movie, MovieB
         }
 
     }
-
-    class BannerViewHolder(val binding: BannersMovieLayoutBinding) : ViewHolder(binding.root)
 
 }

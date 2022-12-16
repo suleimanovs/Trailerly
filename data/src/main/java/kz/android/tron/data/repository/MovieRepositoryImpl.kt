@@ -20,7 +20,6 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(private val service: ApiService) : MovieRepository {
 
     override fun getMovieList(sortBy: String): Flow<PagingData<Movie>> {
-        val config = PagingConfig(pageSize = 10)
         return Pager(config) { MovieListDataSource(service, sortBy) }.flow
     }
 
@@ -29,23 +28,23 @@ class MovieRepositoryImpl @Inject constructor(private val service: ApiService) :
     }
 
     override fun searchMovie(query: String): Flow<PagingData<Movie>> {
-        val config = PagingConfig(pageSize = 10)
         return Pager(config) { SearchMovieListDataSource(service, query) }.flow
-
     }
 
     override fun getMovieReview(id: Int): Flow<PagingData<Review>> {
-        val config = PagingConfig(pageSize = 10)
         return Pager(config) { ReviewListDataSource(service, id) }.flow
     }
 
     override fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>> {
-        val config = PagingConfig(pageSize = 1)
         return Pager(config) { TrailerListDataSource(service, id) }.flow
     }
 
     override fun getMoviesByGenre(genreId: Int): Flow<PagingData<Movie>> {
-        val config = PagingConfig(pageSize = 10)
         return Pager(config) { MovieListByGenreDataSource(service, genreId) }.flow
+    }
+
+    companion object {
+        private const val PAGE_SIZE = 10
+        private val config = PagingConfig(pageSize = PAGE_SIZE)
     }
 }

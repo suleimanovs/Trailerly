@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.launch
 import kz.android.tron.App
 import kz.android.tron.databinding.FragmentMovieDetailBinding
-import kz.android.tron.presentation.adapter.YoutubePlayerAdapter
+import kz.android.tron.presentation.adapters.youtube_adapter.YoutubePlayerAdapter
 import kz.android.tron.presentation.ui.SetupActionbar
 import kz.android.tron.presentation.viewmodel.MovieViewModel
 import kz.android.tron.presentation.viewmodel.MovieModelFactory

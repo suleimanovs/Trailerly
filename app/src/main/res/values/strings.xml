@@ -56,6 +56,6 @@
     <string name="sigin_as_guest">Войти как гость</string>
     <string name="movie_name_label">Название:</string>
     <string name="release_dat_label">Дата релиза:</string>
-    <!--    <string name="default_web_client_id">648773632200-jllp11mhkk0t0eip2l05jsqf7qg2m4ds.apps.googleusercontent.com</string>-->
 
+    
 </resources>
