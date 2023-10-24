@@ -9,8 +9,7 @@ import javax.inject.Inject
 
 class GetMoviesByGenreUseCase @Inject constructor(private val movieRepository: MovieRepository) {
 
-     operator fun invoke(genreId: Int): Flow<PagingData<Movie>> {
-        return movieRepository.getMoviesByGenre( genreId)
+    operator fun invoke(genreId: Int): Flow<PagingData<Movie>> {
+        return movieRepository.getMoviesByGenre(genreId)
     }
-
 }

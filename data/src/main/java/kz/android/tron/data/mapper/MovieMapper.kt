@@ -22,27 +22,27 @@ private fun Double.doubleToInt() = this.toString().replace(".", "").toInt()
 
 fun MovieDto.movieDtoToMovie() =
     Movie(
-        id = this.id ?: DEFAULT_ZERO_INT,
+            id = this.id ?: DEFAULT_ZERO_INT,
 
-        backdropPath = BASE_POSTER_URL + BIG_POSTER_SIZE + this.backdrop_path,
+            backdropPath = BASE_POSTER_URL + BIG_POSTER_SIZE + this.backdropPath,
 
-        genreId = this.genre_ids ?: emptyList(),
+            genreId = this.genreIds ?: emptyList(),
 
-        originalTitle = this.original_title ?: DEFAULT_EMPTY_STRING,
+            originalTitle = this.originalTitle ?: DEFAULT_EMPTY_STRING,
 
-        overview = this.overview ?: DEFAULT_EMPTY_STRING,
+            overview = this.overview ?: DEFAULT_EMPTY_STRING,
 
-        posterPath = BASE_POSTER_URL + SMALL_POSTER_SIZE + this.poster_path,
+            posterPath = BASE_POSTER_URL + SMALL_POSTER_SIZE + this.posterPath,
 
-        releaseDate = this.release_date ?: DEFAULT_EMPTY_STRING,
+            releaseDate = this.releaseDate ?: DEFAULT_EMPTY_STRING,
 
-        title = this.title ?: DEFAULT_EMPTY_STRING,
+            title = this.title ?: DEFAULT_EMPTY_STRING,
 
-        voteAverage = (this.vote_average ?: DEFAULT_ZERO_DOUBLE).doubleToInt(),
+            voteAverage = (this.voteAverage ?: DEFAULT_ZERO_DOUBLE).doubleToInt(),
 
-        bigPosterPath = BASE_POSTER_URL + BIG_POSTER_SIZE + this.poster_path,
+            bigPosterPath = BASE_POSTER_URL + BIG_POSTER_SIZE + this.posterPath,
 
-        voteCount = this.vote_count ?: DEFAULT_ZERO_INT
+            voteCount = this.voteCount ?: DEFAULT_ZERO_INT
     )
 
 

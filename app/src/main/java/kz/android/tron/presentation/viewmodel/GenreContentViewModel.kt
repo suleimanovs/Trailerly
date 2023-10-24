@@ -8,5 +8,4 @@ class GenreContentViewModel @Inject constructor(private val getMoviesByGenreUseC
 
      fun getMoviesByGenre(genreId: Int) = getMoviesByGenreUseCase.invoke(genreId)
 
-
 }

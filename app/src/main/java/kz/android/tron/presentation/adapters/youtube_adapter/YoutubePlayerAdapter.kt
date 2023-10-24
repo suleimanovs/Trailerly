@@ -11,18 +11,17 @@ import kz.android.tron.databinding.YoutubePlayerItemBinding
 import kz.android.tron.domain.model.Trailer
 import javax.inject.Inject
 import kotlin.properties.Delegates
+import kz.android.tron.presentation.adapters.banner_adapter.BaseViewHolder
+import kz.android.tron.presentation.adapters.banner_adapter.toBinding
 
 
-class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, YoutubeHolder>(YoutubeDiffUtil) {
+class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, BaseViewHolder<YoutubePlayerItemBinding>>(YoutubeDiffUtil) {
 
     var lifecycle: Lifecycle by Delegates.notNull()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YoutubeHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return YoutubeHolder(YoutubePlayerItemBinding.inflate(inflater, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= BaseViewHolder<YoutubePlayerItemBinding>(parent.toBinding())
 
-    override fun onBindViewHolder(holder: YoutubeHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<YoutubePlayerItemBinding>, position: Int) {
         getItem(position)?.apply {
             holder.binding.YouTubePlayer.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {

@@ -1,49 +1,37 @@
 package kz.android.tron.data.network.dto
 
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class MovieDto(
 
-    @SerializedName("id")
-    @Expose
-    val id: Int?,
+        @SerializedName("id")
+        val id: Int?,
 
-    @SerializedName("backdrop_path")
-    @Expose
-    val backdrop_path: String?,
+        @SerializedName("backdrop_path")
+        val backdropPath: String?,
 
-    @SerializedName("genre_ids")
-    @Expose
-    val genre_ids: List<Int>?,
+        @SerializedName("genre_ids")
+        val genreIds: List<Int>?,
 
-    @SerializedName("original_title")
-    @Expose
-    val original_title: String?,
+        @SerializedName("original_title")
+        val originalTitle: String?,
 
-    @SerializedName("overview")
-    @Expose
-    val overview: String?,
+        @SerializedName("overview")
+        val overview: String?,
 
-    @SerializedName("poster_path")
-    @Expose
-    val poster_path: String?,
+        @SerializedName("poster_path")
+        val posterPath: String?,
 
-    @SerializedName("release_date")
-    @Expose
-    val release_date: String?,
+        @SerializedName("release_date")
+        val releaseDate: String?,
 
-    @SerializedName("title")
-    @Expose
-    val title: String?,
+        @SerializedName("title")
+        val title: String?,
 
-    @SerializedName("vote_average")
-    @Expose
-    val vote_average: Double?,
+        @SerializedName("vote_average")
+        val voteAverage: Double?,
 
-    @SerializedName("vote_count")
-    @Expose
-    val vote_count: Int?,
-
+        @SerializedName("vote_count")
+        val voteCount: Int?,
 )

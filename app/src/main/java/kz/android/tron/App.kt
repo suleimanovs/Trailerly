@@ -15,5 +15,4 @@ class App : Application() {
         Storage.initial(applicationContext)
         super.onCreate()
     }
-
 }

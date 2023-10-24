@@ -17,8 +17,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
 
-        val activity =
-            Storage.user()?.let { MainActivity::class.java } ?: AuthorizationActivity::class.java
+        val activity = Storage.user()?.let { MainActivity::class.java } ?: AuthorizationActivity::class.java
         startActivity(Intent(this, activity))
         finish()
     }

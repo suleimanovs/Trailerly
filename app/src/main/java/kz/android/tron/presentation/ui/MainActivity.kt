@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import kz.android.tron.R
 import kz.android.tron.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(),SetupActionbar {
+class MainActivity : AppCompatActivity(), SetupActionbar {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -38,6 +38,5 @@ class MainActivity : AppCompatActivity(),SetupActionbar {
 
 interface SetupActionbar {
 
-    fun setTitle(text:String)
-
+    fun setTitle(text: String)
 }

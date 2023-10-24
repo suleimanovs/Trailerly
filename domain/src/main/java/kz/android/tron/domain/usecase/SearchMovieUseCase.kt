@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SearchMovieUseCase @Inject constructor(private val movieRepository: MovieRepository) {
 
-     operator fun invoke(query: String): Flow<PagingData<Movie>> {
+    operator fun invoke(query: String): Flow<PagingData<Movie>> {
         return movieRepository.searchMovie(query)
     }
 }

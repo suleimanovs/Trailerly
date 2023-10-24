@@ -12,5 +12,4 @@ class GetMovieListUseCase @Inject constructor(private val movieRepository: Movie
     operator fun invoke(sortBy: String): Flow<PagingData<Movie>> {
         return movieRepository.getMovieList(sortBy)
     }
-
 }

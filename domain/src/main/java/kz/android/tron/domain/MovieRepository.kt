@@ -19,5 +19,4 @@ interface MovieRepository {
     fun getMovieList(sortBy: String): Flow<PagingData<Movie>>
 
     fun getMoviesByGenre(genreId: Int): Flow<PagingData<Movie>>
-
 }

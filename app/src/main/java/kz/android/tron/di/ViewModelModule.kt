@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import kz.android.tron.presentation.ui.login.SignInViewModel
+import kz.android.tron.presentation.ui.login.SignUpViewModel
 import kz.android.tron.presentation.viewmodel.GenreContentViewModel
 import kz.android.tron.presentation.viewmodel.MovieViewModel
 
@@ -13,14 +15,15 @@ import kz.android.tron.presentation.viewmodel.MovieViewModel
 @Module
 interface ViewModelModule {
 
-    @IntoMap
-    @Binds
-    @ViewModelKey(MovieViewModel::class)
+    @[IntoMap Binds ViewModelKey(MovieViewModel::class)]
     fun movieViewModel(impl: MovieViewModel): ViewModel
 
+    @[IntoMap Binds ViewModelKey(SignInViewModel::class)]
+    fun signInViewModel(impl: SignInViewModel): ViewModel
 
-    @IntoMap
-    @Binds
-    @ViewModelKey(GenreContentViewModel::class)
+    @[IntoMap Binds ViewModelKey(SignUpViewModel::class)]
+    fun signUpViewModel(impl: SignUpViewModel): ViewModel
+
+    @[IntoMap Binds ViewModelKey(GenreContentViewModel::class)]
     fun genreContentViewModel(impl: GenreContentViewModel): ViewModel
 }

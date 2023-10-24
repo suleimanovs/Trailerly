@@ -13,13 +13,13 @@ import kz.android.tron.domain.MovieRepository
 @Module
 interface DataModule {
 
-    @ApplicationScope
-    @Binds
+
+    @[Binds ApplicationScope]
     fun bindMovieRepository(impl: MovieRepositoryImpl): MovieRepository
 
     companion object {
-        @ApplicationScope
-        @Provides
+
+        @[Provides ApplicationScope]
         fun provideApiService()= ApiFactory.apiService
     }
 

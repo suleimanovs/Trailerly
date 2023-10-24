@@ -7,35 +7,44 @@ import kz.android.tron.data.network.retrofit.ApiService
 import kz.android.tron.domain.model.Review
 
 
+class ReviewListDataSource(private val service: ApiService, val id: Int) : BasePagingSource<Review>() {
 
-class ReviewListDataSource(val service: ApiService, val id: Int) : PagingSource<Int, Review>() {
+    override suspend fun mapData(): List<Review> {
+        val response = service.getMovieReviewsById(id = id)
+        return response.body()?.results.reviewDtoToReview()
+    }
+}
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Review> {
+
+abstract class BasePagingSource<T : Any> : PagingSource<Int, T>() {
+
+    protected var pageNumber: Int = DEFAULT_PAGE
+
+    abstract suspend fun mapData(): List<T>
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
 
         return try {
-            val pageNumber = params.key ?: DEFAULT_PAGE
-            val response = service.getMovieReviewsById(id = id)
-            val responseData = mutableListOf<Review>()
-            val data = response.body()?.results.reviewDtoToReview()
-            responseData.addAll(data)
+
+           pageNumber = params.key ?: DEFAULT_PAGE
+            val data = mapData()
 
             LoadResult.Page(
-                data = responseData,
-                prevKey = if (pageNumber == DEFAULT_PAGE) null else pageNumber - 1,
-                nextKey = if (data.isNotEmpty()) pageNumber.plus(1) else null
+                    data = data,
+                    prevKey = if (pageNumber == DEFAULT_PAGE) null else pageNumber - 1,
+                    nextKey = if (data.isNotEmpty()) pageNumber.plus(1) else null
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
-
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Review>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, T>): Int? {
         return null
     }
 
     companion object {
-        private const val DEFAULT_PAGE = 1
+
+        internal const val DEFAULT_PAGE = 1
     }
 }
-

@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "682157519081-c3qkmkgmssrbr0dt0240r38rnqhc46r7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "kz.android.tron",
-            "certificate_hash": "658ae0e92ca9edf3aa3d63331e8f3e6f063df484"
-          }
-        },
-        {
           "client_id": "682157519081-cpqerikhjqq383io9u95q6ipdhr7bicl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,11 +22,19 @@
           }
         },
         {
-          "client_id": "682157519081-givs2iibjr865upi05mlsbu8qar8qhdk.apps.googleusercontent.com",
+          "client_id": "682157519081-t9ltfn9ohero8ac7ftu80nvpois1fbgf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "kz.android.tron",
-            "certificate_hash": "3adb34bdf420bdbcb6d23393a6f6f9885adb502c"
+            "certificate_hash": "cfa01ee7440d6580e302060d35b7e380c5c146f3"
+          }
+        },
+        {
+          "client_id": "682157519081-vohv44eqm14l5qgdhtrc9sud9prifvig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.android.tron",
+            "certificate_hash": "cfec1af53c6d6c9ff577b7cbbfd73d9fa55b0a37"
           }
         },
         {

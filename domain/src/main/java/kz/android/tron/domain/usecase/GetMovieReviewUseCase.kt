@@ -7,9 +7,9 @@ import kz.android.tron.domain.model.Review
 import javax.inject.Inject
 
 
-class GetMovieReviewUseCase  @Inject constructor(private val movieRepository: MovieRepository) {
+class GetMovieReviewUseCase @Inject constructor(private val movieRepository: MovieRepository) {
 
-     operator fun invoke(id:Int): Flow<PagingData<Review>> {
+    operator fun invoke(id: Int): Flow<PagingData<Review>> {
         return movieRepository.getMovieReview(id)
     }
 }

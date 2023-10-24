@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="movie"
             type="kz.android.tron.domain.model.Movie" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -30,10 +33,10 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/item_image"
                 android:layout_width="113.3dp"
-                app:setPosterImage="@{movie.posterPath}"
                 android:layout_height="170dp"
                 android:scaleType="centerCrop"
-                android:transitionName="movie_image" />
+                android:transitionName="movie_image"
+                app:setPosterImage="@{movie.posterPath}" />
 
 
             <TextView
@@ -43,11 +46,11 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
+                android:text="@{movie.title}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:transitionName="movie_name"
-                android:text="@{movie.title}"
 
                 />
         </LinearLayout>
@@ -103,6 +106,8 @@
 
         <com.vaibhavlakhera.circularprogressview.CircularProgressView
             android:id="@+id/voteAverageCount"
+            setVoteProgress="@{movie.voteAverage}"
+            setVoteProgressValue="@{movie.voteAverage}"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="end|bottom"
@@ -115,12 +120,10 @@
             app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
             app:progressRoundCap="true"
             app:progressTextColor="#FFF"
-            setVoteProgress="@{movie.voteAverage}"
             app:progressTextEnabled="true"
             app:progressTextSize="15sp"
             app:progressTextType="percent"
             app:progressWidth="2dp"
-            setVoteProgressValue="@{movie.voteAverage}"
             app:startAngle="270"
             app:totalValue="100"
             app:totalWidth="1dp"

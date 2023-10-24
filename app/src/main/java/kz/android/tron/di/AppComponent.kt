@@ -11,8 +11,7 @@ import kz.android.tron.presentation.ui.main.MovieListFragment
 /**
  * Created by osmanboy on 2/26/2022.
  */
-@ApplicationScope
-@Component(modules = [DataModule::class, ViewModelModule::class])
+@[ApplicationScope Component(modules = [DataModule::class, ViewModelModule::class])]
 interface AppComponent {
 
     fun inject(fragment: SignInFragment)
