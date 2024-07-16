@@ -6,7 +6,7 @@ import kz.android.tron.domain.model.Trailer
 object YoutubeDiffUtil : DiffUtil.ItemCallback<Trailer>() {
 
     override fun areItemsTheSame(oldItem: Trailer, newItem: Trailer): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.key == newItem.key
     }
 
     override fun areContentsTheSame(oldItem: Trailer, newItem: Trailer): Boolean {

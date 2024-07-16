@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kz.android.tron.data.mapper.movieDtoListToMovieList
 import kz.android.tron.data.mapper.movieDtoToMovie
 import kz.android.tron.data.mapper.reviewDtoToReview
@@ -35,8 +36,9 @@ class MovieRepositoryImpl @Inject constructor(private val service: ApiService) :
         return Pager(config) { ReviewListDataSource(service, id) }.flow
     }
 
-    override fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>> {
-        return Pager(config) { TrailerListDataSource(service, id) }.flow
+    override fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>> = flow {
+        emit(PagingData.from(service.getMovieTrailersById(id).body()?.results.trailerDtoToTrailer()))
+//        return Pager(config) { TrailerListDataSource(service, id) }.flow
     }
 
     override fun getMoviesByGenre(genreId: Int): Flow<PagingData<Movie>> {

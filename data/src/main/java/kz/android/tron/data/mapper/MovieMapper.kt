@@ -18,7 +18,7 @@ fun List<MovieDto>?.movieDtoListToMovieList(): List<Movie> {
     } ?: emptyList()
 }
 
-private fun Double.doubleToInt() = this.toString().replace(".", "").toInt()
+private fun Double.doubleToInt() = this.toString().replace(".", "").takeIf { it.length>=2 }?.take(2)?.toInt()?:0
 
 fun MovieDto.movieDtoToMovie() =
     Movie(

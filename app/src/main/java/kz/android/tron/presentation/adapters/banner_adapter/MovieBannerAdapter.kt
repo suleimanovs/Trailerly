@@ -9,7 +9,6 @@ import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import kz.android.tron.databinding.BannersMovieLayoutBinding
 import kz.android.tron.domain.model.Movie
-import kz.android.tron.presentation.adapters.movie_adapter.MovieDiffUtil
 import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
 import kz.android.tron.presentation.util.toRound
 import javax.inject.Inject

@@ -1,6 +1,5 @@
 package kz.android.tron.presentation.adapters.youtube_adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.paging.PagingDataAdapter
@@ -9,10 +8,10 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import kz.android.tron.databinding.YoutubePlayerItemBinding
 import kz.android.tron.domain.model.Trailer
-import javax.inject.Inject
-import kotlin.properties.Delegates
 import kz.android.tron.presentation.adapters.banner_adapter.BaseViewHolder
 import kz.android.tron.presentation.adapters.banner_adapter.toBinding
+import javax.inject.Inject
+import kotlin.properties.Delegates
 
 
 class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, BaseViewHolder<YoutubePlayerItemBinding>>(YoutubeDiffUtil) {
@@ -31,6 +30,4 @@ class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, Ba
             })
         }
     }
-
-
 }

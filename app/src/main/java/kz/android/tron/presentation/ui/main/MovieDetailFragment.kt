@@ -22,10 +22,12 @@ import kotlin.properties.Delegates
 class MovieDetailFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailBinding? = null
-    private val binding get() = _binding !!
+    private val binding get() = _binding!!
 
-    @Inject lateinit var viewModelFactory: MovieModelFactory
-    @Inject lateinit var adapter : YoutubePlayerAdapter
+    @Inject
+    lateinit var viewModelFactory: MovieModelFactory
+    @Inject
+    lateinit var adapter: YoutubePlayerAdapter
 
     private val args by navArgs<MovieDetailFragmentArgs>()
     private val component by lazy { (requireActivity().application as App).component }
@@ -39,7 +41,7 @@ class MovieDetailFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, st: Bundle?): View {
-        adapter.lifecycle=lifecycle
+        adapter.lifecycle = lifecycle
         _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,11 +50,11 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.movie = args.movie
-        binding.trailers.adapter=adapter
+        binding.trailers.adapter = adapter
         setupActionbar.setTitle(args.movie.title)
 
         lifecycleScope.launch {
-            viewModel.getMovieTrailers(args.movie.id).collect{
+            viewModel.getMovieTrailers(args.movie.id).collect {
                 adapter.submitData(it)
             }
         }

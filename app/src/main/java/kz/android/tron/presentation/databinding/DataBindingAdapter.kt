@@ -1,5 +1,6 @@
 package kz.android.tron.presentation.databinding
 
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
@@ -24,11 +25,12 @@ fun setPosterImage(imageView: ShapeableImageView, posterUrl: String) {
 
 @BindingAdapter("setVoteProgress")
 fun setVoteProgress(circularProgress: CircularProgressView, percent: Int) {
+    Log.d("MONSTER", "setVoteProgress: $percent")
     val (@ColorRes track, @ColorRes bar) = when (percent) {
         in VoteColor.LOW.range -> R.color.voteLowTrackColor to R.color.voteLowBarColor
         in VoteColor.MIDDLE.range -> R.color.voteMiddleTrackColor to R.color.voteMiddleBarColor
         in VoteColor.HIGH.range -> R.color.voteHighTrackColor to R.color.voteHighBarColor
-        else -> throw RuntimeException("Color by person: $percent not found")
+        else -> R.color.main_grey to R.color.grey
     }
     circularProgress.setTotalColorRes(track)
     circularProgress.setProgressColorRes(bar)
@@ -43,7 +45,7 @@ fun setVoteProgressValue(circularProgress: CircularProgressView, percent: Int) {
 enum class VoteColor(val range: IntRange) {
     LOW(0..39),
     MIDDLE(40..69),
-    HIGH(70..100);
+    HIGH(70..101);
 }
 
 

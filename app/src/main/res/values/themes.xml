@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Tron" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowLightStatusBar">false</item>
         <item name="colorPrimary">@color/main_color</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/layout_background</item>
@@ -19,7 +20,7 @@
         <item name="itemIconSize">24dp</item>
         <item name="rippleColor">@color/ripple_transparent</item>
         <!--        <item name="transparent">@color/black_transparent</item>-->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/layout_background</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/tab_layout</item>
         <!-- Customize your theme here. -->
     </style>
 

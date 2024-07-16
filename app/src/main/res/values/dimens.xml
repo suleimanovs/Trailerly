@@ -3,8 +3,8 @@
     <dimen name="start_dimension">16dp</dimen>
     <dimen name="bottom_dimens">8dp</dimen>
     <dimen name="top_dimens">20dp</dimen>
-    <dimen name="margin_end">24dp</dimen>
-    <dimen name="margin_start">24dp</dimen>
+    <dimen name="margin_end">16dp</dimen>
+    <dimen name="margin_start">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="fragment_horizontal_margin">16dp</dimen>
     <dimen name="fragment_vertical_margin">16dp</dimen>

@@ -17,11 +17,10 @@
                 android:id="@+id/toolbar"
                 app:titleTextAppearance="@style/TitleAppBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="match_parent"
                 android:background="?attr/colorPrimary"
                 app:titleTextColor="@color/tertiary_text"
                 android:backgroundTint="@color/tab_layout"
-                android:minHeight="?attr/actionBarSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
