@@ -5,18 +5,20 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kz.android.tron.data.mapper.movieDtoListToMovieList
-import kz.android.tron.data.mapper.movieDtoToMovie
-import kz.android.tron.data.mapper.reviewDtoToReview
-import kz.android.tron.data.mapper.trailerDtoToTrailer
-import kz.android.tron.data.network.paging.*
+import kz.android.tron.data.mapper.MovieMapper
+import kz.android.tron.data.mapper.TrailerListMapper
+import kz.android.tron.data.mapper.TrailerMapper
+import kz.android.tron.data.network.paging.MovieListByGenreDataSource
+import kz.android.tron.data.network.paging.MovieListDataSource
+import kz.android.tron.data.network.paging.ReviewListDataSource
+import kz.android.tron.data.network.paging.SearchMovieListDataSource
 import kz.android.tron.data.network.retrofit.ApiService
-import kz.android.tron.domain.MovieRepository
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.domain.model.Review
 import kz.android.tron.domain.model.Trailer
+import kz.android.tron.domain.repository.MovieRepository
+import kz.android.tron.domain.repository.mappedApiCall
 import javax.inject.Inject
-
 
 class MovieRepositoryImpl @Inject constructor(private val service: ApiService) : MovieRepository {
 
@@ -24,8 +26,8 @@ class MovieRepositoryImpl @Inject constructor(private val service: ApiService) :
         return Pager(config) { MovieListDataSource(service, sortBy) }.flow
     }
 
-    override suspend fun getMovieById(id: Int): Movie {
-        return service.getMovieById(id).movieDtoToMovie()
+    override suspend fun getMovieById(id: Int): Result<Movie> {
+        return mappedApiCall(MovieMapper) { service.getMovieById(id) }
     }
 
     override fun searchMovie(query: String): Flow<PagingData<Movie>> {
@@ -37,8 +39,8 @@ class MovieRepositoryImpl @Inject constructor(private val service: ApiService) :
     }
 
     override fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>> = flow {
-        emit(PagingData.from(service.getMovieTrailersById(id).body()?.results.trailerDtoToTrailer()))
-//        return Pager(config) { TrailerListDataSource(service, id) }.flow
+        val result = mappedApiCall(TrailerListMapper) { service.getMovieTrailersById(id).body()?.results }
+        emit(PagingData.from(result.getOrDefault(emptyList())))
     }
 
     override fun getMoviesByGenre(genreId: Int): Flow<PagingData<Movie>> {

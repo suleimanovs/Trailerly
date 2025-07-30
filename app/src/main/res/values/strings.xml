@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tron</string>
+    <string name="app_name">Trailerly</string>
     <string name="movie_phrase">Кино - это жизнь, где вырезано всё скучное</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="genre_title_label">Фильмы по жанру: %s</string>
@@ -57,5 +57,22 @@
     <string name="movie_name_label">Название:</string>
     <string name="release_dat_label">Дата релиза:</string>
 
-    
+    <!-- Delete Account -->
+    <string name="delete_account_title">Удалить аккаунт</string>
+    <string name="delete_account_description">Это действие нельзя отменить. Все ваши данные будут безвозвратно удалены.</string>
+    <string name="delete_account_warning_title">Внимание!</string>
+    <string name="delete_account_warning_text">• Все данные будут удалены\n• История просмотров исчезнет\n• Настройки будут сброшены\n• Восстановление невозможно</string>
+    <string name="delete_account_button">Удалить аккаунт</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="password_required">Введите пароль для подтверждения</string>
+    <string name="wrong_password">Неверный пароль</string>
+    <string name="account_deleted">Аккаунт успешно удален</string>
+    <string name="delete_failed">Ошибка при удалении аккаунта</string>
+    <string name="recent_login_required">Требуется повторная авторизация</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">ОК</string>
+    <string name="settings">Настройки</string>
+    <string name="google_reauth_required">Нужен повторный вход через Google</string>
+    <string name="reauth_provider_not_found">Не удалось определить способ повторной авторизации</string>
+
 </resources>

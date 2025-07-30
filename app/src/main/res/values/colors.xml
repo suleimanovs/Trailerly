@@ -31,10 +31,9 @@
     <color name="widget_color">#212121</color>
     <color name="widget_color2">#1a1a1a</color>
 
-
     <color name="black_50">#A9000000</color>
     <color name="black_transparent">#80000000</color>
-    <color name="main_color">#1338BE</color>
+    <color name="main_color">#21d07a</color>
 
     <color name="main_grey">#313131</color>
     <color name="grey">#757575</color>
@@ -42,7 +41,6 @@
     <color name="roz">#B068EF</color>
     <color name="option_background">#1F1B2E</color>
     <color name="main_text_color">#FFFFFFFF</color>
-
 
     <color name="colorPrimary">#21d07a</color>
     <color name="colorPrimaryDark">#9013FE</color>
@@ -54,7 +52,6 @@
 
     <color name="info_text">#a5a1b2</color>
     <color name="description">#d9d7e0</color>
-    <!--    <color name="splash_background">#222222</color>-->
     <color name="splash_background">#1D1D1D</color>
     <color name="primary_text">#ffffffff</color>
     <color name="secondary_text">#bebebe</color>
@@ -64,8 +61,6 @@
     <color name="golden">#f5cd07</color>
     <color name="silver">#AFA1A1</color>
     <color name="bronze">#CD7F32</color>
-
-
 
     <color name="ripple_transparent">#11FFFFFF</color>
     <color name="main_color50">#AEFA400A</color>
@@ -77,5 +72,19 @@
     <color name="voteMiddleBarColor">#d2d531</color>
     <color name="voteHighTrackColor">#204529</color>
     <color name="voteHighBarColor">#21d07a</color>
+
+    <!-- Новые цвета для улучшенного дизайна -->
+    <color name="card_background">#1E1E1E</color>
+    <color name="card_elevation">#2A2A2A</color>
+    <color name="accent_primary">#FF6B35</color>
+    <color name="accent_secondary">#4ECDC4</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#B3B3B3</color>
+    <color name="text_hint_dark">#808080</color>
+    <color name="divider_dark">#2A2A2A</color>
+    <color name="surface_dark">#1A1A1A</color>
+    <color name="error_color">#FF5252</color>
+    <color name="success_color">#4CAF50</color>
+    <color name="warning_color">#FF9800</color>
 
 </resources>

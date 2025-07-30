@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.vaibhavlakhera.circularprogressview.CircularProgressView
 import kz.android.tron.R
-import kz.android.tron.presentation.util.Genres
+import kz.android.tron.presentation.util.Genre
 import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
 import kz.android.tron.presentation.util.toRound
 
@@ -25,7 +25,6 @@ fun setPosterImage(imageView: ShapeableImageView, posterUrl: String) {
 
 @BindingAdapter("setVoteProgress")
 fun setVoteProgress(circularProgress: CircularProgressView, percent: Int) {
-    Log.d("MONSTER", "setVoteProgress: $percent")
     val (@ColorRes track, @ColorRes bar) = when (percent) {
         in VoteColor.LOW.range -> R.color.voteLowTrackColor to R.color.voteLowBarColor
         in VoteColor.MIDDLE.range -> R.color.voteMiddleTrackColor to R.color.voteMiddleBarColor
@@ -58,7 +57,7 @@ fun setGenreIcon(imageView: ImageView, icon: Int) {
 //Movie Detail
 @BindingAdapter("setGenresValue")
 fun setGenresValue(textView: TextView, genresId: List<Int>) {
-    textView.text = Genres.getGenresName(genresId).toString()
+    textView.text = Genre.entries.filter { genresId.contains(it.id) }.joinToString { it.displayName }
 }
 
 

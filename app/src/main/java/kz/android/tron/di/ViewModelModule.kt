@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import kz.android.tron.presentation.ui.login.SignInViewModel
 import kz.android.tron.presentation.ui.login.SignUpViewModel
+import kz.android.tron.presentation.ui.settings.DeleteAccountViewModel
 import kz.android.tron.presentation.viewmodel.GenreContentViewModel
 import kz.android.tron.presentation.viewmodel.MovieViewModel
 
@@ -26,4 +27,7 @@ interface ViewModelModule {
 
     @[IntoMap Binds ViewModelKey(GenreContentViewModel::class)]
     fun genreContentViewModel(impl: GenreContentViewModel): ViewModel
+
+    @[IntoMap Binds ViewModelKey(DeleteAccountViewModel::class)]
+    fun deleteAccountViewModel(impl: DeleteAccountViewModel): ViewModel
 }

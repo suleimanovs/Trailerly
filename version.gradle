@@ -1,0 +1,5 @@
+project.ext {
+    versionMajor = 4
+    versionMinor = 0
+    versionPatch = 6
+}

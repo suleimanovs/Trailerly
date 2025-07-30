@@ -7,29 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kz.android.tron.App
+import dev.androidbroadcast.vbpd.viewBinding
 import kz.android.tron.R
+import kz.android.tron.presentation.TrailerlyApplication
 import kz.android.tron.databinding.FragmentSignupBinding
-import kz.android.tron.presentation.adapters.movie_adapter.MovieAdapter
 import kz.android.tron.presentation.util.showSnackbar
 import kz.android.tron.presentation.util.value
-import kz.android.tron.presentation.viewmodel.GenreContentViewModel
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import javax.inject.Inject
 
+class SignUpFragment : Fragment(R.layout.fragment_signup) {
 
-class SignUpFragment : Fragment() {
-
-    private var _binding: FragmentSignupBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentSignupBinding::bind)
     @Inject lateinit var viewModelFactory: MovieModelFactory
-    private val component by lazy { (requireActivity().application as App).component }
+    private val component by lazy { (requireActivity().application as TrailerlyApplication).component }
     private val viewModel: SignUpViewModel by viewModels { viewModelFactory }
     private lateinit var onStartActivity: OnStartActivity
 
@@ -37,11 +28,6 @@ class SignUpFragment : Fragment() {
         component.inject(this)
         onStartActivity = context as OnStartActivity
         super.onAttach(context)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View {
-        _binding = FragmentSignupBinding.inflate(inflater, group, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,7 +57,6 @@ class SignUpFragment : Fragment() {
         }
     }
 
-
     private fun showProgress() {
         binding.progress.visibility = View.VISIBLE
     }
@@ -83,12 +68,4 @@ class SignUpFragment : Fragment() {
     private fun launchToMainActivity() {
         onStartActivity.onStartActivity()
     }
-
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
-
-
 }

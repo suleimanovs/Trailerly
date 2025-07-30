@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import kz.android.tron.data.network.retrofit.ApiFactory
 import kz.android.tron.data.repository.MovieRepositoryImpl
-import kz.android.tron.domain.MovieRepository
+import kz.android.tron.domain.repository.MovieRepository
 
 /**
  * Created by osmanboy on 2/26/2022.

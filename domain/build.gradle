@@ -3,12 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
-
-
 }
+
 android {
     namespace 'kz.android.tron.domain'
-    compileSdk 34
+    compileSdk 36
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -17,18 +16,20 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    kapt {
+        javacOptions {
+            option("-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED")
+        }
+    }
+
 }
 dependencies {
     // Dagger 2
-    kapt "com.google.dagger:dagger-compiler:2.51"
-    implementation "com.google.dagger:dagger:2.51"
+    kapt 'com.google.dagger:dagger-compiler:2.57'
+    implementation 'com.google.dagger:dagger:2.57'
 
-    implementation "androidx.paging:paging-runtime-ktx:3.3.0"
+    implementation 'androidx.paging:paging-runtime-ktx:3.3.6'
     // Coroutine
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
-}
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3-native-mt'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2'
 }

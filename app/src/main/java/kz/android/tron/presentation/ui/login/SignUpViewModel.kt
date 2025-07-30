@@ -4,11 +4,10 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.auth
 import kz.android.tron.R
-import kz.android.tron.presentation.util.showSnackbar
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor() : ViewModel() {

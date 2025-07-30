@@ -6,8 +6,8 @@ import kz.android.tron.di.ApplicationScope
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Suppress("UNCHECKED_CAST")
-@ApplicationScope
+
+@[ApplicationScope Suppress("UNCHECKED_CAST")]
 class MovieModelFactory @Inject constructor(
     private val viewModelProviders: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {

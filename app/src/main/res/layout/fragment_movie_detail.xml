@@ -7,215 +7,281 @@
             type="kz.android.tron.domain.model.Movie" />
     </data>
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/layout_background">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                app:contentScrim="@android:color/transparent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="@android:color/transparent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/movie_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:setPosterImage="@{movie.backdropPath}"
+                        tools:srcCompat="@color/main_color" />
+
+                    <!-- Gradient Overlay -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@drawable/gradient_overlay"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/movie_postere"
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        android:layout_marginStart="20dp"
+                        android:elevation="8dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:setPosterImage="@{movie.posterPath}"
+                        app:shapeAppearanceOverlay="@style/RoundImage"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <!-- Rating Section -->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/layout_background">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/movie_banner"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:setPosterImage="@{movie.backdropPath}"
-                tools:srcCompat="@color/main_color" />
-
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/movie_postere"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="@dimen/start_dimension"
-                android:elevation="60dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@id/movie_banner"
-                app:layout_constraintStart_toStartOf="@id/movie_banner"
-                app:layout_constraintTop_toTopOf="@id/movie_banner"
-                app:setPosterImage="@{movie.posterPath}"
-                tools:srcCompat="@tools:sample/avatars" />
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/movieTitle"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="16dp"-->
-<!--                android:fontFamily="@font/graphiklcg_medium"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@{movie.title}"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="20sp"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/movie_banner"-->
-<!--                tools:text="John Wick" />-->
-
-
-            <com.vaibhavlakhera.circularprogressview.CircularProgressView
-                android:id="@+id/voteAverageCount"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/round"
-                android:layout_marginTop="16dp"
-                app:fillColor="@color/black_50"
-                android:layout_marginStart="8dp"
-                app:layout_constraintEnd_toStartOf="@id/userVoteCountLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_banner"
-                app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
-                app:progressRoundCap="true"
-                app:progressTextColor="#FFF"
-                app:progressTextEnabled="true"
-                app:progressTextSize="15sp"
-                app:progressTextType="percent"
-                app:progressValue="10"
-                app:progressWidth="2dp"
-                app:setVoteProgress="@{movie.voteAverage}"
-                app:setVoteProgressValue="@{movie.voteAverage}"
-                app:startAngle="270"
-                app:totalValue="100"
-                app:totalWidth="1dp"
-                tools:progressColor="#FFF"
-                tools:totalColor="@color/colorPrimaryDark" />
-
-            <TextView
-                android:id="@+id/userVoteCountLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/graphiklcg_regular"
-                android:text="@string/users_vote"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/voteAverageCount"
-                app:layout_constraintStart_toEndOf="@id/voteAverageCount"
-                app:layout_constraintTop_toTopOf="@id/voteAverageCount" />
-
-
-
-            <TextView
-                android:id="@+id/movie_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@{movie.overview}"
-                android:textColor="@color/secondary_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/voteAverageCount"
-                tools:text="Обычное корейское семейство жизнь не балует. Приходится жить в сыром грязном полуподвале, воровать интернет у соседей и перебиваться случайными подработками. Однажды друг сына семейства, уезжая на стажировку за границу, предлагает тому заменить его и поработать репетитором у старшеклассницы в богатой семье Пак. Подделав диплом о высшем образовании, парень отправляется в шикарный дизайнерский особняк и производит на хозяйку дома хорошее впечатление. Тут же ему в голову приходит необычный план по трудоустройству сестры." />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                app:barrierDirection="end"
-                app:constraint_referenced_ids="genreLabel,dataReleaseLabel,originalNameLabel" />
-
-
-            <TextView
-                android:id="@+id/originalNameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/graphiklcg_semibold"
-                android:text="@string/movie_name_label"
-                android:textColor="@color/secondary_text"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/movie_description" />
-
-            <TextView
-                android:id="@+id/originalTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="@{movie.originalTitle}"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/originalNameLabel"
-                app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toTopOf="@id/originalNameLabel"
-                tools:text="John Wick" />
-
-
-            <TextView
-                android:id="@+id/dataReleaseLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/graphiklcg_semibold"
-                android:text="@string/release_dat_label"
-                android:textColor="@color/secondary_text"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/originalNameLabel" />
-
-            <TextView
-                android:id="@+id/releaseData"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="@{movie.releaseDate}"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/dataReleaseLabel"
-                app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toTopOf="@id/dataReleaseLabel"
-                tools:text="2021" />
-
-
-            <TextView
-                android:id="@+id/genreLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/graphiklcg_semibold"
-                android:text="@string/genre_label"
-                android:textColor="@color/secondary_text"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dataReleaseLabel" />
-
-            <TextView
-                android:id="@+id/movieGenre"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:layout_marginEnd="8dp"
-                android:maxLines="1"
-                android:textColor="@color/primary_text"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/genreLabel"
-                app:layout_constraintStart_toEndOf="@id/barrier"
-                app:layout_constraintTop_toTopOf="@id/genreLabel"
-                app:setGenresValue="@{movie.genreId}"
-                tools:text="боевик, комедия, фэнтези" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trailers"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/genreLabel"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:padding="20dp">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:id="@+id/ratingSection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.core.widget.NestedScrollView>
+                    <com.vaibhavlakhera.circularprogressview.CircularProgressView
+                        android:id="@+id/voteAverageCount"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/round"
+                        app:fillColor="@color/black_50"
+                        app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
+                        app:progressRoundCap="true"
+                        app:progressTextColor="#FFF"
+                        app:progressTextEnabled="true"
+                        app:progressTextSize="12sp"
+                        app:progressTextType="percent"
+                        app:progressWidth="3dp"
+                        app:setVoteProgress="@{movie.voteAverage}"
+                        app:setVoteProgressValue="@{movie.voteAverage}"
+                        app:startAngle="270"
+                        app:totalValue="100"
+                        app:totalWidth="1dp"
+                        tools:progressColor="#FFF"
+                        tools:totalColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:id="@+id/userVoteCountLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:fontFamily="@font/graphiklcg_regular"
+                        android:text="@string/users_vote"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+                <!-- Movie Description -->
+                <TextView
+                    android:id="@+id/movie_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/graphiklcg_regular"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{movie.overview}"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/ratingSection"
+                    tools:text="Обычное корейское семейство жизнь не балует. Приходится жить в сыром грязном полуподвале, воровать интернет у соседей и перебиваться случайными подработками." />
+
+                <!-- Movie Info Section -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/infoCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:cardBackgroundColor="@color/widget_color"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/movie_description">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <!-- Original Title -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/graphiklcg_semibold"
+                                android:text="@string/movie_name_label"
+                                android:textColor="@color/secondary_text"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/originalTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/graphiklcg_medium"
+                                android:text="@{movie.originalTitle}"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                tools:text="John Wick" />
+
+                        </LinearLayout>
+
+                        <!-- Release Date -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/graphiklcg_semibold"
+                                android:text="@string/release_dat_label"
+                                android:textColor="@color/secondary_text"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/releaseData"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/graphiklcg_medium"
+                                android:text="@{movie.releaseDate}"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                tools:text="2021" />
+
+                        </LinearLayout>
+
+                        <!-- Genre -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/graphiklcg_semibold"
+                                android:text="@string/genre_label"
+                                android:textColor="@color/secondary_text"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/movieGenre"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/graphiklcg_medium"
+                                android:maxLines="2"
+                                android:textColor="@color/primary_text"
+                                android:textSize="14sp"
+                                app:setGenresValue="@{movie.genreId}"
+                                tools:text="боевик, комедия, фэнтези" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Trailers Section -->
+                <TextView
+                    android:id="@+id/trailersTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/graphiklcg_bold"
+                    android:text="Трейлеры"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@id/infoCard" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trailers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/trailersTitle" />
+
+                <!-- Bottom Spacer -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trailers" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

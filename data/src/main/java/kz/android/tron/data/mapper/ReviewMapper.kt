@@ -1,8 +1,16 @@
 package kz.android.tron.data.mapper
 
-import kz.android.tron.data.network.dto.ReviewDto
+import kz.android.tron.data.network.responses.ReviewDto
+import kz.android.tron.domain.mapper.BaseMapper
 import kz.android.tron.domain.model.Review
 
-fun List<ReviewDto>?.reviewDtoToReview() = this?.map {
-    Review(author = it.author.orEmpty(), content = it.content.orEmpty())
-} ?: emptyList()
+class ReviewMapper : BaseMapper<ReviewDto, Review> {
+
+    override fun map(source: ReviewDto): Review {
+        return Review(
+            author = source.author.orEmpty(),
+            content = source.content.orEmpty()
+        )
+    }
+}
+

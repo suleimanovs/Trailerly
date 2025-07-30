@@ -51,9 +51,6 @@
         <item name="android:fontFamily">@font/graphiklcg_medium</item>
     </style>
 
-
-
-
     <style name="ShapeOverlayBottom" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/RoundCardView</item>
     </style>
@@ -65,7 +62,6 @@
         <item name="cornerSizeTopRight">0dp</item>
     </style>
 
-
     <style name="Circular">
         <item name="cornerSize">50%</item>
     </style>
@@ -74,17 +70,20 @@
         <item name="cornerSize">10dp</item>
     </style>
 
+    <style name="RoundImage">
+        <item name="cornerSize">12dp</item>
+    </style>
+
     <style name="AiMsgRound">
         <item name="cornerSize">10dp</item>
     </style>
+    
     <style name="OutlinedBox" parent="Base.Widget.MaterialComponents.TextInputLayout">
         <item name="materialThemeOverlay">
             @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
         </item>
         <item name="boxCollapsedPaddingTop">0dp</item>
     </style>
-
-
 
     <style name="ScrollView" parent="Theme.AppCompat">
         <item name="android:scrollIndicators">none</item>

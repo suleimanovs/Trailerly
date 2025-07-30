@@ -197,18 +197,19 @@
         <LinearLayout
             android:id="@+id/tv_sign_have_que"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="bottom"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal"
-            android:weightSum="100"
+            android:weightSum="2"
             android:layout_marginBottom="16dp">
 
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:paddingStart="0dp"
+                android:layout_weight="1"
                 android:paddingEnd="5dp"
                 android:text="@string/havent_account_question"
                 android:textAlignment="textEnd"
@@ -217,10 +218,10 @@
 
             <TextView
                 android:id="@+id/linkSignUp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
                 android:paddingStart="5dp"
+                android:layout_weight="1"
                 android:paddingEnd="0dp"
                 android:text="@string/sign_up"
                 android:textColor="@color/colorPrimary"

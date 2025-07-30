@@ -2,7 +2,7 @@ package kz.android.tron.domain.usecase
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
-import kz.android.tron.domain.MovieRepository
+import kz.android.tron.domain.repository.MovieRepository
 import kz.android.tron.domain.model.Movie
 import javax.inject.Inject
 

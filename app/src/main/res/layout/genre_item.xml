@@ -11,37 +11,46 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="@dimen/start_dimension"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/card_background"
         android:background="@drawable/movies_genres_ripple"
-        android:backgroundTint="@color/widget_color"
-        app:cardCornerRadius="10dp">
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/genre_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            app:setGenreIcon="@{genre.icon}"
-            tools:src="@drawable/ic_arrow_forward_ios" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
 
-        <TextView
-            android:id="@+id/genre_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="4dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:scrollIndicators="none"
-            android:scrollbars="none"
-            android:text="@{genre.name}"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/genre_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginBottom="8dp"
+                android:alpha="0.8"
+                app:setGenreIcon="@{genre.icon}"
+                tools:src="@drawable/ic_arrow_forward_ios" />
+
+            <TextView
+                android:id="@+id/genre_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/graphiklcg_medium"
+                android:maxLines="2"
+                android:text="@{genre.displayName}"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

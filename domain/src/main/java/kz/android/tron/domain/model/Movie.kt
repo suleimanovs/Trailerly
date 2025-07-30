@@ -28,4 +28,4 @@ data class Movie(
 
     var bigPosterPath: String
 
-):Parcelable
+) : Parcelable

@@ -1,10 +1,12 @@
 package kz.android.tron.presentation.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import kz.android.tron.R
@@ -17,7 +19,7 @@ class MainActivity : AppCompatActivity(), SetupActionbar {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        enableEdgeToEdge()
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
@@ -29,6 +31,21 @@ class MainActivity : AppCompatActivity(), SetupActionbar {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.main_container)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                findNavController(R.id.main_container).navigate(R.id.deleteAccountFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun setTitle(text: String) {

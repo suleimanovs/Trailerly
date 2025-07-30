@@ -10,14 +10,34 @@
         android:label="Фильмы">
         <action
             android:id="@+id/byFilterScreen"
-            app:destination="@id/movieListByFilterFragment" />
+            app:destination="@id/movieListByFilterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/byGenreScreen"
-            app:destination="@id/movieListByGenreFragment" />
+            app:destination="@id/movieListByGenreFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/byDetailScreen"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="kz.android.tron.presentation.ui.main.MovieDetailFragment"
@@ -26,24 +46,34 @@
             android:name="movie"
             app:argType="kz.android.tron.domain.model.Movie" />
     </fragment>
+    
     <fragment
         android:id="@+id/movieListByGenreFragment"
         android:name="kz.android.tron.presentation.ui.main.MovieListByGenreFragment"
         android:label="GenreContentFragment">
         <action
             android:id="@+id/to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <argument
             android:name="genreId"
             app:argType="integer" />
     </fragment>
+    
     <fragment
         android:id="@+id/movieListByFilterFragment"
         android:name="kz.android.tron.presentation.ui.main.MovieListByFilterFragment"
         android:label="MoviesContentFragment">
         <action
             android:id="@+id/to_DetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
         <argument
             android:name="sortBy"
             app:argType="string" />
@@ -51,4 +81,9 @@
             android:name="title"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="kz.android.tron.presentation.ui.settings.DeleteAccountFragment"
+        android:label="Удалить аккаунт" />
 </navigation>

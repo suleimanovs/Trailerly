@@ -8,17 +8,16 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import kz.android.tron.databinding.YoutubePlayerItemBinding
 import kz.android.tron.domain.model.Trailer
-import kz.android.tron.presentation.adapters.banner_adapter.BaseViewHolder
-import kz.android.tron.presentation.adapters.banner_adapter.toBinding
+import kz.android.tron.presentation.adapters.base.BaseViewHolder
+import kz.android.tron.presentation.adapters.base.toBinding
 import javax.inject.Inject
 import kotlin.properties.Delegates
-
 
 class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, BaseViewHolder<YoutubePlayerItemBinding>>(YoutubeDiffUtil) {
 
     var lifecycle: Lifecycle by Delegates.notNull()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= BaseViewHolder<YoutubePlayerItemBinding>(parent.toBinding())
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = BaseViewHolder<YoutubePlayerItemBinding>(parent.toBinding())
 
     override fun onBindViewHolder(holder: BaseViewHolder<YoutubePlayerItemBinding>, position: Int) {
         getItem(position)?.apply {

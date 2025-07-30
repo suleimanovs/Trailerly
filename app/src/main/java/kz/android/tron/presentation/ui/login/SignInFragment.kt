@@ -16,7 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import kz.android.tron.App
+import dev.androidbroadcast.vbpd.viewBinding
+import kz.android.tron.presentation.TrailerlyApplication
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentSigninBinding
 import kz.android.tron.presentation.util.showSnackbar
@@ -25,16 +26,14 @@ import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import javax.inject.Inject
 
 
-class SignInFragment : Fragment(), ActivityResultCallback<ActivityResult> {
+class SignInFragment : Fragment(R.layout.fragment_signin), ActivityResultCallback<ActivityResult> {
 
-
-    private var _binding: FragmentSigninBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentSigninBinding::bind)
 
     private lateinit var onStartActivity: OnStartActivity
     @Inject lateinit var viewModelFactory: MovieModelFactory
 
-    private val component by lazy { (requireActivity().application as App).component }
+    private val component by lazy { (requireActivity().application as TrailerlyApplication).component }
     private val viewModel: SignInViewModel by viewModels { viewModelFactory }
     private var resultLauncher = registerForActivityResult(StartActivityForResult(), this)
 
@@ -44,22 +43,13 @@ class SignInFragment : Fragment(), ActivityResultCallback<ActivityResult> {
         super.onAttach(context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View {
-        _binding = FragmentSigninBinding.inflate(inflater, group, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupListeners()
-
         viewModel.state.observe(viewLifecycleOwner) { state: State ->
             when (state) {
                 State.Success -> {
-                    val email = binding.email.value
-                    val password = binding.password.value
-                    viewModel.signInWithEmailAndPassword( email, password)
+                    viewModel.signInWithEmailAndPassword( binding.email.value, binding.password.value)
                 }
                 is State.Error -> {
                     hideProgress()
@@ -70,7 +60,6 @@ class SignInFragment : Fragment(), ActivityResultCallback<ActivityResult> {
                 }
             }
         }
-
     }
 
     private fun setupListeners(){
@@ -128,21 +117,4 @@ class SignInFragment : Fragment(), ActivityResultCallback<ActivityResult> {
     private fun launchToMainActivity() {
         onStartActivity.onStartActivity()
     }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
-
 }
-
-
-
-
-
-
-
-
-
-
-

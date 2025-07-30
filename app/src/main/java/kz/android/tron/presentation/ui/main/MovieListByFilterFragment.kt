@@ -10,10 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import dev.androidbroadcast.vbpd.viewBinding
 import kotlinx.coroutines.launch
-import kz.android.tron.App
+import kz.android.tron.R
+import kz.android.tron.presentation.TrailerlyApplication
+import kz.android.tron.databinding.FragmentMovieDetailBinding
+import kz.android.tron.databinding.FragmentMovieDetailBinding.bind
 import kz.android.tron.databinding.FragmentMovieListByFilterBinding
-import kz.android.tron.presentation.adapters.movie_adapter.MovieAdapter
+import kz.android.tron.presentation.adapters.movie_adapter.MovieGridAdapter
 import kz.android.tron.presentation.ui.SetupActionbar
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieViewModel
@@ -21,19 +25,17 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 
-class MovieListByFilterFragment : Fragment() {
+class MovieListByFilterFragment : Fragment(R.layout.fragment_movie_list_by_filter) {
 
-    private var _binding: FragmentMovieListByFilterBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentMovieListByFilterBinding::bind)
 
     @Inject lateinit var viewModelFactory: MovieModelFactory
-    @Inject lateinit var moviesAdapter: MovieAdapter
+    @Inject lateinit var moviesAdapter: MovieGridAdapter
 
-    private val component by lazy { (requireActivity().application as App).component }
+    private val component by lazy { (requireActivity().application as TrailerlyApplication).component }
     private val viewModel: MovieViewModel by viewModels { viewModelFactory }
     private val args by navArgs<MovieListByFilterFragmentArgs>()
     private var setupActionbar by Delegates.notNull<SetupActionbar>()
-
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -41,15 +43,12 @@ class MovieListByFilterFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View {
-        _binding = FragmentMovieListByFilterBinding.inflate(inflater, group, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupActionbar.setTitle(args.title)
+        
+        // Используем адаптивный GridLayoutManager
         binding.movieRV.adapter = moviesAdapter
         moviesAdapter.onMovieClickListener = {
             findNavController().navigate(MovieListByFilterFragmentDirections.toDetailFragment(it))
@@ -62,10 +61,4 @@ class MovieListByFilterFragment : Fragment() {
         }
 
     }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
-    }
-
 }

@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 //        maven { url 'https://maven.google.com' }
     }
 }
-rootProject.name = "Tron"
+rootProject.name = "Trailerly"
 include ':app'
 include ':data'
 include ':domain'

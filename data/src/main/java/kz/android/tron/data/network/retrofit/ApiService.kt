@@ -1,9 +1,9 @@
 package kz.android.tron.data.network.retrofit
 
-import kz.android.tron.data.network.dto.MovieContainerDto
-import kz.android.tron.data.network.dto.MovieDto
-import kz.android.tron.data.network.dto.ReviewContainerDto
-import kz.android.tron.data.network.dto.TrailerContainerDto
+import kz.android.tron.data.network.responses.MovieContainerDto
+import kz.android.tron.data.network.responses.MovieDto
+import kz.android.tron.data.network.responses.ReviewContainerDto
+import kz.android.tron.data.network.responses.TrailerContainerDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
