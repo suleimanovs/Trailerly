@@ -1,15 +1,14 @@
-package kz.android.tron.presentation.adapters.youtube_adapter
+package kz.android.tron.presentation.adapters
 
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import kz.android.tron.databinding.YoutubePlayerItemBinding
 import kz.android.tron.domain.model.Trailer
-import kz.android.tron.presentation.adapters.base.BaseViewHolder
-import kz.android.tron.presentation.adapters.base.toBinding
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -28,5 +27,10 @@ class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, Ba
                 }
             })
         }
+    }
+
+    object YoutubeDiffUtil : DiffUtil.ItemCallback<Trailer>() {
+        override fun areItemsTheSame(oldItem: Trailer, newItem: Trailer): Boolean = oldItem.key == newItem.key
+        override fun areContentsTheSame(oldItem: Trailer, newItem: Trailer): Boolean = oldItem == newItem
     }
 }

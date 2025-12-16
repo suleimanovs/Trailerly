@@ -1,11 +1,9 @@
-package kz.android.tron.presentation.adapters.genres_adapter
+package kz.android.tron.presentation.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import javax.inject.Inject
 import kz.android.tron.databinding.GenreItemBinding
-import kz.android.tron.presentation.adapters.base.BaseViewHolder
-import kz.android.tron.presentation.adapters.base.toBinding
 import kz.android.tron.presentation.util.Genre
 
 class MoviesGenreAdapter @Inject constructor() : RecyclerView.Adapter<BaseViewHolder<GenreItemBinding>>() {

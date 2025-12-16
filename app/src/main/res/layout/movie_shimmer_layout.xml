@@ -133,6 +133,15 @@
             android:layout_marginEnd="@dimen/start_dimension"
             app:cardBackgroundColor="@color/widget_color"
             app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
     </LinearLayout>
 
 
@@ -186,6 +195,15 @@
             android:layout_marginEnd="@dimen/start_dimension"
             app:cardBackgroundColor="@color/widget_color"
             app:cardCornerRadius="10dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="118.3dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/start_dimension"
+            app:cardBackgroundColor="@color/widget_color"
+            app:cardCornerRadius="10dp" />
+
     </LinearLayout>
 
 

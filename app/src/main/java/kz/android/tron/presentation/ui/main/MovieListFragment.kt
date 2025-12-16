@@ -16,9 +16,8 @@ import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieListBinding
 import kz.android.tron.domain.model.Movie
 import kz.android.tron.presentation.TrailerlyApplication
-import kz.android.tron.presentation.adapters.banner_adapter.MovieBannerAdapter
-import kz.android.tron.presentation.adapters.genres_adapter.MoviesGenreAdapter
-import kz.android.tron.presentation.adapters.movie_adapter.MovieAdapter
+import kz.android.tron.presentation.adapters.MovieAdapter
+import kz.android.tron.presentation.adapters.MoviesGenreAdapter
 import kz.android.tron.presentation.util.showErrorSnackbar
 import kz.android.tron.presentation.viewmodel.MovieListState
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
@@ -29,10 +28,10 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private val binding by viewBinding(FragmentMovieListBinding::bind)
     @Inject lateinit var viewModelFactory: MovieModelFactory
-    @Inject lateinit var popularMoviesAdapter: MovieAdapter
-    @Inject lateinit var topRatedMoviesAdapter: MovieAdapter
-    @Inject lateinit var viewPagerAdapter: MovieBannerAdapter
     @Inject lateinit var genreAdapter: MoviesGenreAdapter
+    private val popularMoviesAdapter by lazy { MovieAdapter(MovieAdapter.LayoutType.LIST) }
+    private val topRatedMoviesAdapter by lazy { MovieAdapter(MovieAdapter.LayoutType.LIST) }
+    private val viewPagerAdapter by lazy { MovieAdapter(MovieAdapter.LayoutType.BANNER) }
 
     private val component by lazy { (requireActivity().application as TrailerlyApplication).component }
     private val listViewModel: MovieViewModel by viewModels { viewModelFactory }

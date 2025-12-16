@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kz.android.tron.R
 import kz.android.tron.databinding.FragmentMovieDetailBinding
 import kz.android.tron.presentation.TrailerlyApplication
-import kz.android.tron.presentation.adapters.youtube_adapter.YoutubePlayerAdapter
+import kz.android.tron.presentation.adapters.YoutubePlayerAdapter
 import kz.android.tron.presentation.ui.SetupActionbar
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieViewModel
@@ -55,10 +55,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
     }
 
     private fun observeTrailers() {
-        lifecycleScope.launch {
-            viewModel.getMovieTrailers(args.movie.id).collectLatest {
-                adapter.submitData(it)
-            }
-        }
+        lifecycleScope.launch { viewModel.getMovieTrailers(args.movie.id).collectLatest(adapter::submitData) }
     }
 }

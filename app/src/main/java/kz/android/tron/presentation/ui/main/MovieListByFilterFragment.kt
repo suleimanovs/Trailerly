@@ -2,9 +2,7 @@ package kz.android.tron.presentation.ui.main
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,10 +12,8 @@ import dev.androidbroadcast.vbpd.viewBinding
 import kotlinx.coroutines.launch
 import kz.android.tron.R
 import kz.android.tron.presentation.TrailerlyApplication
-import kz.android.tron.databinding.FragmentMovieDetailBinding
-import kz.android.tron.databinding.FragmentMovieDetailBinding.bind
 import kz.android.tron.databinding.FragmentMovieListByFilterBinding
-import kz.android.tron.presentation.adapters.movie_adapter.MovieGridAdapter
+import kz.android.tron.presentation.adapters.MovieAdapter
 import kz.android.tron.presentation.ui.SetupActionbar
 import kz.android.tron.presentation.viewmodel.MovieModelFactory
 import kz.android.tron.presentation.viewmodel.MovieViewModel
@@ -30,7 +26,7 @@ class MovieListByFilterFragment : Fragment(R.layout.fragment_movie_list_by_filte
     private val binding by viewBinding(FragmentMovieListByFilterBinding::bind)
 
     @Inject lateinit var viewModelFactory: MovieModelFactory
-    @Inject lateinit var moviesAdapter: MovieGridAdapter
+    private val moviesAdapter by lazy { MovieAdapter(MovieAdapter.LayoutType.GRID) }
 
     private val component by lazy { (requireActivity().application as TrailerlyApplication).component }
     private val viewModel: MovieViewModel by viewModels { viewModelFactory }
@@ -48,17 +44,10 @@ class MovieListByFilterFragment : Fragment(R.layout.fragment_movie_list_by_filte
 
         setupActionbar.setTitle(args.title)
         
-        // Используем адаптивный GridLayoutManager
         binding.movieRV.adapter = moviesAdapter
         moviesAdapter.onMovieClickListener = {
             findNavController().navigate(MovieListByFilterFragmentDirections.toDetailFragment(it))
         }
-
-        lifecycleScope.launch {
-            viewModel.getMovieList(args.sortBy).collect {
-                moviesAdapter.submitData(it)
-            }
-        }
-
+        lifecycleScope.launch { viewModel.getMovieList(args.sortBy).collect (moviesAdapter::submitData) }
     }
 }
