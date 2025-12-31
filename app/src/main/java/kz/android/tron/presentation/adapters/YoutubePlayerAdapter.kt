@@ -22,7 +22,11 @@ class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, Ba
         getItem(position)?.apply {
             holder.binding.YouTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
-                    youTubePlayer.loadOrCueVideo(lifecycle, key, 0f)
+                    if (holder.absoluteAdapterPosition == 0) {
+                        youTubePlayer.loadOrCueVideo(lifecycle, key, 0f)
+                    } else {
+                        youTubePlayer.cueVideo(key, 0f)
+                    }
                 }
             })
         }
