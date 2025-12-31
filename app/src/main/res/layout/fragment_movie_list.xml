@@ -75,7 +75,7 @@
                         app:layout_constraintTop_toBottomOf="@id/genre_Title"
                         app:msrv_gravity="start"
                         app:msrv_interval="1"
-                        app:msrv_speed_ms_per_inch="300"
+                        app:msrv_speed_ms_per_inch="1000"
                         app:reverseLayout="false"
                         tools:listitem="@layout/genre_item" />
 

@@ -7,10 +7,7 @@ import kz.android.tron.domain.model.Review
 class ReviewMapper : BaseMapper<ReviewDto, Review> {
 
     override fun map(source: ReviewDto): Review {
-        return Review(
-            author = source.author.orEmpty(),
-            content = source.content.orEmpty()
-        )
+        return Review(author = source.author.orEmpty(), content = source.content.orEmpty())
     }
 }
 

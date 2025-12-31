@@ -7,9 +7,7 @@ import kz.android.tron.presentation.ui.login.Storage
 
 class TrailerlyApplication : Application() {
 
-    val component: AppComponent by lazy {
-        DaggerAppComponent.builder().build()
-    }
+    val component: AppComponent by lazy { DaggerAppComponent.builder().build() }
 
     override fun onCreate() {
         Storage.initial(applicationContext)

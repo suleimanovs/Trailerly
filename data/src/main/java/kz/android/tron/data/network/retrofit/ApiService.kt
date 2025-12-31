@@ -17,20 +17,20 @@ interface ApiService {
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_SORT) sortBy: String,
         @Query(PARAMS_PAGE) page: Int
-    ): Response<MovieContainerDto>
+    ): MovieContainerDto
 
     @GET(BASE_URL_VIDEOS)
     suspend fun getMovieTrailersById(
         @Path("id") id: Int,
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
-    ): Response<TrailerContainerDto>
+    ): TrailerContainerDto
 
     @GET(BASE_URL_REVIEWS)
     suspend fun getMovieReviewsById(
         @Path("id") id: Int,
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
-    ): Response<ReviewContainerDto>
+    ): ReviewContainerDto
 
 
     @GET(BASE_URL_SEARCH)
@@ -38,7 +38,7 @@ interface ApiService {
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_QUERY) query: String
-    ): Response<MovieContainerDto>
+    ): MovieContainerDto
 
 
     @GET(BASE_URL_POPULAR)
@@ -46,7 +46,7 @@ interface ApiService {
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_PAGE) page: Int
-    ): Response<MovieContainerDto>
+    ): MovieContainerDto
 
 
     @GET(BASE_URL_TOP_RATED)
@@ -54,7 +54,7 @@ interface ApiService {
         @Query(PARAMS_API_KEY) apiKey: String = API_KEY,
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_PAGE) page: Int
-    ): Response<MovieContainerDto>
+    ): MovieContainerDto
 
 
     @GET(BASE_URL_MOVIE)
@@ -70,7 +70,7 @@ interface ApiService {
         @Query(PARAMS_LANGUAGE) language: String = LANGUAGE_VALUE,
         @Query(PARAMS_PAGE) page: Int? = null,
         @Query(PARAMS_GENRE) genreId: Int? = null,
-    ): Response<MovieContainerDto>
+    ): MovieContainerDto
 
 
     companion object {

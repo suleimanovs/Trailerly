@@ -28,5 +28,4 @@ interface AppComponent {
     fun inject(fragment: MovieListByGenreFragment)
 
     fun inject(fragment: MovieDetailFragment)
-
 }

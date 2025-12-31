@@ -20,8 +20,7 @@ class YoutubePlayerAdapter @Inject constructor() : PagingDataAdapter<Trailer, Ba
 
     override fun onBindViewHolder(holder: BaseViewHolder<YoutubePlayerItemBinding>, position: Int) {
         getItem(position)?.apply {
-            holder.binding.YouTubePlayer.addYouTubePlayerListener(object :
-                AbstractYouTubePlayerListener() {
+            holder.binding.YouTubePlayer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     youTubePlayer.loadOrCueVideo(lifecycle, key, 0f)
                 }

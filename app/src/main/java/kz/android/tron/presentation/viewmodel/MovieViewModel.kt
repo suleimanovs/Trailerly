@@ -36,35 +36,23 @@ class MovieViewModel @Inject constructor(
     fun getMovieList(sortBy: String): Flow<PagingData<Movie>> {
         return getMovieListUseCase(sortBy)
             .onStart { _movieListState.value = MovieListState.Loading }
-            .catch { error ->
-                _movieListState.value = MovieListState.Error(error.message ?: "Unknown error")
-            }
-            .onEach { pagingData ->
-                _movieListState.value = MovieListState.Success(pagingData)
-            }
+            .catch { error -> _movieListState.value = MovieListState.Error(error.message ?: "Unknown error") }
+            .onEach { pagingData -> _movieListState.value = MovieListState.Success(pagingData) }
     }
 
     fun getMovieTrailers(id: Int): Flow<PagingData<Trailer>> {
         return getMovieTrailersUseCase(id)
             .onStart { _trailerState.value = TrailerState.Loading }
-            .catch { error ->
-                _trailerState.value = TrailerState.Error(error.message ?: "Unknown error")
-            }
-            .onEach { pagingData ->
-                _trailerState.value = TrailerState.Success(pagingData)
-            }
+            .catch { error -> _trailerState.value = TrailerState.Error(error.message ?: "Unknown error") }
+            .onEach { pagingData -> _trailerState.value = TrailerState.Success(pagingData) }
     }
 
     fun refreshMovieList(sortBy: String) {
-        viewModelScope.launch {
-            getMovieList(sortBy).collect()
-        }
+        viewModelScope.launch { getMovieList(sortBy).collect() }
     }
 
     fun refreshTrailers(id: Int) {
-        viewModelScope.launch {
-            getMovieTrailers(id).collect()
-        }
+        viewModelScope.launch { getMovieTrailers(id).collect() }
     }
 
     fun clearStates() {

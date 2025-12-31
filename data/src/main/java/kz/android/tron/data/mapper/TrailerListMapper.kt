@@ -6,6 +6,6 @@ import kz.android.tron.domain.model.Trailer
 
 data object TrailerListMapper : BaseMapper<List<TrailerDto>?, List<Trailer>> {
     override fun map(source: List<TrailerDto>?): List<Trailer> {
-        return source?.map { TrailerMapper.map(it) } ?: emptyList()
+        return source?.map(TrailerMapper::map).orEmpty()
     }
 }

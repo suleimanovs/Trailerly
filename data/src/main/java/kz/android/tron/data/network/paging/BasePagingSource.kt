@@ -7,15 +7,12 @@ abstract class BasePagingSource<T : Any> : PagingSource<Int, T>() {
 
     protected var pageNumber: Int = DEFAULT_PAGE
 
-    abstract suspend fun mapData(): List<T>
+    abstract suspend fun mapData(): Result<List<T>>
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
-
         return try {
-
             pageNumber = params.key ?: DEFAULT_PAGE
-            val data = mapData()
-
+            val data = mapData().getOrDefault(emptyList())
             LoadResult.Page(
                 data = data,
                 prevKey = if (pageNumber == DEFAULT_PAGE) null else pageNumber - 1,
@@ -29,7 +26,6 @@ abstract class BasePagingSource<T : Any> : PagingSource<Int, T>() {
     override fun getRefreshKey(state: PagingState<Int, T>): Int? = null
 
     companion object {
-
-        internal const val DEFAULT_PAGE = 1
+        private const val DEFAULT_PAGE = 1
     }
 }

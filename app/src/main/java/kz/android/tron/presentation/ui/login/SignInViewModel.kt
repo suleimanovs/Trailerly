@@ -56,8 +56,7 @@ class SignInViewModel @Inject constructor() : ViewModel(), OnCompleteListener<Au
     }
 
     fun signInWithEmailAndPassword(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this)
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this)
     }
 
 
@@ -67,11 +66,7 @@ class SignInViewModel @Inject constructor() : ViewModel(), OnCompleteListener<Au
             auth.signInWithCredential(credential).addOnCompleteListener {
                 val credential = GoogleAuthProvider.getCredential(idToken, null)
                 auth.signInWithCredential(credential).addOnCompleteListener(this)
-                if (it.isSuccessful) {
-                    _state.value = State.Finished
-                } else {
-                    _state.value = State.Error(R.string.failed_sign_in)
-                }
+                _state.value = if (it.isSuccessful) State.Finished else State.Error(R.string.failed_sign_in)
             }
         }
     }

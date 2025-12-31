@@ -17,8 +17,7 @@ object DpToPx {
 }
 
 fun ShapeableImageView.toRound(): ShapeableImageView {
-    this.shapeAppearanceModel = this.shapeAppearanceModel.toBuilder()
-        .setAllCorners(CornerFamily.ROUNDED, DpToPx(context, 8).toFloat()).build()
+    this.shapeAppearanceModel = this.shapeAppearanceModel.toBuilder().setAllCorners(CornerFamily.ROUNDED, DpToPx(context, 8).toFloat()).build()
     return this
 }
 

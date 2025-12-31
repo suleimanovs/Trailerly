@@ -1,6 +1,5 @@
 package kz.android.tron.presentation.databinding
 
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorRes
@@ -13,8 +12,6 @@ import kz.android.tron.presentation.util.Genre
 import kz.android.tron.presentation.util.ShimmerDrawablePlaceHolder
 import kz.android.tron.presentation.util.toRound
 
-
-// Movie List Adapter
 @BindingAdapter("setPosterImage")
 fun setPosterImage(imageView: ShapeableImageView, posterUrl: String) {
     imageView.toRound()
@@ -40,21 +37,17 @@ fun setVoteProgressValue(circularProgress: CircularProgressView, percent: Int) {
     circularProgress.setProgress(percent)
 }
 
-
 enum class VoteColor(val range: IntRange) {
     LOW(0..39),
     MIDDLE(40..69),
     HIGH(70..101);
 }
 
-
-// Genre Adapter
 @BindingAdapter("setGenreIcon")
 fun setGenreIcon(imageView: ImageView, icon: Int) {
     imageView.setImageResource(icon)
 }
 
-//Movie Detail
 @BindingAdapter("setGenresValue")
 fun setGenresValue(textView: TextView, genresId: List<Int>) {
     textView.text = Genre.entries.filter { genresId.contains(it.id) }.joinToString { it.displayName }

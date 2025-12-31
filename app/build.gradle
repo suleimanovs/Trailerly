@@ -99,7 +99,7 @@ dependencies {
     implementation "com.github.VaibhavLakhera:Circular-Progress-View:0.1.2"
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
     implementation "com.github.takusemba:multisnaprecyclerview:2.0.4"
-    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0'
     implementation "androidx.viewpager2:viewpager2:1.1.0"
     implementation "dev.androidbroadcast.vbpd:vbpd:2.0.4"
 

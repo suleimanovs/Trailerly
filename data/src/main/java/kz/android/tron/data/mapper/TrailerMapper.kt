@@ -6,10 +6,7 @@ import kz.android.tron.domain.model.Trailer
 
 data object TrailerMapper : BaseMapper<TrailerDto, Trailer> {
     override fun map(source: TrailerDto): Trailer {
-        return Trailer(
-            key = source.key.orEmpty(),
-            name = source.name.orEmpty()
-        )
+        return Trailer(key = source.key.orEmpty(), name = source.name.orEmpty())
     }
 }
 

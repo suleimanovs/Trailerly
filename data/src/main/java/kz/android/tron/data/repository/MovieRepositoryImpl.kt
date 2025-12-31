@@ -39,7 +39,7 @@ class MovieRepositoryImpl @Inject constructor(private val service: ApiService) :
     }
 
     override fun getMovieTrailer(id: Int): Flow<PagingData<Trailer>> = flow {
-        val result = mappedApiCall(TrailerListMapper) { service.getMovieTrailersById(id).body()?.results }
+        val result = mappedApiCall(TrailerListMapper) { service.getMovieTrailersById(id).results }
         emit(PagingData.from(result.getOrDefault(emptyList())))
     }
 

@@ -6,6 +6,6 @@ import kz.android.tron.domain.model.Movie
 
 object MovieListMapper : BaseMapper<List<MovieDto>?, List<Movie>> {
     override fun map(source: List<MovieDto>?): List<Movie> {
-        return source?.map { MovieMapper.map(it) } ?: emptyList()
+        return source?.map(MovieMapper::map).orEmpty()
     }
 }

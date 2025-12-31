@@ -18,14 +18,7 @@ class MoviesGenreAdapter @Inject constructor() : RecyclerView.Adapter<BaseViewHo
 
         holder.itemView.alpha = 0f
         holder.itemView.translationY = 50f
-        holder.itemView.animate()
-            .alpha(1f)
-            .translationY(0f)
-            .setDuration(300)
-            .setStartDelay(100L)
-            .start()
-
-
+        holder.itemView.animate().alpha(1f).translationY(0f).setDuration(300).setStartDelay(100L).start()
         holder.binding.root.setOnClickListener {
             genreClickListener?.invoke(genre.id)
         }

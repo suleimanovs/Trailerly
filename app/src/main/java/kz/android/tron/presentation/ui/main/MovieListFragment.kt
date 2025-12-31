@@ -143,13 +143,13 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
             }
 
             isLoading && !isEmpty -> {
-                binding.swipeRefreshLayout.isRefreshing = true
                 stopShimmer()
+                binding.swipeRefreshLayout.isRefreshing = true
             }
 
             else -> {
-                binding.swipeRefreshLayout.isRefreshing = false
                 stopShimmer()
+                binding.swipeRefreshLayout.isRefreshing = false
             }
         }
     }
