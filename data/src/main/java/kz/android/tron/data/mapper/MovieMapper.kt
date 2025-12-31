@@ -24,7 +24,7 @@ object MovieMapper : BaseMapper<MovieDto, Movie> {
             posterPath = BASE_POSTER_URL + SMALL_POSTER_SIZE + source.posterPath,
             releaseDate = source.releaseDate.orEmpty(),
             title = source.title.orEmpty(),
-            voteAverage = runCatching { (source.voteAverage ?: DEFAULT_ZERO_DOUBLE).roundToInt() }.getOrDefault(DEFAULT_ZERO_INT),
+            voteAverage = runCatching { ((source.voteAverage ?: DEFAULT_ZERO_DOUBLE) * 10).roundToInt() }.getOrDefault(DEFAULT_ZERO_INT),
             bigPosterPath = BASE_POSTER_URL + BIG_POSTER_SIZE + source.posterPath,
             voteCount = source.voteCount ?: DEFAULT_ZERO_INT
         )
